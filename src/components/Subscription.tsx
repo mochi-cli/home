@@ -33,7 +33,7 @@ export default function Subscription() {
       <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
         <Reveal className="mb-12 flex items-end justify-between gap-6 border-b border-line pb-6">
           <div>
-            <p className="tech">{"// SUBSCRIPTION"}</p>
+            <p className="tech">{"// P1"}</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">{m.price.title}</h2>
             <p className="mt-2 max-w-md text-sm text-muted">{m.price.sub}</p>
           </div>

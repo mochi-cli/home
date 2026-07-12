@@ -36,7 +36,7 @@ export default function MascotIntro() {
           </Reveal>
 
           <Reveal className="order-2" delay={100}>
-            <p className="tech">{"// CHARACTER"}</p>
+            <p className="tech">{"// SUB"}</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">{m.char.title}</h2>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">{m.char.sub}</p>
 

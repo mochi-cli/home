@@ -157,7 +157,7 @@ export default function Features() {
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
         <Reveal className="mb-12 flex items-end justify-between gap-6 border-b border-line pb-6">
           <div>
-            <p className="tech">{"// FEATURE SELECT"}</p>
+            <p className="tech">{"// SYS.02"}</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
               {m.feat.title}
             </h2>
