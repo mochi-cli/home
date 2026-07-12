@@ -2,47 +2,118 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #241c15;
-  --surface: #fbf8f3;
-  --surface-strong: #f5efe4;
-  --border: #ece4d8;
-  --muted: #6b6259;
-  --accent: #ff8fa3;
-  --accent-strong: #ff6f89;
-  --accent-soft: #ffe3d0;
-  --accent-mint: #8fd9b6;
-  --accent-mint-soft: #e3f6ec;
+  --foreground: #0b0a09;
+  --surface: #fafaf9;
+  --surface-2: #f5f4f2;
+  --border: rgba(11, 10, 9, 0.08);
+  --border-strong: rgba(11, 10, 9, 0.14);
+  --muted: #78716c;
+  --muted-2: #a8a29e;
+
+  /* warm coral→peach signature accent, used sparingly */
+  --accent: #ff6f8f;
+  --accent-2: #ff9d6f;
+  --accent-glow: rgba(255, 111, 143, 0.35);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
-  --color-surface-strong: var(--surface-strong);
+  --color-surface-2: var(--surface-2);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
   --color-accent: var(--accent);
-  --color-accent-strong: var(--accent-strong);
-  --color-accent-soft: var(--accent-soft);
-  --color-accent-mint: var(--accent-mint);
-  --color-accent-mint-soft: var(--accent-mint-soft);
+  --color-accent-2: var(--accent-2);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+* {
+  border-color: var(--border);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
+
+::selection {
+  background: var(--accent-glow);
+  color: var(--foreground);
+}
+
+/* ---- Utilities ---- */
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(11, 10, 9, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 10, 9, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+.dot-bg {
+  background-image: radial-gradient(rgba(11, 10, 9, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.accent-gradient {
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* soft card hover lift */
+.card {
+  position: relative;
+  border: 1px solid var(--border);
+  background: var(--background);
+  border-radius: 1.25rem;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+  box-shadow:
+    0 1px 0 rgba(11, 10, 9, 0.02),
+    0 18px 40px -20px rgba(11, 10, 9, 0.18);
+}
+
+/* ---- Animations ---- */
 
 @keyframes float {
   0%,
   100% {
-    transform: translateY(0px);
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-12px);
   }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
 @keyframes wave {
@@ -50,15 +121,30 @@ body {
   100% {
     transform: rotate(0deg);
   }
-  25% {
-    transform: rotate(-14deg);
+  20% {
+    transform: rotate(-16deg);
   }
-  75% {
-    transform: rotate(6deg);
+  60% {
+    transform: rotate(8deg);
+  }
+}
+.animate-wave {
+  transform-origin: 76% 62%;
+  animation: wave 2.8s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.1);
   }
 }
 
-@keyframes blink-cursor {
+@keyframes cursor {
   0%,
   49% {
     opacity: 1;
@@ -68,16 +154,61 @@ body {
     opacity: 0;
   }
 }
-
-.animate-float {
-  animation: float 5s ease-in-out infinite;
-}
-
-.animate-wave {
-  transform-origin: 78% 60%;
-  animation: wave 2.6s ease-in-out infinite;
-}
-
 .animate-cursor {
-  animation: blink-cursor 1s step-end infinite;
+  animation: cursor 1s step-end infinite;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(20px, -18px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+.animate-drift {
+  animation: drift 14s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 22s linear infinite;
+}
+
+/* scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-wave,
+  .animate-drift,
+  .animate-marquee,
+  .animate-cursor {
+    animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }

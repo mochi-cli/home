@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
-import HowItWorks from "@/components/HowItWorks";
+import Workflow from "@/components/Workflow";
 import Templates from "@/components/Templates";
 import MascotIntro from "@/components/MascotIntro";
 import CTASection from "@/components/CTASection";
@@ -14,7 +14,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Features />
-        <HowItWorks />
+        <Workflow />
         <Templates />
         <MascotIntro />
         <CTASection />
