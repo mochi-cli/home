@@ -1,45 +1,59 @@
 import Mascot from "./Mascot";
 import Reveal from "./Reveal";
+import { Frame, DashedRings, Crosshair, TechCaption } from "./hud";
 
-const traits = [
-  "Không viết SQL tay",
-  "Không commit file DB sống",
-  "Luôn có lịch sử để rollback",
-  "Không phụ thuộc ngoài",
+const stats = [
+  { label: "SIMPLE", val: 5 },
+  { label: "SAFE", val: 5 },
+  { label: "TRACEABLE", val: 4 },
+  { label: "ZERO-DEP", val: 5 },
 ];
 
 export default function MascotIntro() {
   return (
-    <section id="mochi" className="border-y border-border bg-surface">
-      <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+    <section id="mochi" className="scanlines relative border-b border-line bg-surface-2">
+      <div className="dotgrid pointer-events-none absolute inset-0 opacity-50" />
+      <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          <Reveal className="order-2 lg:order-1">
-            <p className="eyebrow">Nhân vật</p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-              Gặp gỡ Mochi
-            </h2>
-            <p className="mt-4 max-w-md text-base leading-relaxed text-muted">
-              Một trợ lý nhỏ, tròn trịa và luôn vui vẻ — đứng giữa AI agent của
+          {/* character card */}
+          <Reveal className="order-1 flex justify-center">
+            <div className="relative">
+              <DashedRings className="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 [color:var(--line-soft)]" />
+              <Crosshair className="absolute -left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-muted" />
+              <Crosshair className="absolute -right-3 top-1/2 h-3 w-3 -translate-y-1/2 text-muted" />
+              <Frame size={16} className="bg-background/60 p-8 backdrop-blur-sm">
+                <span className="pixel absolute -top-2 left-1/2 -translate-x-1/2 bg-surface-2 px-2 text-[9px] text-muted">
+                  PLAYER 01
+                </span>
+                <Mascot pose="happy" uid="intro" className="animate-float h-44 w-44 sm:h-52 sm:w-52" />
+              </Frame>
+              <TechCaption className="absolute -bottom-2 right-2" lines={["ID: MOCHI-001", "CLASS: ASSISTANT"]} />
+            </div>
+          </Reveal>
+
+          <Reveal className="order-2" delay={100}>
+            <p className="tech">{"// CHARACTER"}</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">Gặp gỡ Mochi</h2>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
+              Một trợ lý nhỏ, tròn trịa và luôn sẵn sàng — đứng giữa AI agent của
               bạn và cơ sở dữ liệu. Mochi không thay bạn quyết định, chỉ giúp mọi
               thao tác dữ liệu trở nên đơn giản, an toàn và dễ theo dõi.
             </p>
-            <ul className="mt-6 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-              {traits.map((t) => (
-                <li key={t} className="flex items-center gap-2.5 text-sm text-foreground">
-                  <span className="inline-flex h-4 w-4 flex-none items-center justify-center rounded-full accent-gradient text-[10px] text-white">
-                    ✓
-                  </span>
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
 
-          <Reveal className="order-1 flex justify-center lg:order-2">
-            <div className="relative">
-              <div className="dot-bg pointer-events-none absolute inset-0 -z-10 rounded-3xl [mask-image:radial-gradient(closest-side,#000,transparent)]" />
-              <div className="absolute inset-0 -z-10 scale-90 rounded-full bg-[radial-gradient(closest-side,var(--accent-glow),transparent)] blur-2xl" />
-              <Mascot pose="happy" uid="intro" className="animate-float h-52 w-52 sm:h-64 sm:w-64" />
+            <div className="mt-7 space-y-3">
+              {stats.map((s) => (
+                <div key={s.label} className="flex items-center gap-3">
+                  <span className="pixel w-24 flex-none text-[9px] text-muted">{s.label}</span>
+                  <div className="flex gap-1">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <span
+                        key={i}
+                        className={`h-3 w-5 border border-line ${i < s.val ? "bg-foreground" : "bg-transparent"}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </Reveal>
         </div>

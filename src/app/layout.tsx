@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Silkscreen } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -9,6 +9,13 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+// pixel/arcade font — Latin only, used for decorative HUD labels
+const pixel = Silkscreen({
+  variable: "--font-pixel",
+  weight: ["400", "700"],
   subsets: ["latin"],
 });
 
@@ -26,7 +33,7 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${pixel.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

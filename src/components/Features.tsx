@@ -1,34 +1,33 @@
 import Reveal from "./Reveal";
+import { Frame } from "./hud";
 
 function ChatVisual() {
   return (
-    <div className="mt-6 space-y-2.5">
-      <div className="ml-auto w-fit max-w-[80%] rounded-2xl rounded-br-md border border-border bg-surface px-3.5 py-2 text-[13px] text-foreground">
-        Thêm khách hàng “Acme” vào workspace crm
+    <div className="mt-6 space-y-2">
+      <div className="mono ml-auto w-fit max-w-[85%] border border-line bg-surface px-3 py-1.5 text-[12px] text-foreground">
+        &gt; thêm khách hàng “Acme” vào crm
       </div>
-      <div className="w-fit max-w-[85%] rounded-2xl rounded-bl-md accent-gradient px-3.5 py-2 text-[13px] text-white shadow-sm">
-        Đã tạo bản ghi #A-102 · Acme Inc 🍡
+      <div className="mono w-fit max-w-[85%] border border-line bg-foreground px-3 py-1.5 text-[12px] text-background">
+        ✓ bản ghi #A-102 · Acme Inc
       </div>
-      <div className="flex items-center gap-1.5 pl-1 pt-0.5 text-muted-2">
-        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-muted-2" />
-        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-muted-2 [animation-delay:150ms]" />
-        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-muted-2 [animation-delay:300ms]" />
+      <div className="flex items-center gap-1.5 pl-1">
+        <span className="h-1.5 w-1.5 animate-pulse bg-muted-2" />
+        <span className="h-1.5 w-1.5 animate-pulse bg-muted-2 [animation-delay:150ms]" />
+        <span className="h-1.5 w-1.5 animate-pulse bg-muted-2 [animation-delay:300ms]" />
       </div>
     </div>
   );
 }
 
 function TemplateVisual() {
-  const t = ["CRM", "HRM", "Kho", "Dự án"];
+  const t = ["CRM", "HRM", "KHO", "DU_AN"];
   return (
     <div className="mt-6 flex flex-wrap gap-2">
       {t.map((x, i) => (
         <span
           key={x}
-          className={`rounded-lg border px-2.5 py-1 font-mono text-[12px] ${
-            i === 0
-              ? "border-transparent accent-gradient text-white"
-              : "border-border bg-surface text-muted"
+          className={`pixel border border-line px-2 py-1 text-[8px] ${
+            i === 0 ? "bg-foreground text-background" : "bg-surface text-muted"
           }`}
         >
           {x}
@@ -40,13 +39,13 @@ function TemplateVisual() {
 
 function GitVisual() {
   return (
-    <div className="mt-6 font-mono text-[12px] leading-relaxed">
-      <div className="text-muted-2">workspace/crm</div>
-      <div className="mt-1 rounded-md border border-border bg-surface px-2.5 py-1.5">
-        <span className="text-emerald-600">+ </span>records/a-102.json
+    <div className="mono mt-6 text-[12px] leading-relaxed">
+      <div className="text-muted-2">▸ workspace/crm</div>
+      <div className="mt-1 border border-line bg-surface px-2.5 py-1.5">
+        <span className="text-foreground">[+]</span> records/a-102.json
       </div>
-      <div className="mt-1 rounded-md border border-border bg-surface px-2.5 py-1.5">
-        <span className="text-emerald-600">+ </span>records/a-103.md
+      <div className="mt-1 border border-line bg-surface px-2.5 py-1.5">
+        <span className="text-foreground">[+]</span> records/a-103.md
       </div>
     </div>
   );
@@ -54,22 +53,17 @@ function GitVisual() {
 
 function HistoryVisual() {
   const rows = [
-    { t: "patchRecord", d: "cập nhật #A-102", ok: true },
-    { t: "createProfile", d: "workspace inventory", ok: true },
-    { t: "rollback", d: "về commit trước đó", ok: false },
+    { t: "patchRecord", d: "#A-102", ok: true },
+    { t: "createProfile", d: "inventory", ok: true },
+    { t: "rollback", d: "prev commit", ok: false },
   ];
   return (
     <div className="mt-6 space-y-2">
       {rows.map((r) => (
-        <div
-          key={r.t}
-          className="flex items-center gap-3 rounded-lg border border-border bg-surface px-3 py-2"
-        >
-          <span
-            className={`h-1.5 w-1.5 rounded-full ${r.ok ? "bg-emerald-500" : "bg-accent"}`}
-          />
-          <span className="font-mono text-[12px] text-foreground">{r.t}</span>
-          <span className="text-[12px] text-muted-2">{r.d}</span>
+        <div key={r.t} className="flex items-center gap-3 border border-line bg-surface px-3 py-2">
+          <span className={`h-2 w-2 ${r.ok ? "bg-foreground" : "border border-line bg-transparent"}`} />
+          <span className="mono text-[12px] text-foreground">{r.t}</span>
+          <span className="mono text-[11px] text-muted-2">{r.d}</span>
         </div>
       ))}
     </div>
@@ -79,28 +73,28 @@ function HistoryVisual() {
 const features = [
   {
     span: "lg:col-span-3",
-    eyebrow: "01 · Agent",
+    tag: "SYS.01 · AGENT",
     title: "Tương tác tự nhiên với Claude, Codex & OpenCode",
     desc: "Nói chuyện trực tiếp bằng ngôn ngữ tự nhiên. Mochi hiểu ngữ cảnh workspace và thao tác dữ liệu thay bạn qua các tool có kiểu.",
     visual: <ChatVisual />,
   },
   {
     span: "lg:col-span-2",
-    eyebrow: "02 · Template",
+    tag: "SYS.02 · TEMPLATE",
     title: "Tạo template trong một lệnh",
     desc: "Schema dựng sẵn cho CRM, HRM, kho vận, dự án — kèm dữ liệu mẫu.",
     visual: <TemplateVisual />,
   },
   {
     span: "lg:col-span-2",
-    eyebrow: "03 · Git",
+    tag: "SYS.03 · GIT",
     title: "Commit dữ liệu an toàn lên Git",
     desc: "Không commit file SQLite sống. Xuất bundle JSON/Markdown dễ diff, theo nhánh.",
     visual: <GitVisual />,
   },
   {
     span: "lg:col-span-3",
-    eyebrow: "04 · Kiểm soát",
+    tag: "SYS.04 · CONTROL",
     title: "Lịch sử ghi & rollback bất kỳ lúc nào",
     desc: "Mọi thay đổi của agent đều được theo dõi. Xem lại và hoàn tác về trạng thái trước đó chỉ với một lệnh.",
     visual: <HistoryVisual />,
@@ -109,28 +103,30 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <Reveal className="mx-auto max-w-2xl text-center">
-        <p className="eyebrow">Tính năng</p>
-        <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-          Mọi thứ agent cần để làm việc với dữ liệu
-        </h2>
-        <p className="mt-4 text-base leading-relaxed text-muted">
-          Không cần cài SQLite riêng, không viết SQL tay. Mochi lo phần nền tảng.
-        </p>
-      </Reveal>
+    <section id="features" className="relative border-b border-line">
+      <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+        <Reveal className="mb-12 flex items-end justify-between gap-6 border-b border-line pb-6">
+          <div>
+            <p className="tech">{"// FEATURE SELECT"}</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
+              Mọi thứ agent cần để làm việc với dữ liệu
+            </h2>
+          </div>
+          <span className="pixel hidden whitespace-nowrap text-[9px] text-muted-2 sm:block">04 MODULES</span>
+        </Reveal>
 
-      <div className="mt-14 grid gap-4 lg:grid-cols-5">
-        {features.map((f, i) => (
-          <Reveal key={f.title} delay={i * 80} className={f.span}>
-            <div className="card flex h-full flex-col p-7">
-              <p className="eyebrow">{f.eyebrow}</p>
-              <h3 className="mt-3 text-lg font-semibold tracking-tight">{f.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{f.desc}</p>
-              <div className="mt-auto">{f.visual}</div>
-            </div>
-          </Reveal>
-        ))}
+        <div className="grid gap-4 lg:grid-cols-5">
+          {features.map((f, i) => (
+            <Reveal key={f.title} delay={i * 80} className={f.span}>
+              <Frame size={12} className="card-hud h-full border border-line bg-surface p-7">
+                <p className="pixel text-[9px] text-muted">{f.tag}</p>
+                <h3 className="mt-3 text-lg font-semibold tracking-tight">{f.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{f.desc}</p>
+                {f.visual}
+              </Frame>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

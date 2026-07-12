@@ -9,7 +9,7 @@ const steps = [
   },
   {
     n: "02",
-    cmd: "“Hey Mochi…”",
+    cmd: '"Hey Mochi…"',
     title: "Trò chuyện với agent",
     desc: "Claude, Codex hay OpenCode thao tác dữ liệu qua các tool có kiểu — không cần viết SQL.",
   },
@@ -23,26 +23,25 @@ const steps = [
 
 export default function Workflow() {
   return (
-    <section id="workflow" className="border-y border-border bg-surface">
-      <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-        <Reveal className="max-w-2xl">
-          <p className="eyebrow">Cách hoạt động</p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+    <section id="workflow" className="scanlines relative border-b border-line bg-surface-2">
+      <div className="dotgrid pointer-events-none absolute inset-0 opacity-50" />
+      <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
+        <Reveal className="mb-12">
+          <p className="tech">{"// GAME LOOP"}</p>
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
             Ba bước tới một workspace agent-native
           </h2>
         </Reveal>
 
-        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-3">
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 100}>
-              <div className="group h-full bg-white p-8 transition-colors hover:bg-surface-2">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-sm text-muted-2">{s.n}</span>
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted transition-colors group-hover:border-border-strong group-hover:text-foreground">
-                    →
-                  </span>
+              <div className="card-hud group relative h-full border border-line bg-background p-7">
+                <div className="flex items-center justify-between border-b border-line pb-4">
+                  <span className="pixel text-3xl text-foreground">{s.n}</span>
+                  <span className="pixel text-[9px] text-muted-2">LEVEL</span>
                 </div>
-                <div className="mt-6 inline-block rounded-md border border-border bg-surface px-2.5 py-1 font-mono text-[12px] text-foreground">
+                <div className="mono mt-5 inline-block border border-line bg-surface px-2.5 py-1 text-[12px] text-foreground">
                   {s.cmd}
                 </div>
                 <h3 className="mt-4 text-lg font-semibold tracking-tight">{s.title}</h3>
