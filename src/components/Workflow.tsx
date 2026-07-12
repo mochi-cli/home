@@ -2,15 +2,17 @@
 
 import Reveal from "./Reveal";
 import { useLang } from "./LanguageProvider";
+import { useEngine } from "./EngineProvider";
 
 const stepMeta = [
-  { n: "01", cmd: "sudo npx github:mochi-cli/mochi init --kit all" },
+  { n: "01", cmd: "mochikit init --kit all" }, // will be dynamically overridden
   { n: "02", cmd: '"Hey Mochi create profile"' },
   { n: "03", cmd: '"Hey mochi create CRM "' },
 ];
 
 export default function Workflow() {
   const { m } = useLang();
+  const { kitValue } = useEngine();
   return (
     <section id="workflow" className="scanlines relative border-b border-line bg-surface-2">
       <div className="dotgrid pointer-events-none absolute inset-0 opacity-50" />
@@ -50,7 +52,7 @@ export default function Workflow() {
                   <span className="pixel text-[9px] text-muted-2">LEVEL</span>
                 </div>
                 <div className="mono mt-5 inline-block border border-line bg-surface px-2.5 py-1 text-[12px] text-foreground">
-                  {s.cmd}
+                  {i === 0 ? `mochikit init --kit ${kitValue}` : s.cmd}
                 </div>
                 <h3 className="mt-4 text-lg font-semibold tracking-tight">{m.flow.steps[i].title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{m.flow.steps[i].desc}</p>

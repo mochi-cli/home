@@ -15,11 +15,14 @@ import {
 } from "./hud";
 import Mascot from "./Mascot";
 import { useLang } from "./LanguageProvider";
+import { useEngine } from "./EngineProvider";
 
 const agents = ["CLAUDE", "CODEX", "OPENCODE"];
 
 export default function Hero() {
   const { m } = useLang();
+  const { selectedEngines, toggleEngine, kitValue } = useEngine();
+
   return (
     <section id="top" className="scanlines relative overflow-hidden border-b border-line">
       <div className="blueprint pointer-events-none absolute inset-0 opacity-60" />
@@ -86,11 +89,20 @@ export default function Hero() {
         {/* agent select toggles */}
         <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
           <span className="tech">SELECT ENGINE ›</span>
-          {agents.map((a) => (
-            <span key={a} className="pixel border border-line bg-surface px-2.5 py-1 text-[9px] text-foreground">
-              {a}
-            </span>
-          ))}
+          {agents.map((a) => {
+            const isSelected = selectedEngines.includes(a);
+            return (
+              <button 
+                key={a}
+                onClick={() => toggleEngine(a)}
+                className={`pixel border border-line px-2.5 py-1 text-[9px] transition-colors ${
+                  isSelected ? "bg-foreground text-background" : "bg-surface text-foreground"
+                }`}
+              >
+                {a}
+              </button>
+            );
+          })}
         </div>
 
         {/* CTAs */}
@@ -104,7 +116,7 @@ export default function Hero() {
             PRESS START ►
           </a>
           <div className="mono inline-flex h-12 items-center gap-3 border border-line bg-surface px-5 text-sm text-foreground">
-            <span className="text-muted-2">$</span> sudo npx github:mochi-cli/mochi init --kit all
+            <span className="text-muted-2">$</span> mochikit init --kit {kitValue}
           </div>
         </div>
 
