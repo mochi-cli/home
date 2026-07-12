@@ -3,12 +3,12 @@ import Mascot from "./Mascot";
 import LangSwitcher from "./LangSwitcher";
 
 const links = [
-  { href: "#workflow", label: "SYS.01" },
-  { href: "#features", label: "SYS.02" },
-  { href: "#git-control", label: "SYS.03" },
-  { href: "#templates", label: "SYS.04" },
-  { href: "#mochi", label: "P1" },
-  { href: "#pricing", label: "SUB" },
+  { href: "#workflow", label: "How it works" },
+  { href: "#features", label: "Features" },
+  { href: "#git", label: "Git & History" },
+  { href: "#templates", label: "Templates" },
+  { href: "#mochi", label: "Mochi" },
+  { href: "#pricing", label: "Pricing" },
 ];
 
 export default function Navbar() {

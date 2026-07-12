@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- HUD dark background square -->
+  <rect width="32" height="32" rx="5" fill="#0a0a0a"/>
+
+  <!-- cat ears (triangles) -->
+  <polygon points="8,12 10,5 14,10" fill="#f0f0ee"/>
+  <polygon points="24,12 22,5 18,10" fill="#f0f0ee"/>
+
+  <!-- body: rounded-square head + scalloped ghost bottom -->
+  <path
+    d="M6 17
+       C6 11 9 8 16 8
+       C23 8 26 11 26 17
+       L26 25
+       q-2.5 3.5 -5 0
+       q-2.5 3.5 -5 0
+       q-2.5 3.5 -5 0
+       q-2.5 3.5 -5 0
+       Z"
+    fill="#f0f0ee"
+    stroke="#0a0a0a"
+    stroke-width="0.4"
+  />
+
+  <!-- eyes — two tall rounded rectangles -->
+  <rect x="11" y="14" width="3" height="6" rx="1.5" fill="#0a0a0a"/>
+  <rect x="18" y="14" width="3" height="6" rx="1.5" fill="#0a0a0a"/>
+
+  <!-- nose — tiny triangle -->
+  <polygon points="15,22 17,22 16,23.5" fill="#0a0a0a"/>
+
+  <!-- HUD corner ticks — top-left -->
+  <path d="M1 4 L1 1 L4 1" fill="none" stroke="#f0f0ee" stroke-width="0.8" opacity="0.6"/>
+  <!-- HUD corner ticks — bottom-right -->
+  <path d="M31 28 L31 31 L28 31" fill="none" stroke="#f0f0ee" stroke-width="0.8" opacity="0.6"/>
+</svg>

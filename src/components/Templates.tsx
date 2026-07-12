@@ -5,10 +5,10 @@ import { Frame } from "./hud";
 import { useLang } from "./LanguageProvider";
 
 const templateMeta = [
-  { name: "CRM", code: "MODE_01" },
-  { name: "HRM", code: "MODE_02" },
-  { name: "INVENTORY", code: "MODE_03" },
-  { name: "PROJECT", code: "MODE_04" },
+  { name: "CRM", code: "Customer Management" },
+  { name: "HRM", code: "HR Management" },
+  { name: "INVENTORY", code: "Stock & Warehouse" },
+  { name: "PROJECT", code: "Task & Progress" },
 ];
 
 export default function Templates() {
@@ -18,7 +18,7 @@ export default function Templates() {
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <Reveal>
-            <p className="tech">{"// SYS.04"}</p>
+            <p className="tech">{"// TEMPLATES"}</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
               {m.tpl.title}
             </h2>

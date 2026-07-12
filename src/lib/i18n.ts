@@ -210,17 +210,21 @@ const en: Messages = {
         desc: "Talk directly in natural language. Mochi understands your workspace context and operates data for you through typed tools.",
       },
       {
-        title: "Spin up a database template in one command",
+        title: "Create database đơn giản với ngôn ngữ",
         desc: "Ready-made schemas for CRM, HRM, inventory and projects — sample data included.",
       },
       {
-        title: "MULTI-BRANCH · MULTI-USER · REALTIME DB",
-        desc: "Agents can work on multiple branches simultaneously. Live updates stream directly to the Realtime DB without collisions.",
+        title: "Commit data safely to Git",
+        desc: "Never commit a live database file. Export a text-based JSON/Markdown bundle that's easy to diff and branch.",
+      },
+      {
+        title: "Write history & rollback anytime",
+        desc: "Every agent change is tracked. Review and roll back to a previous state with a single command.",
       },
     ],
   },
   git: {
-    title: "Version control for your database",
+    title: "Git-backed storage control & data history",
     items: [
       {
         title: "Commit data safely to Git",
@@ -450,7 +454,7 @@ const es: Messages = {
     ],
   },
   git: {
-    title: "Control de versiones para su base de datos",
+    title: "Almacenamiento en Git y control del historial de datos",
     items: [
       {
         title: "Guarda los datos con seguridad en Git",
@@ -680,7 +684,7 @@ const fr: Messages = {
     ],
   },
   git: {
-    title: "Contrôle de version pour votre base de données",
+    title: "Stockage Git et contrôle de l'historique des données",
     items: [
       {
         title: "Validez vos données en toute sécurité sur Git",
@@ -910,7 +914,7 @@ const de: Messages = {
     ],
   },
   git: {
-    title: "Versionskontrolle für Ihre Datenbank",
+    title: "Git-gesicherter Speicher & Datenverwaltung",
     items: [
       {
         title: "Committe Daten sicher zu Git",
@@ -1140,7 +1144,7 @@ const ja: Messages = {
     ],
   },
   git: {
-    title: "データベースのバージョン管理",
+    title: "Git連携ストレージ制御とデータ履歴管理",
     items: [
       {
         title: "データを安全にGitへコミット",
@@ -1370,7 +1374,7 @@ const zh: Messages = {
     ],
   },
   git: {
-    title: "数据库的版本控制",
+    title: "Git 驱动的存储控制与数据历史管理",
     items: [
       {
         title: "安全地把数据提交到 Git",
@@ -1600,7 +1604,7 @@ const vi: Messages = {
     ],
   },
   git: {
-    title: "Quản lý phiên bản cho cơ sở dữ liệu",
+    title: "Kiểm soát lưu trữ DB trên Git & quản lý lịch sử dữ liệu",
     items: [
       {
         title: "Commit dữ liệu an toàn lên Git",

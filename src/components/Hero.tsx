@@ -34,7 +34,7 @@ export default function Hero() {
       <TechCaption className="absolute left-24 top-14 hidden lg:block" />
       <TechCaption
         className="absolute right-24 top-14 hidden text-right lg:block"
-        lines={["SYS.READY", "P1 · INSERT COIN", "AI // CLAUDE·CODEX·OC"]}
+        lines={["MOCHI READY", "START · TALK TO YOUR DATA", "AI // CLAUDE·CODEX·OC"]}
       />
 
       {/* ---- side rails ---- */}

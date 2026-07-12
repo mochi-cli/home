@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   title: "Mochi — The agent-native data sidekick",
   description:
     "Mochi turns database into an agent-native workspace for Claude, Codex and OpenCode: create templates, operate data in natural language, and commit safely to Git.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

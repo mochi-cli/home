@@ -16,7 +16,7 @@ export default function Workflow() {
       <div className="dotgrid pointer-events-none absolute inset-0 opacity-50" />
       <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
         <Reveal className="mb-8">
-          <p className="tech">{"// SYS.01"}</p>
+          <p className="tech">{"// HOW IT WORKS"}</p>
           <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
             {m.flow.title}
           </h2>

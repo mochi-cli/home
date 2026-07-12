@@ -27,7 +27,7 @@ export default function Reveal({ children, className = "", delay = 0, as = "div"
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
+      { threshold: 0.05, rootMargin: "0px 0px -20px 0px" },
     );
 
     observer.observe(el);
