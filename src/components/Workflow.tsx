@@ -6,7 +6,7 @@ import { useEngine } from "./EngineProvider";
 import { useState } from "react";
 
 const stepMeta = [
-  { n: "01", cmd: "npx github:mochi-cli/mochi init --kit all" }, // will be dynamically overridden
+  { n: "01", cmd: "npx @mochi-cli/mochi init --kit all" }, // will be dynamically overridden
   { n: "02", cmd: '"Hey Mochi create profile"' },
   { n: "03", cmd: '"Hey mochi create CRM "' },
 ];
@@ -75,7 +75,7 @@ export default function Workflow() {
                   <span className="pixel text-3xl text-foreground">{s.n}</span>
                   <span className="pixel text-[9px] text-muted-2">LEVEL</span>
                 </div>
-                <CopyableCommand text={i === 0 ? `npx github:mochi-cli/mochi init --kit ${kitValue}` : s.cmd} />
+                <CopyableCommand text={i === 0 ? `npx @mochi-cli/mochi init --kit ${kitValue}` : s.cmd} />
                 <h3 className="mt-4 text-lg font-semibold tracking-tight">{m.flow.steps[i].title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{m.flow.steps[i].desc}</p>
               </div>

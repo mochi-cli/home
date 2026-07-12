@@ -25,7 +25,7 @@ export default function Hero() {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(`npx github:mochi-cli/mochi init --kit ${kitValue}`);
+    navigator.clipboard.writeText(`npx @mochi-cli/mochi init --kit ${kitValue}`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -124,7 +124,7 @@ export default function Hero() {
           </a>
           <div className="mono flex h-12 items-center justify-between gap-3 border border-line bg-surface pl-5 pr-2 text-sm text-foreground sm:w-auto w-full max-w-full overflow-hidden">
             <div className="flex items-center gap-3 overflow-x-auto whitespace-nowrap scrollbar-none">
-              <span className="text-muted-2">$</span> npx github:mochi-cli/mochi init --kit {kitValue}
+              <span className="text-muted-2">$</span> npx @mochi-cli/mochi init --kit {kitValue}
             </div>
             <button 
               onClick={handleCopy}
