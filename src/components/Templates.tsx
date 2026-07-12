@@ -18,7 +18,7 @@ export default function Templates() {
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <Reveal>
-            <p className="tech">{"// SYS.03"}</p>
+            <p className="tech">{"// SYS.04"}</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
               {m.tpl.title}
             </h2>

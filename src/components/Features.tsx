@@ -149,7 +149,7 @@ export default function Features() {
   const featureMeta = [
     { span: "lg:col-span-3", tag: "SYS.01 · AGENT", getTitle: () => m.feat.items[0].title, getDesc: () => m.feat.items[0].desc, visual: <ChatVisual m={m} /> },
     { span: "lg:col-span-2", tag: "SYS.02 · TEMPLATE", getTitle: () => m.feat.items[1].title, getDesc: () => m.feat.items[1].desc, visual: <TemplateVisual m={m} /> },
-    { span: "lg:col-span-5", tag: "SYS.03 · GIT & CONTROL", getTitle: () => `${m.feat.items[2].title} & ${m.feat.items[3].title}`, getDesc: () => `${m.feat.items[2].desc} ${m.feat.items[3].desc}`, visual: <MultiBranchVisual m={m} /> },
+    { span: "lg:col-span-5", tag: "SYS.03 · REALTIME DB", getTitle: () => m.feat.items[2].title, getDesc: () => m.feat.items[2].desc, visual: <MultiBranchVisual m={m} /> },
   ];
 
   return (

@@ -5,7 +5,8 @@ import LangSwitcher from "./LangSwitcher";
 const links = [
   { href: "#workflow", label: "SYS.01" },
   { href: "#features", label: "SYS.02" },
-  { href: "#templates", label: "SYS.03" },
+  { href: "#git-control", label: "SYS.03" },
+  { href: "#templates", label: "SYS.04" },
   { href: "#mochi", label: "P1" },
   { href: "#pricing", label: "SUB" },
 ];

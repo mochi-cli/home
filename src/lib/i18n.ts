@@ -30,6 +30,7 @@ export interface Messages {
   db: any;
   hero: { headline: string; sub: string };
   feat: { title: string; items: Feature[] };
+  git: { title: string; items: Feature[] };
   flow: { title: string; steps: Step[] };
   tpl: { title: string; sub: string; items: string[] };
   char: { title: string; sub: string };
@@ -209,9 +210,18 @@ const en: Messages = {
         desc: "Talk directly in natural language. Mochi understands your workspace context and operates data for you through typed tools.",
       },
       {
-        title: "Create database đơn giản với ngôn ngữ",
+        title: "Spin up a database template in one command",
         desc: "Ready-made schemas for CRM, HRM, inventory and projects — sample data included.",
       },
+      {
+        title: "MULTI-BRANCH · MULTI-USER · REALTIME DB",
+        desc: "Agents can work on multiple branches simultaneously. Live updates stream directly to the Realtime DB without collisions.",
+      },
+    ],
+  },
+  git: {
+    title: "Version control for your database",
+    items: [
       {
         title: "Commit data safely to Git",
         desc: "Never commit a live database file. Export a text-based JSON/Markdown bundle that's easy to diff and branch.",
@@ -425,10 +435,31 @@ const es: Messages = {
   feat: {
     title: "Todo lo que tu agente necesita para trabajar con datos",
     items: [
-      { title: "Chatea con naturalidad con Claude, Codex y OpenCode", desc: "Habla directamente en lenguaje natural. Mochi entiende el contexto de tu espacio de trabajo y opera los datos por ti mediante herramientas tipadas." },
-      { title: "Crea una plantilla con un solo comando", desc: "Esquemas listos para CRM, HRM, inventario y proyectos, con datos de ejemplo incluidos." },
-      { title: "Guarda los datos con seguridad en Git", desc: "Nunca subas un archivo database en vivo. Exporta un paquete de texto JSON/Markdown fácil de comparar y ramificar." },
-      { title: "Historial de escritura y reversión cuando quieras", desc: "Cada cambio del agente queda registrado. Revisa y revierte a un estado anterior con un solo comando." },
+      {
+        title: "Chatea con naturalidad con Claude, Codex y OpenCode",
+        desc: "Habla directamente en lenguaje natural. Mochi entiende el contexto de tu espacio de trabajo y opera los datos por ti mediante herramientas tipadas.",
+      },
+      {
+        title: "Crea una plantilla con un solo comando",
+        desc: "Esquemas listos para CRM, HRM, inventario y proyectos, con datos de ejemplo incluidos.",
+      },
+      {
+        title: "MULTI-BRANCH · MULTI-USER · REALTIME DB",
+        desc: "Los agentes pueden trabajar en múltiples ramas simultáneamente. Las actualizaciones se transmiten en vivo a la BD en tiempo real sin colisiones.",
+      },
+    ],
+  },
+  git: {
+    title: "Control de versiones para su base de datos",
+    items: [
+      {
+        title: "Guarda los datos con seguridad en Git",
+        desc: "Nunca subas un archivo database en vivo. Exporta un paquete de texto JSON/Markdown fácil de comparar y ramificar.",
+      },
+      {
+        title: "Historial de escritura y reversión cuando quieras",
+        desc: "Cada cambio del agente queda registrado. Revisa y revierte a un estado anterior con un solo comando.",
+      },
     ],
   },
   flow: {
@@ -634,10 +665,31 @@ const fr: Messages = {
   feat: {
     title: "Tout ce dont votre agent a besoin pour travailler avec les données",
     items: [
-      { title: "Discutez naturellement avec Claude, Codex et OpenCode", desc: "Parlez directement en langage naturel. Mochi comprend le contexte de votre espace et manipule les données pour vous via des outils typés." },
-      { title: "Créez un modèle en une seule commande", desc: "Des schémas prêts à l'emploi pour CRM, RH, inventaire et projets — données d'exemple incluses." },
-      { title: "Validez vos données en toute sécurité sur Git", desc: "Ne validez jamais un fichier database en direct. Exportez un bundle texte JSON/Markdown facile à comparer et à versionner." },
-      { title: "Historique des écritures et retour arrière à tout moment", desc: "Chaque modification de l'agent est suivie. Consultez et revenez à un état précédent en une commande." },
+      {
+        title: "Discutez naturellement avec Claude, Codex et OpenCode",
+        desc: "Parlez directement en langage naturel. Mochi comprend le contexte de votre espace et manipule les données pour vous via des outils typés.",
+      },
+      {
+        title: "Créez un modèle en une seule commande",
+        desc: "Des schémas prêts à l'emploi pour CRM, RH, inventaire et projets — données d'exemple incluses.",
+      },
+      {
+        title: "MULTI-BRANCH · MULTI-USER · REALTIME DB",
+        desc: "Les agents peuvent travailler sur plusieurs branches simultanément. Les mises à jour en direct sont diffusées sans collision.",
+      },
+    ],
+  },
+  git: {
+    title: "Contrôle de version pour votre base de données",
+    items: [
+      {
+        title: "Validez vos données en toute sécurité sur Git",
+        desc: "Ne validez jamais un fichier database en direct. Exportez un bundle texte JSON/Markdown facile à comparer et à versionner.",
+      },
+      {
+        title: "Historique des écritures et retour arrière à tout moment",
+        desc: "Chaque modification de l'agent est suivie. Consultez et revenez à un état précédent en une commande.",
+      },
     ],
   },
   flow: {
@@ -843,10 +895,31 @@ const de: Messages = {
   feat: {
     title: "Alles, was dein Agent für die Arbeit mit Daten braucht",
     items: [
-      { title: "Chatte natürlich mit Claude, Codex & OpenCode", desc: "Sprich direkt in natürlicher Sprache. Mochi versteht den Kontext deines Workspace und bearbeitet Daten für dich über typisierte Tools." },
-      { title: "Erstelle eine Vorlage mit einem Befehl", desc: "Fertige Schemata für CRM, HRM, Inventar und Projekte – Beispieldaten inklusive." },
-      { title: "Committe Daten sicher zu Git", desc: "Committe nie eine aktive database-Datei. Exportiere ein textbasiertes JSON/Markdown-Bundle, das sich leicht vergleichen und verzweigen lässt." },
-      { title: "Schreibverlauf & Rollback jederzeit", desc: "Jede Änderung des Agenten wird verfolgt. Prüfe und setze mit einem Befehl auf einen früheren Stand zurück." },
+      {
+        title: "Chatte natürlich mit Claude, Codex & OpenCode",
+        desc: "Sprich direkt in natürlicher Sprache. Mochi versteht den Kontext deines Workspace und bearbeitet Daten für dich über typisierte Tools.",
+      },
+      {
+        title: "Erstelle eine Vorlage mit einem Befehl",
+        desc: "Fertige Schemata für CRM, HRM, Inventar und Projekte – Beispieldaten inklusive.",
+      },
+      {
+        title: "MULTI-BRANCH · MULTI-USER · REALTIME DB",
+        desc: "Agenten können gleichzeitig an mehreren Branches arbeiten. Live-Updates werden ohne Kollisionen in die Realtime-DB gestreamt.",
+      },
+    ],
+  },
+  git: {
+    title: "Versionskontrolle für Ihre Datenbank",
+    items: [
+      {
+        title: "Committe Daten sicher zu Git",
+        desc: "Committe nie eine aktive database-Datei. Exportiere ein textbasiertes JSON/Markdown-Bundle, das sich leicht vergleichen und verzweigen lässt.",
+      },
+      {
+        title: "Schreibverlauf & Rollback jederzeit",
+        desc: "Jede Änderung des Agenten wird verfolgt. Prüfe und setze mit einem Befehl auf einen früheren Stand zurück.",
+      },
     ],
   },
   flow: {
@@ -1052,10 +1125,31 @@ const ja: Messages = {
   feat: {
     title: "エージェントがデータを扱うために必要なすべて",
     items: [
-      { title: "Claude・Codex・OpenCodeと自然に対話", desc: "自然言語でそのまま話しかけるだけ。Mochiはワークスペースの文脈を理解し、型付きツールでデータを操作します。" },
-      { title: "1コマンドでテンプレートを作成", desc: "CRM・HRM・在庫・プロジェクト向けのスキーマをすぐに利用可能。サンプルデータ付き。" },
-      { title: "データを安全にGitへコミット", desc: "稼働中のdatabaseファイルはコミットしません。差分やブランチ管理が容易なテキスト形式のJSON/Markdownバンドルを書き出します。" },
-      { title: "書き込み履歴とロールバックをいつでも", desc: "エージェントの変更はすべて記録。1コマンドで以前の状態を確認・復元できます。" },
+      {
+        title: "Claude・Codex・OpenCodeと自然に対話",
+        desc: "自然言語でそのまま話しかけるだけ。Mochiはワークスペースの文脈を理解し、型付きツールでデータを操作します。",
+      },
+      {
+        title: "1コマンドでテンプレートを作成",
+        desc: "CRM・HRM・在庫・プロジェクト向けのスキーマをすぐに利用可能。サンプルデータ付き。",
+      },
+      {
+        title: "MULTI-BRANCH · MULTI-USER · REALTIME DB",
+        desc: "エージェントは複数のブランチで同時に作業できます。ライブアップデートは衝突することなくリアルタイムDBにストリーミングされます。",
+      },
+    ],
+  },
+  git: {
+    title: "データベースのバージョン管理",
+    items: [
+      {
+        title: "データを安全にGitへコミット",
+        desc: "稼働中のdatabaseファイルはコミットしません。差分やブランチ管理が容易なテキスト形式のJSON/Markdownバンドルを書き出します。",
+      },
+      {
+        title: "書き込み履歴とロールバックをいつでも",
+        desc: "エージェントの変更はすべて記録。1コマンドで以前の状態を確認・復元できます。",
+      },
     ],
   },
   flow: {
@@ -1261,10 +1355,31 @@ const zh: Messages = {
   feat: {
     title: "智能体处理数据所需的一切",
     items: [
-      { title: "与 Claude、Codex 和 OpenCode 自然对话", desc: "直接用自然语言交流。Mochi 理解你的工作区上下文，并通过类型化工具替你操作数据。" },
-      { title: "一条命令创建模板", desc: "为 CRM、HRM、库存和项目预置的架构，附带示例数据。" },
-      { title: "安全地把数据提交到 Git", desc: "绝不提交实时 database 文件。导出易于对比和分支的文本 JSON/Markdown 包。" },
-      { title: "随时查看写入历史与回滚", desc: "智能体的每次更改都被记录。一条命令即可查看并回滚到之前的状态。" },
+      {
+        title: "与 Claude、Codex 和 OpenCode 自然对话",
+        desc: "直接用自然语言交流。Mochi 理解你的工作区上下文，并通过类型化工具替你操作数据。",
+      },
+      {
+        title: "一条命令创建模板",
+        desc: "为 CRM、HRM、库存和项目预置的架构，附带示例数据。",
+      },
+      {
+        title: "MULTI-BRANCH · MULTI-USER · REALTIME DB",
+        desc: "代理可以同时在多个分支上工作。实时更新直接流向实时数据库，不会发生冲突。",
+      },
+    ],
+  },
+  git: {
+    title: "数据库的版本控制",
+    items: [
+      {
+        title: "安全地把数据提交到 Git",
+        desc: "绝不提交实时 database 文件。导出易于对比和分支的文本 JSON/Markdown 包。",
+      },
+      {
+        title: "随时查看写入历史与回滚",
+        desc: "智能体的每次更改都被记录。一条命令即可查看并回滚到之前的状态。",
+      },
     ],
   },
   flow: {
@@ -1470,10 +1585,31 @@ const vi: Messages = {
   feat: {
     title: "Mọi thứ agent cần để làm việc với dữ liệu",
     items: [
-      { title: "Tương tác tự nhiên với Claude, Codex & OpenCode", desc: "Nói chuyện trực tiếp bằng ngôn ngữ tự nhiên. Mochi hiểu ngữ cảnh workspace và thao tác dữ liệu thay bạn qua các tool có kiểu." },
-      { title: "Tạo database đơn giản bằng ngôn ngữ", desc: "Schema dựng sẵn cho CRM, HRM, kho vận, dự án — kèm dữ liệu mẫu." },
-      { title: "Commit dữ liệu an toàn lên Git", desc: "Không commit file database sống. Xuất bundle JSON/Markdown dễ diff, theo nhánh." },
-      { title: "Lịch sử ghi & rollback bất kỳ lúc nào", desc: "Mọi thay đổi của agent đều được theo dõi. Xem lại và hoàn tác về trạng thái trước đó chỉ với một lệnh." },
+      {
+        title: "Tương tác tự nhiên với Claude, Codex & OpenCode",
+        desc: "Nói chuyện trực tiếp bằng ngôn ngữ tự nhiên. Mochi hiểu ngữ cảnh workspace và thao tác dữ liệu thay bạn qua các tool có kiểu.",
+      },
+      {
+        title: "Tạo database đơn giản bằng ngôn ngữ",
+        desc: "Schema dựng sẵn cho CRM, HRM, kho vận, dự án — kèm dữ liệu mẫu.",
+      },
+      {
+        title: "MULTI-BRANCH · MULTI-USER · REALTIME DB",
+        desc: "Các agent có thể làm việc song song trên nhiều nhánh. Dữ liệu tự động đồng bộ theo thời gian thực mà không bị xung đột.",
+      },
+    ],
+  },
+  git: {
+    title: "Quản lý phiên bản cho cơ sở dữ liệu",
+    items: [
+      {
+        title: "Commit dữ liệu an toàn lên Git",
+        desc: "Không commit file database sống. Xuất bundle JSON/Markdown dễ diff, theo nhánh.",
+      },
+      {
+        title: "Lịch sử ghi & rollback bất kỳ lúc nào",
+        desc: "Mọi thay đổi của agent đều được theo dõi. Xem lại và hoàn tác về trạng thái trước đó chỉ với một lệnh.",
+      },
     ],
   },
   flow: {
