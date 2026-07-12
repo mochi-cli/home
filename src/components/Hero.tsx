@@ -1,5 +1,8 @@
+"use client";
+
 import Mascot from "./Mascot";
 import { Frame, Crosshair, RegMark, DashedRings, PixelHeart, TickBar, TechCaption } from "./hud";
+import { useLang } from "./LanguageProvider";
 
 const agents = ["CLAUDE", "CODEX", "OPENCODE"];
 
@@ -17,6 +20,7 @@ function Dpad({ className = "" }: { className?: string }) {
 }
 
 export default function Hero() {
+  const { m } = useLang();
   return (
     <section id="top" className="scanlines relative overflow-hidden border-b border-line">
       <div className="blueprint pointer-events-none absolute inset-0 opacity-60" />
@@ -57,11 +61,10 @@ export default function Hero() {
 
         {/* headline */}
         <h2 className="mx-auto max-w-2xl text-balance text-3xl font-semibold leading-[1.1] tracking-tight sm:text-5xl">
-          Để AI agent trò chuyện với dữ liệu của bạn
+          {m.hero.headline}
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-pretty text-sm leading-relaxed text-muted sm:text-base">
-          Mochi biến SQLite thành workspace agent-native: tạo template trong một
-          lệnh, thao tác dữ liệu bằng ngôn ngữ tự nhiên, và commit an toàn lên Git.
+          {m.hero.sub}
         </p>
 
         {/* agent select toggles */}

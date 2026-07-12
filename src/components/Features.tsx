@@ -1,5 +1,8 @@
+"use client";
+
 import Reveal from "./Reveal";
 import { Frame } from "./hud";
+import { useLang } from "./LanguageProvider";
 
 function ChatVisual() {
   return (
@@ -70,38 +73,15 @@ function HistoryVisual() {
   );
 }
 
-const features = [
-  {
-    span: "lg:col-span-3",
-    tag: "SYS.01 · AGENT",
-    title: "Tương tác tự nhiên với Claude, Codex & OpenCode",
-    desc: "Nói chuyện trực tiếp bằng ngôn ngữ tự nhiên. Mochi hiểu ngữ cảnh workspace và thao tác dữ liệu thay bạn qua các tool có kiểu.",
-    visual: <ChatVisual />,
-  },
-  {
-    span: "lg:col-span-2",
-    tag: "SYS.02 · TEMPLATE",
-    title: "Tạo template trong một lệnh",
-    desc: "Schema dựng sẵn cho CRM, HRM, kho vận, dự án — kèm dữ liệu mẫu.",
-    visual: <TemplateVisual />,
-  },
-  {
-    span: "lg:col-span-2",
-    tag: "SYS.03 · GIT",
-    title: "Commit dữ liệu an toàn lên Git",
-    desc: "Không commit file SQLite sống. Xuất bundle JSON/Markdown dễ diff, theo nhánh.",
-    visual: <GitVisual />,
-  },
-  {
-    span: "lg:col-span-3",
-    tag: "SYS.04 · CONTROL",
-    title: "Lịch sử ghi & rollback bất kỳ lúc nào",
-    desc: "Mọi thay đổi của agent đều được theo dõi. Xem lại và hoàn tác về trạng thái trước đó chỉ với một lệnh.",
-    visual: <HistoryVisual />,
-  },
+const featureMeta = [
+  { span: "lg:col-span-3", tag: "SYS.01 · AGENT", visual: <ChatVisual /> },
+  { span: "lg:col-span-2", tag: "SYS.02 · TEMPLATE", visual: <TemplateVisual /> },
+  { span: "lg:col-span-2", tag: "SYS.03 · GIT", visual: <GitVisual /> },
+  { span: "lg:col-span-3", tag: "SYS.04 · CONTROL", visual: <HistoryVisual /> },
 ];
 
 export default function Features() {
+  const { m } = useLang();
   return (
     <section id="features" className="relative border-b border-line">
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
@@ -109,19 +89,19 @@ export default function Features() {
           <div>
             <p className="tech">{"// FEATURE SELECT"}</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-              Mọi thứ agent cần để làm việc với dữ liệu
+              {m.feat.title}
             </h2>
           </div>
           <span className="pixel hidden whitespace-nowrap text-[9px] text-muted-2 sm:block">04 MODULES</span>
         </Reveal>
 
         <div className="grid gap-4 lg:grid-cols-5">
-          {features.map((f, i) => (
-            <Reveal key={f.title} delay={i * 80} className={f.span}>
+          {featureMeta.map((f, i) => (
+            <Reveal key={f.tag} delay={i * 80} className={f.span}>
               <Frame size={12} className="card-hud h-full border border-line bg-surface p-7">
                 <p className="pixel text-[9px] text-muted">{f.tag}</p>
-                <h3 className="mt-3 text-lg font-semibold tracking-tight">{f.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{f.desc}</p>
+                <h3 className="mt-3 text-lg font-semibold tracking-tight">{m.feat.items[i].title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{m.feat.items[i].desc}</p>
                 {f.visual}
               </Frame>
             </Reveal>

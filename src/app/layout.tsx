@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Silkscreen } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/components/LanguageProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,9 +21,9 @@ const pixel = Silkscreen({
 });
 
 export const metadata: Metadata = {
-  title: "Mochi — Trợ lý dữ liệu thân thiện cho AI agent",
+  title: "Mochi — The agent-native data sidekick",
   description:
-    "Mochi biến SQLite thành workspace agent-native cho Claude, Codex và OpenCode: tạo template, thao tác dữ liệu bằng ngôn ngữ tự nhiên và commit an toàn lên Git.",
+    "Mochi turns SQLite into an agent-native workspace for Claude, Codex and OpenCode: create templates, operate data in natural language, and commit safely to Git.",
 };
 
 export default function RootLayout({
@@ -32,10 +33,12 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="vi"
+      lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${pixel.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }

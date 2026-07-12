@@ -1,7 +1,11 @@
+"use client";
+
 import Mascot from "./Mascot";
 import { TickBar } from "./hud";
+import { useLang } from "./LanguageProvider";
 
 export default function Footer() {
+  const { m } = useLang();
   return (
     <footer className="scanlines relative">
       <div className="mx-auto max-w-6xl px-6">
@@ -14,7 +18,7 @@ export default function Footer() {
               <span className="pixel text-sm text-foreground">MOCHI</span>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              Trợ lý dữ liệu agent-native cho Claude, Codex và OpenCode.
+              {m.footer.tagline}
             </p>
           </div>
 

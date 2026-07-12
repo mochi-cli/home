@@ -1,10 +1,12 @@
 import Link from "next/link";
 import Mascot from "./Mascot";
+import LangSwitcher from "./LangSwitcher";
 
 const links = [
   { href: "#features", label: "SYS.01" },
   { href: "#workflow", label: "SYS.02" },
   { href: "#templates", label: "SYS.03" },
+  { href: "#pricing", label: "SUB" },
   { href: "#mochi", label: "P1" },
 ];
 
@@ -31,14 +33,17 @@ export default function Navbar() {
           ))}
         </div>
 
-        <a
-          href="https://github.com/mochi-cli/mochi"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-hard pixel inline-flex h-9 items-center px-4 text-[9px]"
-        >
-          START ►
-        </a>
+        <div className="flex items-center gap-2">
+          <LangSwitcher />
+          <a
+            href="https://github.com/mochi-cli/mochi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-hard pixel inline-flex h-9 items-center px-4 text-[9px]"
+          >
+            START ►
+          </a>
+        </div>
       </nav>
     </header>
   );

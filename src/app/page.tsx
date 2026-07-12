@@ -4,6 +4,7 @@ import Features from "@/components/Features";
 import Workflow from "@/components/Workflow";
 import Templates from "@/components/Templates";
 import MascotIntro from "@/components/MascotIntro";
+import Subscription from "@/components/Subscription";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
@@ -17,6 +18,7 @@ export default function Home() {
         <Workflow />
         <Templates />
         <MascotIntro />
+        <Subscription />
         <CTASection />
       </main>
       <Footer />

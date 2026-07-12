@@ -1,8 +1,12 @@
+"use client";
+
 import Mascot from "./Mascot";
 import Reveal from "./Reveal";
 import { PixelHeart } from "./hud";
+import { useLang } from "./LanguageProvider";
 
 export default function CTASection() {
+  const { m } = useLang();
   return (
     <section className="border-b border-line">
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
@@ -32,7 +36,7 @@ export default function CTASection() {
                 INSERT COIN TO CONTINUE
               </h2>
               <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-white/60">
-                Cài đặt Mochi trong vài giây và bắt đầu với template đầu tiên của bạn.
+                {m.cta.sub}
               </p>
 
               <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">

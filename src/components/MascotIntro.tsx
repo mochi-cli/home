@@ -1,6 +1,9 @@
+"use client";
+
 import Mascot from "./Mascot";
 import Reveal from "./Reveal";
 import { Frame, DashedRings, Crosshair, TechCaption } from "./hud";
+import { useLang } from "./LanguageProvider";
 
 const stats = [
   { label: "SIMPLE", val: 5 },
@@ -10,6 +13,7 @@ const stats = [
 ];
 
 export default function MascotIntro() {
+  const { m } = useLang();
   return (
     <section id="mochi" className="scanlines relative border-b border-line bg-surface-2">
       <div className="dotgrid pointer-events-none absolute inset-0 opacity-50" />
@@ -33,12 +37,8 @@ export default function MascotIntro() {
 
           <Reveal className="order-2" delay={100}>
             <p className="tech">{"// CHARACTER"}</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">Gặp gỡ Mochi</h2>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
-              Một trợ lý nhỏ, tròn trịa và luôn sẵn sàng — đứng giữa AI agent của
-              bạn và cơ sở dữ liệu. Mochi không thay bạn quyết định, chỉ giúp mọi
-              thao tác dữ liệu trở nên đơn giản, an toàn và dễ theo dõi.
-            </p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">{m.char.title}</h2>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">{m.char.sub}</p>
 
             <div className="mt-7 space-y-3">
               {stats.map((s) => (
