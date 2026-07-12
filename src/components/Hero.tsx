@@ -116,7 +116,7 @@ export default function Hero() {
             PRESS START ►
           </a>
           <div className="mono inline-flex h-12 items-center gap-3 border border-line bg-surface px-5 text-sm text-foreground">
-            <span className="text-muted-2">$</span> mochikit init --kit {kitValue}
+            <span className="text-muted-2">$</span> npx github:mochi-cli/mochi init --kit {kitValue}
           </div>
         </div>
 
