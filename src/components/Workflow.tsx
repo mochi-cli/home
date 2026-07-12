@@ -3,12 +3,36 @@
 import Reveal from "./Reveal";
 import { useLang } from "./LanguageProvider";
 import { useEngine } from "./EngineProvider";
+import { useState } from "react";
 
 const stepMeta = [
   { n: "01", cmd: "npx github:mochi-cli/mochi init --kit all" }, // will be dynamically overridden
   { n: "02", cmd: '"Hey Mochi create profile"' },
   { n: "03", cmd: '"Hey mochi create CRM "' },
 ];
+
+function CopyableCommand({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="mono mt-5 flex items-center justify-between gap-2 border border-line bg-surface pl-2.5 pr-1 py-1 text-[12px] text-foreground">
+      <span className="truncate">{text}</span>
+      <button
+        onClick={handleCopy}
+        className="pixel shrink-0 flex h-6 items-center justify-center border border-line bg-background px-2 text-[8px] text-muted-2 transition-colors hover:bg-surface hover:text-foreground active:scale-95"
+        title="Copy to clipboard"
+      >
+        {copied ? "OK" : "CPY"}
+      </button>
+    </div>
+  );
+}
 
 export default function Workflow() {
   const { m } = useLang();
@@ -51,9 +75,7 @@ export default function Workflow() {
                   <span className="pixel text-3xl text-foreground">{s.n}</span>
                   <span className="pixel text-[9px] text-muted-2">LEVEL</span>
                 </div>
-                <div className="mono mt-5 inline-block border border-line bg-surface px-2.5 py-1 text-[12px] text-foreground">
-                  {i === 0 ? `npx github:mochi-cli/mochi init --kit ${kitValue}` : s.cmd}
-                </div>
+                <CopyableCommand text={i === 0 ? `npx github:mochi-cli/mochi init --kit ${kitValue}` : s.cmd} />
                 <h3 className="mt-4 text-lg font-semibold tracking-tight">{m.flow.steps[i].title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{m.flow.steps[i].desc}</p>
               </div>

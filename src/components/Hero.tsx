@@ -22,6 +22,13 @@ const agents = ["CLAUDE", "CODEX", "OPENCODE"];
 export default function Hero() {
   const { m } = useLang();
   const { selectedEngines, toggleEngine, kitValue } = useEngine();
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(`npx github:mochi-cli/mochi init --kit ${kitValue}`);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <section id="top" className="scanlines relative overflow-hidden border-b border-line">
@@ -115,8 +122,17 @@ export default function Hero() {
           >
             PRESS START ►
           </a>
-          <div className="mono inline-flex h-12 items-center gap-3 border border-line bg-surface px-5 text-sm text-foreground">
-            <span className="text-muted-2">$</span> npx github:mochi-cli/mochi init --kit {kitValue}
+          <div className="mono flex h-12 items-center justify-between gap-3 border border-line bg-surface pl-5 pr-2 text-sm text-foreground sm:w-auto w-full max-w-full overflow-hidden">
+            <div className="flex items-center gap-3 overflow-x-auto whitespace-nowrap scrollbar-none">
+              <span className="text-muted-2">$</span> npx github:mochi-cli/mochi init --kit {kitValue}
+            </div>
+            <button 
+              onClick={handleCopy}
+              className="pixel ml-2 flex h-8 shrink-0 items-center justify-center border border-line bg-background px-3 text-[9px] text-muted-2 transition-colors hover:bg-surface hover:text-foreground active:scale-95"
+              title="Copy to clipboard"
+            >
+              {copied ? "COPIED" : "COPY"}
+            </button>
           </div>
         </div>
 
