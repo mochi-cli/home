@@ -1,7 +1,21 @@
 "use client";
 
 import Mascot from "./Mascot";
-import { Frame, Crosshair, RegMark, DashedRings, PixelHeart, TickBar, TechCaption } from "./hud";
+import MochiConsole from "./MochiConsole";
+import {
+  Frame,
+  Crosshair,
+  RegMark,
+  DashedRings,
+  PixelHeart,
+  TickBar,
+  TechCaption,
+  EQSlider,
+  CircleToolbar,
+  ConnectorJacks,
+  WarnTriangle,
+  DotBlock,
+} from "./hud";
 import { useLang } from "./LanguageProvider";
 
 const agents = ["CLAUDE", "CODEX", "OPENCODE"];
@@ -25,14 +39,30 @@ export default function Hero() {
     <section id="top" className="scanlines relative overflow-hidden border-b border-line">
       <div className="blueprint pointer-events-none absolute inset-0 opacity-60" />
 
-      {/* corner tech captions */}
-      <TechCaption className="absolute left-5 top-5 hidden sm:block" />
+      {/* ---- corner motifs ---- */}
+      <DotBlock className="pointer-events-none absolute left-4 top-4 hidden h-16 w-16 opacity-40 lg:block" />
+      <DotBlock className="pointer-events-none absolute right-4 top-4 hidden h-16 w-16 opacity-40 lg:block" />
+      <DotBlock className="pointer-events-none absolute bottom-4 left-4 hidden h-16 w-16 opacity-40 lg:block" />
+      <DotBlock className="pointer-events-none absolute bottom-4 right-4 hidden h-16 w-16 opacity-40 lg:block" />
+      <WarnTriangle className="absolute left-24 top-6 hidden h-4 w-4 text-muted-2 lg:block" />
+      <WarnTriangle className="absolute right-24 top-6 hidden h-4 w-4 text-muted-2 lg:block" />
+      <TechCaption className="absolute left-24 top-14 hidden lg:block" />
       <TechCaption
-        className="absolute right-5 top-5 hidden text-right sm:block"
+        className="absolute right-24 top-14 hidden text-right lg:block"
         lines={["SYS.READY", "P1 · INSERT COIN", "AI // CLAUDE·CODEX·OC"]}
       />
 
-      <div className="relative mx-auto max-w-6xl px-6 pb-16 pt-14 text-center md:pt-16">
+      {/* ---- side rails (EQ + circle toolbars) ---- */}
+      <div className="absolute left-3 top-1/2 hidden -translate-y-1/2 items-center gap-3 xl:flex">
+        <CircleToolbar />
+        <EQSlider dir="left" />
+      </div>
+      <div className="absolute right-3 top-1/2 hidden -translate-y-1/2 items-center gap-3 xl:flex">
+        <EQSlider dir="right" />
+        <CircleToolbar />
+      </div>
+
+      <div className="relative mx-auto max-w-5xl px-6 pb-16 pt-14 text-center md:pt-16">
         {/* title */}
         <div className="mb-3 flex items-center justify-center gap-4">
           <span className="hidden h-px w-16 bg-line sm:block" />
@@ -54,8 +84,9 @@ export default function Hero() {
           <Crosshair className="absolute -left-4 top-1/2 h-3 w-3 -translate-y-1/2 text-muted" />
           <Crosshair className="absolute -right-4 top-1/2 h-3 w-3 -translate-y-1/2 text-muted" />
           <RegMark className="absolute left-1/2 -top-6 h-3 w-3 -translate-x-1/2 text-muted" />
+          <RegMark className="absolute left-1/2 -bottom-6 h-3 w-3 -translate-x-1/2 text-muted" />
           <Frame size={18} className="p-6">
-            <Mascot pose="wave" uid="hero" className="animate-float relative h-40 w-40 sm:h-48 sm:w-48" />
+            <Mascot uid="hero" className="animate-float relative h-40 w-40 sm:h-48 sm:w-48" />
           </Frame>
         </div>
 
@@ -92,8 +123,13 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* HI SCORE bar */}
-        <div className="mx-auto mt-14 flex max-w-2xl items-center gap-4">
+        {/* live dialogue + workflow processing */}
+        <div className="mt-12">
+          <MochiConsole />
+        </div>
+
+        {/* HI SCORE bar + controls */}
+        <div className="mx-auto mt-12 flex max-w-xl items-center gap-4">
           <Dpad className="hidden h-14 w-14 flex-none text-muted sm:block" />
           <div className="panel scanlines flex flex-1 items-center justify-between gap-4 px-4 py-3">
             <div className="flex items-center gap-1.5">
@@ -102,7 +138,7 @@ export default function Hero() {
               <PixelHeart className="h-4 w-5 text-foreground" />
               <PixelHeart filled={false} className="h-4 w-5 text-muted-2" />
             </div>
-            <TickBar count={28} className="hidden md:flex" />
+            <TickBar count={20} className="hidden md:flex" />
             <span className="pixel text-[11px] text-foreground">
               HI-SCORE <span className="text-muted">19009304</span>
             </span>
@@ -114,6 +150,11 @@ export default function Hero() {
               </span>
             ))}
           </div>
+        </div>
+
+        {/* connector jacks */}
+        <div className="mt-8 flex justify-center">
+          <ConnectorJacks className="h-16 w-52 text-muted" />
         </div>
       </div>
     </section>

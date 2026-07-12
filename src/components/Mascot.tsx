@@ -1,40 +1,23 @@
 type MascotPose = "wave" | "happy" | "sleepy";
 
 interface MascotProps {
+  /** kept for API compatibility; the canonical face is always rendered */
   pose?: MascotPose;
   className?: string;
   uid?: string;
+  /** true while "thinking" — eyes squint slightly */
+  thinking?: boolean;
 }
 
 /**
- * Mochi — a monochrome cat-ghost blob in a retro-HUD style.
- * Grayscale gradient body, cat ears, scalloped ghost bottom,
- * rounded-rectangle eyes and a tiny triangle nose.
+ * Mochi — a monochrome cat-ghost blob, matched to the reference art:
+ * rounded-square head with cat ears, a top→bottom grayscale gradient,
+ * two large rounded-rectangle eyes, a small triangle nose, and a
+ * scalloped ghost skirt at the bottom.
  */
-export default function Mascot({ pose = "wave", className = "", uid = "m" }: MascotProps) {
+export default function Mascot({ className = "", uid = "m", thinking = false }: MascotProps) {
   const grad = `g-${uid}`;
-  const glow = `gl-${uid}`;
-
-  const eyeFill = "#f4f4f2";
-
-  const eyes =
-    pose === "sleepy" ? (
-      <>
-        <rect x="72" y="104" width="16" height="4" rx="2" fill={eyeFill} />
-        <rect x="112" y="104" width="16" height="4" rx="2" fill={eyeFill} />
-      </>
-    ) : (
-      <g style={{ transformOrigin: "center", animation: pose === "wave" ? "blinkeye 5s infinite" : "none" }}>
-        <rect x="74" y="92" width="13" height="28" rx="6.5" fill={eyeFill} />
-        <rect x="113" y="92" width="13" height="28" rx="6.5" fill={eyeFill} />
-        {pose === "happy" && (
-          <>
-            <rect x="74" y="92" width="13" height="9" fill={`url(#${grad})`} />
-            <rect x="113" y="92" width="13" height="9" fill={`url(#${grad})`} />
-          </>
-        )}
-      </g>
-    );
+  const hl = `hl-${uid}`;
 
   return (
     <svg
@@ -45,50 +28,52 @@ export default function Mascot({ pose = "wave", className = "", uid = "m" }: Mas
     >
       <defs>
         <linearGradient id={grad} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#3a3a3a" />
-          <stop offset="45%" stopColor="#6f6f6f" />
-          <stop offset="100%" stopColor="#e4e4e1" />
+          <stop offset="0%" stopColor="#4a4a4a" />
+          <stop offset="42%" stopColor="#6d6d6d" />
+          <stop offset="100%" stopColor="#ededea" />
         </linearGradient>
-        <radialGradient id={glow} cx="50%" cy="38%" r="60%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.35" />
+        <radialGradient id={hl} cx="42%" cy="30%" r="58%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.30" />
           <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
         </radialGradient>
       </defs>
 
       {/* ears */}
-      <path d="M50 66 L58 30 L84 56 Z" fill="#3a3a3a" />
-      <path d="M150 66 L142 30 L116 56 Z" fill="#3a3a3a" />
+      <path d="M58 64 L66 38 L88 60 Z" fill="#4a4a4a" />
+      <path d="M142 64 L134 38 L112 60 Z" fill="#4a4a4a" />
 
-      {/* body: domed top, scalloped ghost bottom */}
+      {/* body: rounded-square head, scalloped ghost bottom */}
       <path
-        d="M38 104
-           C38 60 66 40 100 40
-           C134 40 162 60 162 104
-           L162 170
-           q-12 20 -24 0
-           q-12 20 -24 0
-           q-12 20 -24 0
-           q-12 20 -24 0
-           q-12 20 -24 0
+        d="M40 112
+           C40 74 58 52 100 52
+           C142 52 160 74 160 112
+           L160 168
+           q-15 20 -30 0
+           q-15 20 -30 0
+           q-15 20 -30 0
+           q-15 20 -30 0
            Z"
         fill={`url(#${grad})`}
-        stroke="#2b2b2b"
+        stroke="#3a3a3a"
         strokeWidth="1.5"
       />
-      {/* top light */}
-      <ellipse cx="100" cy="86" rx="58" ry="46" fill={`url(#${glow})`} />
+      <ellipse cx="90" cy="86" rx="46" ry="34" fill={`url(#${hl})`} />
 
-      {eyes}
-
-      {/* nose */}
-      <path d="M100 118 l5 8 -10 0 Z" fill="#f4f4f2" />
-
-      {/* waving hand (little nub) */}
-      {pose === "wave" && (
-        <g className="origin-[160px_130px]" style={{ transformOrigin: "160px 130px", animation: "float 2.6s ease-in-out infinite" }}>
-          <circle cx="166" cy="120" r="10" fill="#5a5a5a" stroke="#2b2b2b" strokeWidth="1.5" />
-        </g>
-      )}
+      {/* eyes + nose */}
+      <g style={{ transformOrigin: "100px 104px", animation: "blinkeye 5s infinite" }}>
+        {thinking ? (
+          <>
+            <rect x="74" y="100" width="15" height="9" rx="4.5" fill="#f0f0ee" />
+            <rect x="111" y="100" width="15" height="9" rx="4.5" fill="#f0f0ee" />
+          </>
+        ) : (
+          <>
+            <rect x="74" y="88" width="15" height="32" rx="7.5" fill="#f0f0ee" />
+            <rect x="111" y="88" width="15" height="32" rx="7.5" fill="#f0f0ee" />
+          </>
+        )}
+      </g>
+      <path d="M94 122 L106 122 L100 130 Z" fill="#f0f0ee" />
     </svg>
   );
 }

@@ -106,6 +106,86 @@ export function DotBlock({ className = "" }: { className?: string }) {
   return <div className={`dotgrid-strong ${className}`} aria-hidden="true" />;
 }
 
+/** Vertical EQ / level slider — a stadium pill with a gradient dot column. */
+export function EQSlider({ dir = "right", className = "" }: { dir?: "left" | "right"; className?: string }) {
+  const shades = ["#dcdcd8", "#c4c4bf", "#a3a39d", "#79797433", "#575752", "#33332f"];
+  const solid = ["#dcdcd8", "#c4c4bf", "#a3a39d", "#8b8b86", "#575752", "#33332f"];
+  const tri = dir === "right" ? "◀" : "▶";
+  return (
+    <div className={`flex items-center gap-1.5 ${dir === "left" ? "flex-row-reverse" : ""} ${className}`} aria-hidden="true">
+      <div className="flex flex-col items-center gap-2 rounded-full border border-line bg-surface px-2 py-3">
+        {solid.map((c, i) => (
+          <span key={i} className="h-3 w-3 rounded-full border border-line/40" style={{ background: c, opacity: shades[i].length > 7 ? 0.5 : 1 }} />
+        ))}
+      </div>
+      <div className="mono flex flex-col items-center gap-1 text-[8px] leading-none text-muted">
+        <span>{tri}</span>
+        <span>-=</span>
+        <span className="text-muted-2">01</span>
+      </div>
+    </div>
+  );
+}
+
+/** Vertical toolbar of circular status icons (target / crossed / filled). */
+export function CircleToolbar({ className = "" }: { className?: string }) {
+  const S = "h-6 w-6";
+  return (
+    <div className={`flex flex-col items-center gap-4 text-muted ${className}`} aria-hidden="true">
+      <svg viewBox="0 0 24 24" className={S} fill="none" stroke="currentColor" strokeWidth="1.2">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 3v18M3 12h18" strokeWidth="0.8" />
+      </svg>
+      <svg viewBox="0 0 24 24" className={S} fill="none" stroke="currentColor" strokeWidth="1.2">
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="3.5" fill="currentColor" stroke="none" />
+      </svg>
+      <svg viewBox="0 0 24 24" className={S} fill="none" stroke="currentColor" strokeWidth="1.2">
+        <circle cx="12" cy="12" r="9" />
+      </svg>
+      <svg viewBox="0 0 24 24" className={S} fill="none" stroke="currentColor" strokeWidth="1.2">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M6 6l12 12" />
+      </svg>
+      <svg viewBox="0 0 24 24" className={S} fill="none" stroke="currentColor" strokeWidth="1.2">
+        <circle cx="12" cy="12" r="9" strokeDasharray="2 3" />
+        <circle cx="12" cy="12" r="3.5" />
+      </svg>
+    </div>
+  );
+}
+
+/** Patch-cable connector strip — circles wired into a segmented bar. */
+export function ConnectorJacks({ className = "" }: { className?: string }) {
+  const xs = [40, 90, 140, 190];
+  return (
+    <svg viewBox="0 0 230 74" className={className} fill="none" stroke="currentColor" aria-hidden="true">
+      {xs.map((x, i) => (
+        <g key={x}>
+          <circle cx={x} cy="12" r="9" strokeWidth="1.4" fill={i % 2 ? "currentColor" : "none"} />
+          <circle cx={x} cy="12" r="3" fill={i % 2 ? "var(--surface)" : "currentColor"} stroke="none" />
+          <path d={`M${x} 21 V46`} strokeWidth="1.4" />
+        </g>
+      ))}
+      <rect x="18" y="46" width="194" height="18" strokeWidth="1.4" />
+      {[46, 78, 110, 142, 174].map((x) => (
+        <path key={x} d={`M${x} 46 V64`} strokeWidth="1" opacity="0.5" />
+      ))}
+    </svg>
+  );
+}
+
+/** Warning triangle — corner hazard mark. */
+export function WarnTriangle({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true">
+      <path d="M12 3.5 L21.5 20.5 L2.5 20.5 Z" strokeLinejoin="round" />
+      <path d="M12 10v5" strokeLinecap="round" />
+      <circle cx="12" cy="17.6" r="0.7" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 /** Tech caption block — the fake "lorem ipsum" technical readout. */
 export function TechCaption({
   lines = ["MOCHIKIT.SYS // v1", "node:sqlite · MCP tools", "workspace bundle → git"],
