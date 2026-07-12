@@ -49,7 +49,7 @@ export default function CTASection() {
                   PRESS START ►
                 </a>
                 <div className="mono inline-flex h-12 items-center gap-3 border border-white/25 bg-white/5 px-5 text-sm text-white/90">
-                  <span className="text-white/40">$</span> npm i -g mochikit
+                  <span className="text-white/40">$</span> sudo npx github:mochi-cli/mochi init --kit all
                 </div>
               </div>
             </div>
