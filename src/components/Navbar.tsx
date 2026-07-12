@@ -3,11 +3,11 @@ import Mascot from "./Mascot";
 import LangSwitcher from "./LangSwitcher";
 
 const links = [
-  { href: "#features", label: "SYS.01" },
-  { href: "#workflow", label: "SYS.02" },
+  { href: "#workflow", label: "SYS.01" },
+  { href: "#features", label: "SYS.02" },
   { href: "#templates", label: "SYS.03" },
-  { href: "#pricing", label: "SUB" },
   { href: "#mochi", label: "P1" },
+  { href: "#pricing", label: "SUB" },
 ];
 
 export default function Navbar() {
