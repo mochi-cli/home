@@ -1,37 +1,22 @@
 "use client";
 
-import Mascot from "./Mascot";
-import MochiConsole from "./MochiConsole";
+import { useEffect, useState } from "react";
+import MochiConsole, { Line } from "./MochiConsole";
 import {
   Frame,
   Crosshair,
   RegMark,
   DashedRings,
-  PixelHeart,
-  TickBar,
   TechCaption,
   EQSlider,
   CircleToolbar,
-  ConnectorJacks,
   WarnTriangle,
   DotBlock,
 } from "./hud";
+import Mascot from "./Mascot";
 import { useLang } from "./LanguageProvider";
 
 const agents = ["CLAUDE", "CODEX", "OPENCODE"];
-
-function Dpad({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 100 100" className={className} fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-      <path d="M38 12 h24 v26 h26 v24 h-26 v26 h-24 v-26 h-26 v-24 h26 z" />
-      <circle cx="50" cy="50" r="8" />
-      <path d="M50 20 l-4 6 h8 z" fill="currentColor" />
-      <path d="M50 80 l-4 -6 h8 z" fill="currentColor" />
-      <path d="M20 50 l6 -4 v8 z" fill="currentColor" />
-      <path d="M80 50 l-6 -4 v8 z" fill="currentColor" />
-    </svg>
-  );
-}
 
 export default function Hero() {
   const { m } = useLang();
@@ -52,7 +37,7 @@ export default function Hero() {
         lines={["SYS.READY", "P1 · INSERT COIN", "AI // CLAUDE·CODEX·OC"]}
       />
 
-      {/* ---- side rails (EQ + circle toolbars) ---- */}
+      {/* ---- side rails ---- */}
       <div className="absolute left-3 top-1/2 hidden -translate-y-1/2 items-center gap-3 xl:flex">
         <CircleToolbar />
         <EQSlider dir="left" />
@@ -71,7 +56,7 @@ export default function Hero() {
         </div>
 
         {/* insert coin pill */}
-        <div className="mb-10 flex justify-center">
+        <div className="mb-8 flex justify-center">
           <span className="pixel inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-2 text-[11px] text-foreground">
             <span className="h-2 w-2 animate-blink rounded-full bg-foreground" />
             INSERT COIN
@@ -80,13 +65,13 @@ export default function Hero() {
 
         {/* mascot reticle */}
         <div className="relative mx-auto mb-10 w-fit">
-          <DashedRings className="absolute left-1/2 top-1/2 h-[340px] w-[340px] -translate-x-1/2 -translate-y-1/2 [color:var(--line-soft)] sm:h-[400px] sm:w-[400px]" />
+          <DashedRings className="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 [color:var(--line-soft)] sm:h-[360px] sm:w-[360px]" />
           <Crosshair className="absolute -left-4 top-1/2 h-3 w-3 -translate-y-1/2 text-muted" />
           <Crosshair className="absolute -right-4 top-1/2 h-3 w-3 -translate-y-1/2 text-muted" />
           <RegMark className="absolute left-1/2 -top-6 h-3 w-3 -translate-x-1/2 text-muted" />
           <RegMark className="absolute left-1/2 -bottom-6 h-3 w-3 -translate-x-1/2 text-muted" />
           <Frame size={18} className="p-6">
-            <Mascot uid="hero" className="animate-float relative h-40 w-40 sm:h-48 sm:w-48" />
+            <Mascot uid="hero" className="animate-float relative h-36 w-36 sm:h-44 sm:w-44" />
           </Frame>
         </div>
 
@@ -123,39 +108,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* live dialogue + workflow processing */}
-        <div className="mt-12">
-          <MochiConsole />
-        </div>
-
-        {/* HI SCORE bar + controls */}
-        <div className="mx-auto mt-12 flex max-w-xl items-center gap-4">
-          <Dpad className="hidden h-14 w-14 flex-none text-muted sm:block" />
-          <div className="panel scanlines flex flex-1 items-center justify-between gap-4 px-4 py-3">
-            <div className="flex items-center gap-1.5">
-              <PixelHeart className="h-4 w-5 text-foreground" />
-              <PixelHeart className="h-4 w-5 text-foreground" />
-              <PixelHeart className="h-4 w-5 text-foreground" />
-              <PixelHeart filled={false} className="h-4 w-5 text-muted-2" />
-            </div>
-            <TickBar count={20} className="hidden md:flex" />
-            <span className="pixel text-[11px] text-foreground">
-              HI-SCORE <span className="text-muted">19009304</span>
-            </span>
-          </div>
-          <div className="hidden flex-none grid-cols-2 gap-1.5 sm:grid">
-            {["A", "B", "X", "Y"].map((b) => (
-              <span key={b} className="pixel flex h-6 w-6 items-center justify-center rounded-full border border-line text-[8px] text-muted">
-                {b}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* connector jacks */}
-        <div className="mt-8 flex justify-center">
-          <ConnectorJacks className="h-16 w-52 text-muted" />
-        </div>
       </div>
     </section>
   );

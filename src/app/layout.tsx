@@ -23,7 +23,7 @@ const pixel = Silkscreen({
 export const metadata: Metadata = {
   title: "Mochi — The agent-native data sidekick",
   description:
-    "Mochi turns SQLite into an agent-native workspace for Claude, Codex and OpenCode: create templates, operate data in natural language, and commit safely to Git.",
+    "Mochi turns database into an agent-native workspace for Claude, Codex and OpenCode: create templates, operate data in natural language, and commit safely to Git.",
 };
 
 export default function RootLayout({

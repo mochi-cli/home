@@ -4,9 +4,9 @@ import Reveal from "./Reveal";
 import { useLang } from "./LanguageProvider";
 
 const stepMeta = [
-  { n: "01", cmd: "mochikit init --template crm" },
-  { n: "02", cmd: '"Hey Mochi…"' },
-  { n: "03", cmd: "mochikit deploy git" },
+  { n: "01", cmd: "npm i -g mochikit" },
+  { n: "02", cmd: '"Hey Mochi create profile"' },
+  { n: "03", cmd: '"Hey mochi create CRM "' },
 ];
 
 export default function Workflow() {

@@ -4,13 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import Mascot from "./Mascot";
 
 type Who = "you" | "mochi";
-interface Line {
+export interface Line {
   who: Who;
   text: string;
   process?: boolean;
+  id?: string;
 }
 
-const SCRIPT: Line[] = [
+const DEFAULT_SCRIPT: Line[] = [
   { who: "you", text: 'add customer "Acme" to crm' },
   { who: "mochi", text: "record #A-102 · Acme Inc created ✓", process: true },
   { who: "you", text: "any new customers this week?" },
@@ -21,7 +22,7 @@ const SCRIPT: Line[] = [
 
 const STAGES = ["INIT", "QUERY", "WRITE", "COMMIT"];
 
-export default function MochiConsole() {
+export default function MochiConsole({ customScript, heightClass = "h-[168px]", consoleId, initialDelay = 0 }: { customScript?: Line[], heightClass?: string, consoleId?: string, initialDelay?: number }) {
   const [history, setHistory] = useState<Line[]>([]);
   const [typing, setTyping] = useState<Line | null>(null);
   const [partial, setPartial] = useState("");
@@ -39,35 +40,48 @@ export default function MochiConsole() {
       for (let i = 1; i <= line.text.length; i++) {
         if (cancelled) return;
         setPartial(line.text.slice(0, i));
-        await sleep(line.who === "mochi" ? 26 : 34);
+        await sleep(line.who === "mochi" ? (line.text.length > 100 ? 5 : 26) : 34);
       }
     };
 
     const run = async () => {
+      if (initialDelay > 0) await sleep(initialDelay);
+      const activeScript = customScript || DEFAULT_SCRIPT;
       while (!cancelled) {
+        if (consoleId) {
+          window.dispatchEvent(new CustomEvent(`mochi-reset-${consoleId}`));
+        }
         setHistory([]);
         setTyping(null);
         setPartial("");
-        for (const line of SCRIPT) {
+        for (const line of activeScript) {
           if (cancelled) return;
           if (line.process) {
             setProcessing(true);
             for (let s = 0; s < STAGES.length; s++) {
               if (cancelled) return;
               setStage(s);
-              await sleep(360);
+              await sleep(800);
             }
             setStage(-1);
             setProcessing(false);
           }
           await typeOut(line);
           if (cancelled) return;
-          setHistory((h) => [...h, line].slice(-4));
+          if (line.who === "you") {
+            await sleep(200);
+          }
+          setHistory((h) => [...h, line].slice(-20));
           setTyping(null);
           setPartial("");
+          
+          if (consoleId && line.id) {
+            window.dispatchEvent(new CustomEvent(`mochi-action-${consoleId}`, { detail: line.id }));
+          }
+          
           await sleep(line.process ? 900 : 550);
         }
-        await sleep(1500);
+        await sleep(5000);
       }
     };
 
@@ -75,7 +89,7 @@ export default function MochiConsole() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [consoleId, customScript]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });
@@ -98,19 +112,30 @@ export default function MochiConsole() {
       </div>
 
       {/* conversation */}
-      <div ref={scrollRef} className="h-[168px] space-y-2 overflow-hidden px-4 py-4">
+      <div ref={scrollRef} className={`${heightClass} space-y-2 overflow-y-auto overflow-x-hidden px-4 py-4 scroll-smooth`}>
         {history.map((l, i) => (
           <Bubble key={i} line={l} />
         ))}
         {processing && <Pipeline stage={stage} />}
-        {typing && <Bubble line={{ ...typing, text: partial }} caret />}
+        {typing?.who === "mochi" && <Bubble line={{ ...typing, text: partial }} caret />}
       </div>
 
-      {/* input bar (decorative) */}
-      <div className="flex items-center gap-2 border-t border-line px-4 py-2.5">
-        <span className="mono text-[11px] text-muted-2">›</span>
-        <span className="mono text-[11px] text-muted-2">talk to mochi…</span>
-        <span className="ml-auto pixel text-[8px] text-muted-2">ENTER ⏎</span>
+      {/* input bar */}
+      <div className="flex items-center gap-2 border-t border-line bg-surface px-4 py-2.5">
+        <span className="mono text-[11px] text-muted-2 mt-0.5 self-start">›</span>
+        <span className={`mono text-[11px] flex-1 leading-snug ${typing?.who === "you" ? "text-foreground" : "text-muted-2"}`}>
+          {typing?.who === "you" ? (
+            <>
+              {partial}
+              <span className="animate-cursor ml-0.5 inline-block h-3 w-1.5 translate-y-0.5 bg-current align-middle" />
+            </>
+          ) : (
+            "talk to mochi…"
+          )}
+        </span>
+        <span className={`ml-auto pixel text-[8px] self-end transition-colors ${typing?.who === "you" ? "text-foreground" : "text-muted-2"}`}>
+          ENTER ⏎
+        </span>
       </div>
     </div>
   );
@@ -121,7 +146,7 @@ function Bubble({ line, caret }: { line: Line; caret?: boolean }) {
   return (
     <div className={`flex ${isYou ? "justify-end" : "justify-start"}`}>
       <div
-        className={`mono max-w-[85%] border px-3 py-1.5 text-[12px] leading-snug ${
+        className={`mono max-w-[85%] whitespace-pre-wrap border px-3 py-1.5 text-[10px] leading-snug ${
           isYou ? "border-line bg-surface text-foreground" : "border-line bg-foreground text-background"
         }`}
       >

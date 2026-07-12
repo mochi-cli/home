@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Features from "@/components/Features";
 import Workflow from "@/components/Workflow";
+import Features from "@/components/Features";
 import Templates from "@/components/Templates";
 import MascotIntro from "@/components/MascotIntro";
 import Subscription from "@/components/Subscription";
@@ -13,12 +13,25 @@ export default function Home() {
     <div className="flex flex-1 flex-col bg-background font-sans">
       <Navbar />
       <main className="flex-1">
+        {/* 1. Hook — giới thiệu sản phẩm + demo multi-user */}
         <Hero />
-        <Features />
+
+        {/* 2. How it works — 3 bước sử dụng */}
         <Workflow />
+
+        {/* 3. Features — chi tiết 4 module */}
+        <Features />
+
+        {/* 4. Templates — các template có sẵn */}
         <Templates />
+
+        {/* 5. Trust — giới thiệu Mochi, chỉ số tin cậy */}
         <MascotIntro />
+
+        {/* 6. Pricing — bảng giá */}
         <Subscription />
+
+        {/* 7. Final CTA */}
         <CTASection />
       </main>
       <Footer />
