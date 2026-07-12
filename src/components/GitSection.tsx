@@ -181,7 +181,7 @@ function RealtimeDB({ m }: { m: any }) {
     <div className="flex-1 min-w-0">
       {/* Label row */}
       <div className="mb-2 flex items-center gap-2">
-        <span className="pixel text-[8px] text-muted">{db.title}</span>
+        <span className="pixel text-[10px] text-muted">{db.title}</span>
         <span className="mono text-[9px] border border-line bg-surface px-2 py-0.5 text-foreground flex items-center gap-1.5">
           <span className={`h-1.5 w-1.5 rounded-full ${rows.length ? "bg-foreground animate-pulse" : "bg-muted-2"}`} />
           {db.live}
@@ -235,7 +235,7 @@ function MultiBranchVisual({ m }: { m: any }) {
     <div className="mt-8 flex flex-col gap-6 xl:flex-row">
       <div className="flex-1 min-w-0">
         <div className="mb-2 flex items-center gap-2">
-          <span className="pixel text-[8px] text-muted">{m.db.userA}</span>
+          <span className="pixel text-[10px] text-muted">{m.db.userA}</span>
           <span className="mono text-[9px] border border-line bg-surface px-2 py-0.5 text-foreground">⎇ {m.db.branchAName}</span>
         </div>
         <MochiConsole customScript={m.scripts.branchA} heightClass="h-[260px]" consoleId="branch-a" />
@@ -243,7 +243,7 @@ function MultiBranchVisual({ m }: { m: any }) {
       <div className="hidden w-px bg-line xl:block" />
       <div className="flex-1 min-w-0">
         <div className="mb-2 flex items-center gap-2">
-          <span className="pixel text-[8px] text-muted">{m.db.userB}</span>
+          <span className="pixel text-[10px] text-muted">{m.db.userB}</span>
           <span className="mono text-[9px] border border-line bg-surface px-2 py-0.5 text-foreground">⎇ {m.db.branchBName}</span>
         </div>
         <MochiConsole customScript={m.scripts.branchB} heightClass="h-[260px]" consoleId="branch-b" initialDelay={3500} />

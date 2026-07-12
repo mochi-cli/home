@@ -84,6 +84,38 @@ const en: Messages = {
             {
                   who: "mochi",
                   text: "Initialized 2 data tables:\n\n[CUSTOMERS]\n+----+-------+------------+\n| ID | NAME  | PHONE      |\n+----+-------+------------+\n| 01 | Mike  | 0901234567 |\n| 02 | Sarah | 0987654321 |\n+----+-------+------------+\n\n[ORDERS]\n+-----+-------+---------+----------+\n| OID | C_ID  | ITEM    | STATUS   |\n+-----+-------+---------+----------+\n| 101 | 01    | Shirt   | Shipped  |\n| 102 | 02    | Dress   | Packing  |\n+-----+-------+---------+----------+"
+            },
+            {
+                  who: "you",
+                  text: "add a new table PRODUCTS with id, name, and stock"
+            },
+            {
+                  who: "mochi",
+                  text: "Created table [PRODUCTS] ✓\n+----+------+-------+\n| ID | NAME | STOCK |\n+----+------+-------+"
+            },
+            {
+                  who: "you",
+                  text: "rename ITEM to PRODUCT in ORDERS table"
+            },
+            {
+                  who: "mochi",
+                  text: "Renamed column ITEM → PRODUCT in [ORDERS] ✓"
+            },
+            {
+                  who: "you",
+                  text: "delete the PRODUCTS table"
+            },
+            {
+                  who: "mochi",
+                  text: "Dropped table [PRODUCTS] 🗑️"
+            },
+            {
+                  who: "you",
+                  text: "now spin up an HRM template instead"
+            },
+            {
+                  who: "mochi",
+                  text: "Initialized HRM database:\n\n[EMPLOYEES]\n+----+-------+---------+\n| ID | NAME  | ROLE    |\n+----+-------+---------+\n| 01 | Alice | Dev     |\n| 02 | Bob   | HR      |\n+----+-------+---------+\n\n[DEPARTMENTS]\n+------+-----------+\n| D_ID | NAME      |\n+------+-----------+\n| D-01 | Eng       |\n| D-02 | People    |\n+------+-----------+"
             }
       ],
       "branchA": [
@@ -210,16 +242,20 @@ const en: Messages = {
         desc: "Talk directly in natural language. Mochi understands your workspace context and operates data for you through typed tools.",
       },
       {
-        title: "Create database đơn giản với ngôn ngữ",
+        title: "Spin up a template in one command",
         desc: "Ready-made schemas for CRM, HRM, inventory and projects — sample data included.",
       },
       {
-        title: "Commit data safely to Git",
-        desc: "Never commit a live database file. Export a text-based JSON/Markdown bundle that's easy to diff and branch.",
+        title: "Save and track data safely",
+        desc: "Instead of dealing with complex database files, Mochi saves your data as simple text. This makes it easy to safely store your data and see exactly what changed.",
       },
       {
-        title: "Write history & rollback anytime",
-        desc: "Every agent change is tracked. Review and roll back to a previous state with a single command.",
+        title: "Undo any mistake instantly",
+        desc: "Every change the AI makes is recorded step-by-step. If something goes wrong, you can easily review the history and restore your data to a previous state.",
+      },
+      {
+        title: "Team collaboration & history control",
+        desc: "Work together seamlessly while managers retain full control over database history. Link different databases to create a unified workspace for your AI agents.",
       },
     ],
   },
@@ -227,12 +263,12 @@ const en: Messages = {
     title: "Git-backed storage control & data history",
     items: [
       {
-        title: "Commit data safely to Git",
-        desc: "Never commit a live database file. Export a text-based JSON/Markdown bundle that's easy to diff and branch.",
+        title: "Save and track data safely",
+        desc: "Instead of dealing with complex database files, Mochi saves your data as simple text. This makes it easy to safely store your data and see exactly what changed.",
       },
       {
-        title: "Write history & rollback anytime",
-        desc: "Every agent change is tracked. Review and roll back to a previous state with a single command.",
+        title: "Undo any mistake instantly",
+        desc: "Every change the AI makes is recorded step-by-step. If something goes wrong, you can easily review the history and restore your data to a previous state.",
       },
     ],
   },
