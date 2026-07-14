@@ -114,9 +114,7 @@ export default function Hero() {
         {/* CTAs */}
         <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
-            href="https://github.com/mochi-cli/mochi"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#pricing"
             className="btn-hard pixel inline-flex h-12 w-full items-center justify-center px-7 text-[11px] sm:w-auto"
           >
             PRESS START ►
