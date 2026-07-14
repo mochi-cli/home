@@ -231,31 +231,31 @@ const en: Messages = {
       }
 },
   hero: {
-    headline: "Let your AI agents talk to your data",
-    sub: "Mochi turns database into an agent-native workspace: spin up a template in one command, operate your data in natural language, and commit it safely to Git.",
+    headline: "Your team's data workspace, without the server bills",
+    sub: "Build CRM, HR, inventory, or any internal tool — no code, no prompts, no monthly server fees. Runs on your laptop, syncs peer-to-peer, and works natively with Claude, Codex, and OpenCode.",
   },
   feat: {
-    title: "Everything your agent needs to work with data",
+    title: "One workspace for your team and your AI agents",
     items: [
       {
-        title: "Chat naturally with Claude, Codex & OpenCode",
-        desc: "Talk directly in natural language. Mochi understands your workspace context and operates data for you through typed tools.",
+        title: "Chat with Claude, Codex & OpenCode",
+        desc: "AI agents operate your data through typed MCP tools — safe, auditable, and Git-backed. Every change is diff-reviewable.",
       },
       {
-        title: "Spin up a template in one command",
-        desc: "Ready-made schemas for CRM, HRM, inventory and projects — sample data included.",
+        title: "Design your data with no code, no prompts",
+        desc: "Pick a template — CRM, HR, Inventory, Projects — or describe your tables in plain Markdown. Mochi builds the schema, relations, and sample data.",
       },
       {
-        title: "Save and track data safely",
-        desc: "Instead of dealing with complex database files, Mochi saves your data as simple text. This makes it easy to safely store your data and see exactly what changed.",
+        title: "Real-time team collaboration",
+        desc: "Teammates share the same workspace via peer-to-peer sync. Edit together, no cloud servers, no per-seat billing.",
       },
       {
-        title: "Undo any mistake instantly",
-        desc: "Every change the AI makes is recorded step-by-step. If something goes wrong, you can easily review the history and restore your data to a previous state.",
+        title: "Runs on your laptop — no server bills",
+        desc: "Your data lives on your machine. Zero hosting fees, no SaaS lock-in, no waiting on IT to spin up a database.",
       },
       {
-        title: "Team collaboration & history control",
-        desc: "Work together seamlessly while managers retain full control over database history. Link different databases to create a unified workspace for your AI agents.",
+        title: "Undo anything, keep the full history",
+        desc: "Every edit is versioned in Git. Review who changed what, and roll back in one command when something goes wrong.",
       },
     ],
   },
@@ -263,26 +263,26 @@ const en: Messages = {
     title: "Git-backed storage control & data history",
     items: [
       {
-        title: "Save and track data safely",
-        desc: "Instead of dealing with complex database files, Mochi saves your data as simple text. This makes it easy to safely store your data and see exactly what changed.",
+        title: "Plain text, not opaque files",
+        desc: "Your data lives as diff-able Markdown — not a locked-in .db. See every change like a code review.",
       },
       {
-        title: "Undo any mistake instantly",
-        desc: "Every change the AI makes is recorded step-by-step. If something goes wrong, you can easily review the history and restore your data to a previous state.",
+        title: "Undo anything, instantly",
+        desc: "Every AI edit is a Git commit. Broke something? Roll back to any point in one command.",
       },
     ],
   },
   flow: {
-    title: "Three steps to an agent-native workspace",
+    title: "Three steps to your team's workspace",
     steps: [
-      { title: "Install MochiKit", desc: "Install the global CLI tool to get started in seconds." },
-      { title: "Create Profile", desc: "Initialize your developer profile with Mochi." },
-      { title: "Database template", desc: "Let Mochi build a complete CRM schema and workspace for you." },
+      { title: "Install Mochi", desc: "One command. Free to start. Works on Mac, Linux, and Windows." },
+      { title: "Pick a template", desc: "Start from CRM, HR, Inventory, Projects, or a blank canvas." },
+      { title: "Invite your team", desc: "Peer-to-peer sync — no server needed. Everyone edits, Git tracks the history." },
     ],
   },
   tpl: {
-    title: "Ready-made templates, customizable when needed",
-    sub: "Each template ships with a schema, data relations and sample data — enough for your agent to start right away, simple enough to tailor to your needs.",
+    title: "Templates for the tools you actually need",
+    sub: "Whether you run sales, HR, ops, or a project team — start from a template with schema, relations, and sample data. Customize in plain language, or let your agent do it.",
     items: [
       "Customers, sales opportunities, interaction history",
       "People, departments, attendance, reviews",
@@ -292,21 +292,20 @@ const en: Messages = {
   },
   char: {
     title: "Meet Mochi",
-    sub: "A small, round, always-ready sidekick — standing between your AI agents and your database. Mochi never decides for you; it just makes every data operation simple, safe and easy to track.",
+    sub: "A small, round, always-ready sidekick — standing between your team, your AI agents, and your data. Mochi never decides for you; it just makes every data operation simple, safe, and easy to track.",
   },
   price: {
     title: "Choose your plan",
-    sub: "Start free. Level up when you're ready.",
-    billed: "billed monthly",
+    sub: "Start free. Level up when your team grows.",
+    billed: "One-time payment. Pay once, use forever.",
     popular: "MOST POPULAR",
     plans: [
       { tagline: "For solo hobby projects", features: ["1 workspace", "Local database + templates", "Community support"] },
       { tagline: "For individual builders", features: ["Unlimited workspaces", "Git bundle deploy", "Write history & rollback", "Priority support"] },
-      { tagline: "For growing teams", features: ["Everything in Pro", "Shared workspaces", "One branch per member", "SSO & audit log"] },
     ],
   },
-  cta: { sub: "Install Mochi in seconds and start with your first template." },
-  footer: { tagline: "The agent-native data sidekick for Claude, Codex and OpenCode." },
+  cta: { sub: "Install Mochi in seconds — no server, no prompts, no lock-in." },
+  footer: { tagline: "Your team's data workspace — no server bills, no lock-in, agent-ready." },
 };
 
 const es: Messages = {
@@ -527,12 +526,11 @@ const es: Messages = {
   price: {
     title: "Elige tu plan",
     sub: "Empieza gratis. Sube de nivel cuando quieras.",
-    billed: "facturado mensualmente",
+    billed: "Pago único. Paga una vez, úsalo para siempre.",
     popular: "MÁS POPULAR",
     plans: [
       { tagline: "Para proyectos personales", features: ["1 espacio de trabajo", "database local + plantillas", "Soporte de la comunidad"] },
       { tagline: "Para creadores individuales", features: ["Espacios ilimitados", "Despliegue de paquete Git", "Historial y reversión", "Soporte prioritario"] },
-      { tagline: "Para equipos en crecimiento", features: ["Todo lo de Pro", "Espacios compartidos", "Una rama por miembro", "SSO y registro de auditoría"] },
     ],
   },
   cta: { sub: "Instala Mochi en segundos y empieza con tu primera plantilla." },
@@ -757,12 +755,11 @@ const fr: Messages = {
   price: {
     title: "Choisissez votre formule",
     sub: "Commencez gratuitement. Passez au niveau supérieur quand vous voulez.",
-    billed: "facturé mensuellement",
+    billed: "Paiement unique. Payez une fois, utilisez à vie.",
     popular: "LE PLUS POPULAIRE",
     plans: [
       { tagline: "Pour les projets perso", features: ["1 espace de travail", "database local + modèles", "Support communautaire"] },
       { tagline: "Pour les créateurs individuels", features: ["Espaces illimités", "Déploiement de bundle Git", "Historique et retour arrière", "Support prioritaire"] },
-      { tagline: "Pour les équipes qui grandissent", features: ["Tout de Pro", "Espaces partagés", "Une branche par membre", "SSO et journal d'audit"] },
     ],
   },
   cta: { sub: "Installez Mochi en quelques secondes et démarrez avec votre premier modèle." },
@@ -987,12 +984,11 @@ const de: Messages = {
   price: {
     title: "Wähle deinen Plan",
     sub: "Kostenlos starten. Aufsteigen, wenn du bereit bist.",
-    billed: "monatlich abgerechnet",
+    billed: "Einmalzahlung. Einmal zahlen, für immer nutzen.",
     popular: "AM BELIEBTESTEN",
     plans: [
       { tagline: "Für private Hobbyprojekte", features: ["1 Workspace", "Lokales database + Vorlagen", "Community-Support"] },
       { tagline: "Für einzelne Entwickler", features: ["Unbegrenzte Workspaces", "Git-Bundle-Deploy", "Schreibverlauf & Rollback", "Priorisierter Support"] },
-      { tagline: "Für wachsende Teams", features: ["Alles aus Pro", "Geteilte Workspaces", "Ein Branch pro Mitglied", "SSO & Audit-Log"] },
     ],
   },
   cta: { sub: "Installiere Mochi in Sekunden und starte mit deiner ersten Vorlage." },
@@ -1217,12 +1213,11 @@ const ja: Messages = {
   price: {
     title: "プランを選ぶ",
     sub: "無料で始めて、必要になったらレベルアップ。",
-    billed: "月額請求",
+    billed: "一度きりのお支払い。一度払えば、ずっと使えます。",
     popular: "一番人気",
     plans: [
       { tagline: "個人の趣味プロジェクト向け", features: ["ワークスペース1つ", "ローカルdatabase＋テンプレート", "コミュニティサポート"] },
       { tagline: "個人開発者向け", features: ["ワークスペース無制限", "Gitバンドルデプロイ", "書き込み履歴とロールバック", "優先サポート"] },
-      { tagline: "成長するチーム向け", features: ["Proのすべて", "共有ワークスペース", "メンバーごとに1ブランチ", "SSOと監査ログ"] },
     ],
   },
   cta: { sub: "数秒でMochiをインストールして、最初のテンプレートから始めましょう。" },
@@ -1447,12 +1442,11 @@ const zh: Messages = {
   price: {
     title: "选择你的方案",
     sub: "免费开始，准备好再升级。",
-    billed: "按月计费",
+    billed: "一次性付款，一次购买，永久使用。",
     popular: "最受欢迎",
     plans: [
       { tagline: "适合个人业余项目", features: ["1 个工作区", "本地 database + 模板", "社区支持"] },
       { tagline: "适合独立开发者", features: ["无限工作区", "Git 包部署", "写入历史与回滚", "优先支持"] },
-      { tagline: "适合成长中的团队", features: ["Pro 的全部功能", "共享工作区", "每位成员一个分支", "SSO 与审计日志"] },
     ],
   },
   cta: { sub: "几秒钟安装 Mochi，从你的第一个模板开始。" },
@@ -1619,23 +1613,31 @@ const vi: Messages = {
       }
 },
   hero: {
-    headline: "Để AI agent trò chuyện với dữ liệu của bạn",
-    sub: "Mochi biến database thành workspace agent-native: tạo template trong một lệnh, thao tác dữ liệu bằng ngôn ngữ tự nhiên, và commit an toàn lên Git.",
+    headline: "Không gian dữ liệu cho cả team, không tốn phí server",
+    sub: "Tự xây CRM, HR, kho vận hay bất kỳ công cụ nội bộ nào — không cần code, không cần prompt, không cần thuê server hàng tháng. Chạy ngay trên laptop, đồng bộ P2P với đồng đội, và tương thích sẵn với Claude, Codex, OpenCode.",
   },
   feat: {
-    title: "Mọi thứ agent cần để làm việc với dữ liệu",
+    title: "Một workspace cho cả team và AI agent của bạn",
     items: [
       {
-        title: "Tương tác tự nhiên với Claude, Codex & OpenCode",
-        desc: "Nói chuyện trực tiếp bằng ngôn ngữ tự nhiên. Mochi hiểu ngữ cảnh workspace và thao tác dữ liệu thay bạn qua các tool có kiểu.",
+        title: "Trò chuyện với Claude, Codex & OpenCode",
+        desc: "AI agent thao tác dữ liệu qua MCP tool có kiểu — an toàn, có audit, lưu trên Git. Mọi thay đổi đều xem được dạng diff.",
       },
       {
-        title: "Tạo database đơn giản bằng ngôn ngữ",
-        desc: "Schema dựng sẵn cho CRM, HRM, kho vận, dự án — kèm dữ liệu mẫu.",
+        title: "Thiết kế dữ liệu, không cần code, không cần prompt",
+        desc: "Chọn template — CRM, HR, kho vận, dự án — hoặc mô tả bảng bằng Markdown. Mochi tự dựng schema, quan hệ và dữ liệu mẫu.",
       },
       {
-        title: "MULTI-BRANCH · MULTI-USER · REALTIME DB",
-        desc: "Các agent có thể làm việc song song trên nhiều nhánh. Dữ liệu tự động đồng bộ theo thời gian thực mà không bị xung đột.",
+        title: "Cộng tác thời gian thực cả team",
+        desc: "Đồng đội dùng chung workspace qua đồng bộ P2P. Cùng chỉnh sửa, không server cloud, không tính phí theo đầu người.",
+      },
+      {
+        title: "Chạy trên laptop — không tốn phí server",
+        desc: "Dữ liệu nằm trên máy bạn. Không phí hosting, không lock-in SaaS, không chờ IT dựng database.",
+      },
+      {
+        title: "Undo bất kỳ lúc nào, giữ nguyên lịch sử",
+        desc: "Mọi chỉnh sửa được version trên Git. Xem ai đã đổi gì, và rollback về trạng thái trước chỉ với một lệnh.",
       },
     ],
   },
@@ -1643,26 +1645,26 @@ const vi: Messages = {
     title: "Kiểm soát lưu trữ DB trên Git & quản lý lịch sử dữ liệu",
     items: [
       {
-        title: "Commit dữ liệu an toàn lên Git",
-        desc: "Không commit file database sống. Xuất bundle JSON/Markdown dễ diff, theo nhánh.",
+        title: "Plain text, không phải file khóa",
+        desc: "Dữ liệu của bạn lưu dạng Markdown diff được — không phải file .db đóng kín. Xem mọi thay đổi như review code.",
       },
       {
-        title: "Lịch sử ghi & rollback bất kỳ lúc nào",
-        desc: "Mọi thay đổi của agent đều được theo dõi. Xem lại và hoàn tác về trạng thái trước đó chỉ với một lệnh.",
+        title: "Undo bất kỳ lúc nào, tức thì",
+        desc: "Mỗi lần AI chỉnh là một Git commit. Sai chỗ nào? Rollback về bất kỳ điểm nào chỉ với một lệnh.",
       },
     ],
   },
   flow: {
-    title: "Ba bước tới một workspace agent-native",
+    title: "Ba bước có ngay workspace cho team",
     steps: [
-      { title: "Cài đặt MochiKit", desc: "Cài đặt công cụ dòng lệnh toàn cục chỉ với một lệnh duy nhất." },
-      { title: "Tạo Profile", desc: "Khởi tạo hồ sơ lập trình viên của bạn với Mochi." },
-      { title: "Khởi tạo CRM", desc: "Yêu cầu Mochi tự động tạo hệ thống CRM hoàn chỉnh bao gồm bảng dữ liệu và quan hệ." },
+      { title: "Cài đặt Mochi", desc: "Chỉ một lệnh. Miễn phí bắt đầu. Chạy trên Mac, Linux và Windows." },
+      { title: "Chọn template", desc: "Bắt đầu từ CRM, HR, kho vận, dự án — hoặc canvas trắng tùy bạn." },
+      { title: "Mời team vào", desc: "Đồng bộ P2P — không cần server. Cả team cùng chỉnh, Git tự lưu lịch sử." },
     ],
   },
   tpl: {
-    title: "Template dựng sẵn, tùy biến khi cần",
-    sub: "Mỗi template đi kèm schema, quan hệ dữ liệu và bộ dữ liệu mẫu — đủ để agent bắt đầu ngay, đủ đơn giản để bạn chỉnh theo nhu cầu riêng.",
+    title: "Template cho đúng công cụ team bạn cần",
+    sub: "Dù bạn làm sales, HR, vận hành hay điều phối dự án — bắt đầu từ template có sẵn schema, quan hệ và dữ liệu mẫu. Tùy biến bằng ngôn ngữ đời thường, hoặc để agent làm hộ.",
     items: [
       "Khách hàng, cơ hội bán hàng, lịch sử tương tác",
       "Nhân sự, phòng ban, chấm công, đánh giá",
@@ -1672,21 +1674,20 @@ const vi: Messages = {
   },
   char: {
     title: "Gặp gỡ Mochi",
-    sub: "Một trợ lý nhỏ, tròn trịa và luôn sẵn sàng — đứng giữa AI agent của bạn và cơ sở dữ liệu. Mochi không thay bạn quyết định, chỉ giúp mọi thao tác dữ liệu trở nên đơn giản, an toàn và dễ theo dõi.",
+    sub: "Một trợ lý nhỏ, tròn trịa và luôn sẵn sàng — đứng giữa team bạn, AI agent và dữ liệu. Mochi không thay bạn quyết định, chỉ giúp mọi thao tác dữ liệu trở nên đơn giản, an toàn và dễ theo dõi.",
   },
   price: {
     title: "Chọn gói của bạn",
-    sub: "Bắt đầu miễn phí. Nâng cấp khi bạn sẵn sàng.",
-    billed: "thanh toán hàng tháng",
+    sub: "Bắt đầu miễn phí. Nâng cấp khi team lớn hơn.",
+    billed: "Thanh toán một lần. Trả một lần, dùng mãi mãi.",
     popular: "PHỔ BIẾN NHẤT",
     plans: [
       { tagline: "Cho dự án cá nhân", features: ["1 workspace", "database cục bộ + template", "Hỗ trợ cộng đồng"] },
       { tagline: "Cho nhà phát triển cá nhân", features: ["Workspace không giới hạn", "Deploy bundle Git", "Lịch sử ghi & rollback", "Hỗ trợ ưu tiên"] },
-      { tagline: "Cho đội nhóm đang lớn", features: ["Mọi thứ trong Pro", "Workspace dùng chung", "Mỗi thành viên một nhánh", "SSO & nhật ký kiểm toán"] },
     ],
   },
-  cta: { sub: "Cài đặt Mochi trong vài giây và bắt đầu với template đầu tiên của bạn." },
-  footer: { tagline: "Trợ lý dữ liệu agent-native cho Claude, Codex và OpenCode." },
+  cta: { sub: "Cài đặt Mochi trong vài giây — không server, không prompt, không lock-in." },
+  footer: { tagline: "Không gian dữ liệu cho cả team — không phí server, không lock-in, sẵn sàng cho AI." },
 };
 
 export const messages: Record<LocaleCode, Messages> = { en, es, fr, de, ja, zh, vi };

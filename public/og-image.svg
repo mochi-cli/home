@@ -1,0 +1,129 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" width="1200" height="630">
+  <title>Mochi — Your team's data workspace, without the server bills</title>
+  <desc>Promotional poster in Mochi's HUD style: mascot with dashed reticle rings on the left, product headline and value bullets on the right.</desc>
+
+  <defs>
+    <linearGradient id="mgrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4a4a4a"/>
+      <stop offset="42%" stop-color="#6d6d6d"/>
+      <stop offset="100%" stop-color="#ededea"/>
+    </linearGradient>
+    <radialGradient id="mhl" cx="42%" cy="30%" r="58%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#f2f2f0"/>
+
+  <g stroke="#131313" stroke-width="1.5" fill="none">
+    <path d="M32 52 L32 32 L52 32"/>
+    <path d="M1148 32 L1168 32 L1168 52"/>
+    <path d="M32 578 L32 598 L52 598"/>
+    <path d="M1148 598 L1168 598 L1168 578"/>
+  </g>
+
+  <g font-family="'Silkscreen', 'Courier New', ui-monospace, monospace" font-size="11" fill="#131313" letter-spacing="1.5">
+    <g transform="translate(72,58)">
+      <rect x="0" y="0" width="14" height="14" fill="none" stroke="#131313"/>
+      <path d="M0 0 L14 14 M14 0 L0 14" stroke="#131313"/>
+    </g>
+    <text x="98" y="70">MOCHI · v1.0</text>
+    <text x="600" y="70" text-anchor="middle" opacity="0.55">AGENT-NATIVE DATA WORKSPACE</text>
+    <text x="1128" y="70" text-anchor="end">READY ▸</text>
+  </g>
+  <line x1="60" y1="86" x2="1140" y2="86" stroke="#131313" stroke-width="1" opacity="0.35"/>
+
+  <g transform="translate(90,180)">
+    <g fill="none" stroke="#131313">
+      <circle cx="180" cy="180" r="176" stroke-width="1" stroke-dasharray="2 6" opacity="0.55"/>
+      <circle cx="180" cy="180" r="140" stroke-width="1" stroke-dasharray="10 8" opacity="0.55"/>
+      <circle cx="180" cy="180" r="104" stroke-width="1" opacity="0.30"/>
+      <path d="M180 0 v34 M180 326 v34 M0 180 h34 M326 180 h34" stroke-width="1" opacity="0.55"/>
+    </g>
+
+    <g transform="translate(80,70)">
+      <path d="M58 64 L66 38 L88 60 Z" fill="#4a4a4a"/>
+      <path d="M142 64 L134 38 L112 60 Z" fill="#4a4a4a"/>
+      <path d="M40 112 C40 74 58 52 100 52 C142 52 160 74 160 112 L160 168 q-15 20 -30 0 q-15 20 -30 0 q-15 20 -30 0 q-15 20 -30 0 Z"
+            fill="url(#mgrad)" stroke="#3a3a3a" stroke-width="1.5"/>
+      <ellipse cx="90" cy="86" rx="46" ry="34" fill="url(#mhl)"/>
+      <rect x="74" y="88" width="15" height="32" rx="7.5" fill="#f0f0ee"/>
+      <rect x="111" y="88" width="15" height="32" rx="7.5" fill="#f0f0ee"/>
+      <path d="M94 122 L106 122 L100 130 Z" fill="#f0f0ee"/>
+    </g>
+
+    <g stroke="#131313" stroke-width="1" opacity="0.55">
+      <path d="M180 175 v10 M175 180 h10"/>
+    </g>
+  </g>
+
+  <g font-family="'Silkscreen', 'Courier New', ui-monospace, monospace" font-size="11" fill="#131313" letter-spacing="2">
+    <rect x="500" y="128" width="8" height="8" fill="#131313"/>
+    <text x="516" y="137">FOR OFFICE TEAMS · BUILDERS · AI AGENTS</text>
+  </g>
+
+  <g font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', ui-sans-serif, sans-serif" fill="#131313">
+    <text x="500" y="200" font-size="56" font-weight="700" letter-spacing="-2.5">Your team's data</text>
+    <text x="500" y="258" font-size="56" font-weight="700" letter-spacing="-2.5">workspace, without</text>
+    <text x="500" y="316" font-size="56" font-weight="700" letter-spacing="-2.5" font-style="italic">the server bills.</text>
+  </g>
+
+  <text x="500" y="352" font-family="'Geist', -apple-system, ui-sans-serif, sans-serif" font-size="16" fill="#5f5f5c" letter-spacing="0.2">Build CRM, ERP, or any internal tool — no code, no prompts, no monthly server fees.</text>
+
+  <line x1="500" y1="378" x2="1128" y2="378" stroke="#131313" stroke-width="1" opacity="0.35"/>
+
+  <g font-family="'Geist', -apple-system, ui-sans-serif, sans-serif" font-size="15" fill="#131313">
+    <rect x="500" y="404" width="8" height="8" fill="#131313"/>
+    <text x="518" y="413" font-weight="600">Design your own CRM / ERP / HR tracker</text>
+    <text x="518" y="431" fill="#5f5f5c">Describe data in plain Markdown — no SQL, no prompts</text>
+
+    <rect x="500" y="454" width="8" height="8" fill="#131313"/>
+    <text x="518" y="463" font-weight="600">Real-time collab on your laptop</text>
+    <text x="518" y="481" fill="#5f5f5c">Peer-to-peer sync — zero hosting fees, your data stays yours</text>
+
+    <rect x="500" y="504" width="8" height="8" fill="#131313"/>
+    <text x="518" y="513" font-weight="600">Agent-native via MCP</text>
+    <text x="518" y="531" fill="#5f5f5c">Claude, Codex, OpenCode — every change diff-reviewable in Git</text>
+  </g>
+
+  <line x1="60" y1="560" x2="1140" y2="560" stroke="#131313" stroke-width="1" opacity="0.35"/>
+
+  <g transform="translate(72,568)" fill="#131313">
+    <rect x="0"   y="0" width="1" height="9" opacity="0.7"/>
+    <rect x="15"  y="4" width="1" height="5" opacity="0.35"/>
+    <rect x="30"  y="4" width="1" height="5" opacity="0.35"/>
+    <rect x="45"  y="4" width="1" height="5" opacity="0.35"/>
+    <rect x="60"  y="4" width="1" height="5" opacity="0.35"/>
+    <rect x="75"  y="0" width="1" height="9" opacity="0.7"/>
+    <rect x="90"  y="4" width="1" height="5" opacity="0.35"/>
+    <rect x="105" y="4" width="1" height="5" opacity="0.35"/>
+    <rect x="120" y="4" width="1" height="5" opacity="0.35"/>
+    <rect x="135" y="4" width="1" height="5" opacity="0.35"/>
+    <rect x="150" y="0" width="1" height="9" opacity="0.7"/>
+    <rect x="165" y="4" width="1" height="5" opacity="0.35"/>
+    <rect x="180" y="4" width="1" height="5" opacity="0.35"/>
+    <rect x="195" y="4" width="1" height="5" opacity="0.35"/>
+    <rect x="210" y="4" width="1" height="5" opacity="0.35"/>
+    <rect x="225" y="0" width="1" height="9" opacity="0.7"/>
+    <rect x="240" y="4" width="1" height="5" opacity="0.35"/>
+    <rect x="255" y="4" width="1" height="5" opacity="0.35"/>
+    <rect x="270" y="4" width="1" height="5" opacity="0.35"/>
+    <rect x="285" y="4" width="1" height="5" opacity="0.35"/>
+    <rect x="300" y="0" width="1" height="9" opacity="0.7"/>
+  </g>
+
+  <g font-family="'Silkscreen', 'Courier New', ui-monospace, monospace" font-size="11" fill="#131313" letter-spacing="2">
+    <text x="440" y="595">◇ NO SERVER   ◇ NO PROMPTS   ◇ NO LOCK-IN</text>
+    <text x="1128" y="595" text-anchor="end">GET MOCHI ▸</text>
+  </g>
+
+  <g stroke="#131313" stroke-width="1" opacity="0.6" fill="none">
+    <g transform="translate(1090,140)">
+      <path d="M8 1 v14 M1 8 h14"/>
+    </g>
+    <g transform="translate(1090,470)">
+      <path d="M8 1 v14 M1 8 h14"/>
+    </g>
+  </g>
+</svg>
