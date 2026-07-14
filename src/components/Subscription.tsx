@@ -4,10 +4,37 @@ import Reveal from "./Reveal";
 import { Frame } from "./hud";
 import { useLang } from "./LanguageProvider";
 
-const plans = [
-  { name: "FREE PLAY", price: "$0", credits: "0 CR", popular: false },
-  { name: "PRO", price: "$12", credits: "12 CR", popular: true },
-  { name: "TEAM", price: "$39", credits: "39 CR", popular: false },
+interface Plan {
+  name: string;
+  price: string;
+  priceSuffix: string;
+  credits: string;
+  popular: boolean;
+  ctaLabel: string;
+  ctaHref: string | null;
+}
+
+const proProductId = process.env.NEXT_PUBLIC_POLAR_PRO_PRODUCT_ID;
+
+const plans: Plan[] = [
+  {
+    name: "FREE PLAY",
+    price: "$0",
+    priceSuffix: "/mo",
+    credits: "0 CR",
+    popular: false,
+    ctaLabel: "SOON",
+    ctaHref: null,
+  },
+  {
+    name: "PRO",
+    price: "$19",
+    priceSuffix: "/forever",
+    credits: "12 CR",
+    popular: true,
+    ctaLabel: "INSERT COIN ►",
+    ctaHref: proProductId ? `/api/checkout?products=${proProductId}` : null,
+  },
 ];
 
 function Check() {
@@ -37,10 +64,10 @@ export default function Subscription() {
             <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">{m.price.title}</h2>
             <p className="mt-2 max-w-md text-sm text-muted">{m.price.sub}</p>
           </div>
-          <span className="pixel hidden whitespace-nowrap text-[9px] text-muted-2 sm:block">03 PLANS</span>
+          <span className="pixel hidden whitespace-nowrap text-[9px] text-muted-2 sm:block">02 PLANS</span>
         </Reveal>
 
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="mx-auto grid max-w-3xl gap-4 md:grid-cols-2">
           {plans.map((plan, i) => {
             const data = m.price.plans[i];
             const hot = plan.popular;
@@ -65,7 +92,7 @@ export default function Subscription() {
 
                   <div className="mt-5 flex items-end gap-1">
                     <span className="pixel text-3xl leading-none">{plan.price}</span>
-                    <span className={`mono mb-1 text-xs ${hot ? "text-white/60" : "text-muted"}`}>/mo</span>
+                    <span className={`mono mb-1 text-xs ${hot ? "text-white/60" : "text-muted"}`}>{plan.priceSuffix}</span>
                   </div>
                   <p className={`mt-1 text-[13px] ${hot ? "text-white/70" : "text-muted"}`}>{data.tagline}</p>
 
@@ -82,18 +109,32 @@ export default function Subscription() {
                     ))}
                   </ul>
 
-                  <a
-                    href="https://github.com/mochi-cli/mochi"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`pixel mt-7 inline-flex h-11 w-full items-center justify-center border text-[10px] transition-transform hover:-translate-x-px hover:-translate-y-px ${
-                      hot
-                        ? "border-white bg-white text-[#141414] shadow-[4px_4px_0_0_rgba(255,255,255,0.3)]"
-                        : "border-line bg-foreground text-background shadow-[4px_4px_0_0_var(--line)]"
-                    }`}
-                  >
-                    INSERT COIN ►
-                  </a>
+                  {plan.ctaHref ? (
+                    <a
+                      href={plan.ctaHref}
+                      {...(plan.ctaHref.startsWith("http")
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                      className={`pixel mt-7 inline-flex h-11 w-full items-center justify-center border text-[10px] transition-transform hover:-translate-x-px hover:-translate-y-px ${
+                        hot
+                          ? "border-white bg-white text-[#141414] shadow-[4px_4px_0_0_rgba(255,255,255,0.3)]"
+                          : "border-line bg-foreground text-background shadow-[4px_4px_0_0_var(--line)]"
+                      }`}
+                    >
+                      {plan.ctaLabel}
+                    </a>
+                  ) : (
+                    <span
+                      aria-disabled="true"
+                      className={`pixel mt-7 inline-flex h-11 w-full cursor-not-allowed items-center justify-center border text-[10px] ${
+                        hot
+                          ? "border-white/40 bg-white/10 text-white/60"
+                          : "border-line/30 bg-surface-2 text-muted-2"
+                      }`}
+                    >
+                      {plan.ctaLabel}
+                    </span>
+                  )}
                 </Frame>
               </Reveal>
             );
