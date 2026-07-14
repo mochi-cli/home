@@ -37,9 +37,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <LangSwitcher />
           <a
-            href="https://github.com/mochi-cli/mochi"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#pricing"
             className="btn-hard pixel inline-flex h-9 items-center px-4 text-[9px]"
           >
             START ►

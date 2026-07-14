@@ -41,9 +41,7 @@ export default function CTASection() {
 
               <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <a
-                  href="https://github.com/mochi-cli/mochi"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#pricing"
                   className="pixel inline-flex h-12 w-full items-center justify-center border border-white bg-white px-7 text-[11px] text-[#141414] shadow-[4px_4px_0_0_rgba(255,255,255,0.35)] transition-transform hover:-translate-x-px hover:-translate-y-px sm:w-auto"
                 >
                   PRESS START ►
