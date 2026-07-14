@@ -10,25 +10,30 @@ interface EngineContextType {
 
 const EngineContext = createContext<EngineContextType | undefined>(undefined);
 
+export const ALL_ENGINES = [
+  "CLAUDE",
+  "CODEX",
+  "OPENCODE",
+  "HERMES-AGENT",
+  "OPENCLAW",
+] as const;
+
 export function EngineProvider({ children }: { children: React.ReactNode }) {
-  const [selectedEngines, setSelectedEngines] = useState<string[]>(["CLAUDE", "CODEX", "OPENCODE"]);
+  const [selectedEngines, setSelectedEngines] = useState<string[]>([...ALL_ENGINES]);
 
   const toggleEngine = (engine: string) => {
-    setSelectedEngines((prev) => 
-      prev.includes(engine) 
+    setSelectedEngines((prev) =>
+      prev.includes(engine)
         ? prev.filter((e) => e !== engine)
         : [...prev, engine]
     );
   };
 
-  let kitValue = "all";
-  if (selectedEngines.length === 1) {
-    kitValue = selectedEngines[0].toLowerCase();
-  } else if (selectedEngines.length === 2) {
-    kitValue = "both";
-  } else if (selectedEngines.length === 3 || selectedEngines.length === 0) {
-    kitValue = "all";
-  }
+  // Kit value: single-engine picks its own kit slug; anything else = "all".
+  const kitValue =
+    selectedEngines.length === 1
+      ? selectedEngines[0].toLowerCase()
+      : "all";
 
   return (
     <EngineContext.Provider value={{ selectedEngines, toggleEngine, kitValue }}>

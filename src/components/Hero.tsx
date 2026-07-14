@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import MochiConsole, { Line } from "./MochiConsole";
+import { useState } from "react";
 import {
   Frame,
   Crosshair,
@@ -15,17 +14,17 @@ import {
 } from "./hud";
 import Mascot from "./Mascot";
 import { useLang } from "./LanguageProvider";
-import { useEngine } from "./EngineProvider";
-
-const agents = ["CLAUDE", "CODEX", "OPENCODE"];
+import { useEngine, ALL_ENGINES } from "./EngineProvider";
 
 export default function Hero() {
   const { m } = useLang();
   const { selectedEngines, toggleEngine, kitValue } = useEngine();
   const [copied, setCopied] = useState(false);
 
+  const installCommand = `npx @mochi-cli/mochi init --kit ${kitValue}`;
+
   const handleCopy = () => {
-    navigator.clipboard.writeText(`npx @mochi-cli/mochi init --kit ${kitValue}`);
+    navigator.clipboard.writeText(installCommand);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -95,11 +94,11 @@ export default function Hero() {
 
         {/* agent select toggles */}
         <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
-          <span className="tech">SELECT ENGINE ›</span>
-          {agents.map((a) => {
+          <span className="tech">SELECT AGENT ›</span>
+          {ALL_ENGINES.map((a) => {
             const isSelected = selectedEngines.includes(a);
             return (
-              <button 
+              <button
                 key={a}
                 onClick={() => toggleEngine(a)}
                 className={`pixel border border-line px-2.5 py-1 text-[9px] transition-colors ${
@@ -124,9 +123,9 @@ export default function Hero() {
           </a>
           <div className="mono flex h-12 items-center justify-between gap-3 border border-line bg-surface pl-5 pr-2 text-sm text-foreground sm:w-auto w-full max-w-full overflow-hidden">
             <div className="flex items-center gap-3 overflow-x-auto whitespace-nowrap scrollbar-none">
-              <span className="text-muted-2">$</span> npx @mochi-cli/mochi init --kit {kitValue}
+              <span className="text-muted-2">$</span> {installCommand}
             </div>
-            <button 
+            <button
               onClick={handleCopy}
               className="pixel ml-2 flex h-8 shrink-0 items-center justify-center border border-line bg-background px-3 text-[9px] text-muted-2 transition-colors hover:bg-surface hover:text-foreground active:scale-95"
               title="Copy to clipboard"
