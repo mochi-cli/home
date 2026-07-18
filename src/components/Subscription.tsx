@@ -1,7 +1,6 @@
 "use client";
 
 import Reveal from "./Reveal";
-import { Frame } from "./hud";
 import { useLang } from "./LanguageProvider";
 
 interface Plan {
@@ -18,35 +17,29 @@ const proProductId = process.env.NEXT_PUBLIC_POLAR_PRO_PRODUCT_ID;
 
 const plans: Plan[] = [
   {
-    name: "FREE PLAY",
+    name: "Free play",
     price: "$0",
     priceSuffix: "/mo",
     credits: "0 CR",
     popular: false,
-    ctaLabel: "SOON",
+    ctaLabel: "Soon",
     ctaHref: null,
   },
   {
-    name: "PRO",
+    name: "Pro",
     price: "$19",
     priceSuffix: "/forever",
     credits: "12 CR",
     popular: true,
-    ctaLabel: "INSERT COIN ►",
+    ctaLabel: "Insert coin →",
     ctaHref: proProductId ? `/api/checkout?products=${proProductId}` : null,
   },
 ];
 
 function Check() {
   return (
-    <svg viewBox="0 0 8 8" className="h-3 w-3 flex-none" shapeRendering="crispEdges" aria-hidden="true">
-      <path d="M1 4h1v1h1v1h1v-1h1v-1h1v-1h1v-1" fill="none" stroke="currentColor" strokeWidth="1" />
-      <rect x="1" y="4" width="1" height="1" fill="currentColor" />
-      <rect x="2" y="5" width="1" height="1" fill="currentColor" />
-      <rect x="3" y="6" width="1" height="1" fill="currentColor" />
-      <rect x="4" y="5" width="1" height="1" fill="currentColor" />
-      <rect x="5" y="4" width="1" height="1" fill="currentColor" />
-      <rect x="6" y="3" width="1" height="1" fill="currentColor" />
+    <svg viewBox="0 0 16 16" className="h-4 w-4 flex-none" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+      <path d="M3 8.5l3.5 3.5L13 5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -55,56 +48,68 @@ export default function Subscription() {
   const { m } = useLang();
 
   return (
-    <section id="pricing" className="scanlines relative border-b border-line bg-surface-2">
-      <div className="dotgrid pointer-events-none absolute inset-0 opacity-50" />
+    <section id="pricing" className="relative border-b border-line-soft bg-surface-2">
       <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <Reveal className="mb-12 flex items-end justify-between gap-6 border-b border-line pb-6">
-          <div>
-            <p className="tech">{"// PRICING"}</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">{m.price.title}</h2>
-            <p className="mt-2 max-w-md text-sm text-muted">{m.price.sub}</p>
-          </div>
-          <span className="pixel hidden whitespace-nowrap text-[9px] text-muted-2 sm:block">02 PLANS</span>
+        <Reveal className="mb-12 text-center">
+          <p className="tech">// PRICING</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            {m.price.title}
+          </h2>
+          <p className="mt-3 text-base text-muted">{m.price.sub}</p>
         </Reveal>
 
-        <div className="mx-auto grid max-w-3xl gap-4 md:grid-cols-2">
+        <div className="mx-auto grid max-w-3xl gap-5 md:grid-cols-2">
           {plans.map((plan, i) => {
             const data = m.price.plans[i];
             const hot = plan.popular;
             return (
               <Reveal key={plan.name} delay={i * 90}>
-                <Frame
-                  size={14}
-                  className={`card-hud relative flex h-full flex-col border p-7 ${
-                    hot ? "border-line bg-[#141414] text-white" : "border-line bg-background"
+                <div
+                  className={`relative flex h-full flex-col rounded-2xl p-8 transition-shadow ${
+                    hot
+                      ? "border border-foreground bg-foreground text-background shadow-[var(--shadow-lift)]"
+                      : "border border-line-soft bg-surface text-foreground"
                   }`}
                 >
                   {hot && (
-                    <span className="pixel absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap border border-line bg-white px-2 py-0.5 text-[8px] text-[#141414]">
+                    <span className="pixel absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-line bg-highlight px-3 py-1 text-[9px] text-foreground">
                       ★ {m.price.popular}
                     </span>
                   )}
 
                   <div className="flex items-center justify-between">
-                    <span className={`pixel text-[11px] ${hot ? "text-white" : "text-foreground"}`}>{plan.name}</span>
-                    <span className={`pixel text-[8px] ${hot ? "text-white/50" : "text-muted-2"}`}>{plan.credits}</span>
+                    <span className={`text-sm font-medium ${hot ? "text-background" : "text-foreground"}`}>
+                      {plan.name}
+                    </span>
+                    <span className={`pixel text-[9px] ${hot ? "text-background/60" : "text-muted-2"}`}>
+                      {plan.credits}
+                    </span>
                   </div>
 
-                  <div className="mt-5 flex items-end gap-1">
-                    <span className="pixel text-3xl leading-none">{plan.price}</span>
-                    <span className={`mono mb-1 text-xs ${hot ? "text-white/60" : "text-muted"}`}>{plan.priceSuffix}</span>
+                  <div className="mt-6 flex items-end gap-1.5">
+                    <span className="text-5xl font-semibold leading-none">{plan.price}</span>
+                    <span className={`mb-1.5 text-sm ${hot ? "text-background/60" : "text-muted"}`}>
+                      {plan.priceSuffix}
+                    </span>
                   </div>
-                  <p className={`mt-1 text-[13px] ${hot ? "text-white/70" : "text-muted"}`}>{data.tagline}</p>
+                  <p className={`mt-2 text-sm ${hot ? "text-background/75" : "text-muted"}`}>
+                    {data.tagline}
+                  </p>
 
-                  <div className={`my-6 h-px w-full ${hot ? "bg-white/20" : "bg-line"}`} />
+                  <div className={`my-6 h-px w-full ${hot ? "bg-background/20" : "bg-line-soft"}`} />
 
                   <ul className="flex flex-1 flex-col gap-3">
                     {data.features.map((f) => (
-                      <li key={f} className={`flex items-center gap-2.5 text-[13px] ${hot ? "text-white/90" : "text-foreground"}`}>
-                        <span className={hot ? "text-white" : "text-foreground"}>
+                      <li
+                        key={f}
+                        className={`flex items-start gap-2.5 text-sm ${
+                          hot ? "text-background/90" : "text-foreground"
+                        }`}
+                      >
+                        <span className={hot ? "text-background" : "text-foreground"}>
                           <Check />
                         </span>
-                        {f}
+                        <span>{f}</span>
                       </li>
                     ))}
                   </ul>
@@ -115,10 +120,10 @@ export default function Subscription() {
                       {...(plan.ctaHref.startsWith("http")
                         ? { target: "_blank", rel: "noopener noreferrer" }
                         : {})}
-                      className={`pixel mt-7 inline-flex h-11 w-full items-center justify-center border text-[10px] transition-transform hover:-translate-x-px hover:-translate-y-px ${
+                      className={`mt-8 inline-flex h-11 w-full items-center justify-center rounded-full text-sm font-medium transition-transform hover:-translate-y-px ${
                         hot
-                          ? "border-white bg-white text-[#141414] shadow-[4px_4px_0_0_rgba(255,255,255,0.3)]"
-                          : "border-line bg-foreground text-background shadow-[4px_4px_0_0_var(--line)]"
+                          ? "bg-background text-foreground"
+                          : "bg-foreground text-background"
                       }`}
                     >
                       {plan.ctaLabel}
@@ -126,22 +131,22 @@ export default function Subscription() {
                   ) : (
                     <span
                       aria-disabled="true"
-                      className={`pixel mt-7 inline-flex h-11 w-full cursor-not-allowed items-center justify-center border text-[10px] ${
+                      className={`mt-8 inline-flex h-11 w-full cursor-not-allowed items-center justify-center rounded-full border text-sm ${
                         hot
-                          ? "border-white/40 bg-white/10 text-white/60"
-                          : "border-line/30 bg-surface-2 text-muted-2"
+                          ? "border-background/40 bg-background/10 text-background/60"
+                          : "border-line-soft bg-surface-2 text-muted-2"
                       }`}
                     >
                       {plan.ctaLabel}
                     </span>
                   )}
-                </Frame>
+                </div>
               </Reveal>
             );
           })}
         </div>
 
-        <p className="mono mt-6 text-center text-[11px] text-muted-2">{m.price.billed}</p>
+        <p className="mt-8 text-center text-xs text-muted-2">{m.price.billed}</p>
       </div>
     </section>
   );

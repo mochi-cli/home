@@ -1,56 +1,53 @@
 "use client";
 
 import Reveal from "./Reveal";
-import { Frame } from "./hud";
 import { useLang } from "./LanguageProvider";
 
 const templateMeta = [
-  { name: "CRM", code: "Customer Management" },
-  { name: "HRM", code: "HR Management" },
+  { name: "CRM",       code: "Customer Management" },
+  { name: "HRM",       code: "HR Management" },
   { name: "INVENTORY", code: "Stock & Warehouse" },
-  { name: "PROJECT", code: "Task & Progress" },
+  { name: "PROJECT",   code: "Task & Progress" },
 ];
 
 export default function Templates() {
   const { m } = useLang();
   return (
-    <section id="templates" className="relative border-b border-line">
+    <section id="templates" className="relative border-b border-line-soft bg-surface-2">
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-          <Reveal>
-            <p className="tech">{"// TEMPLATES"}</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
+        <Reveal className="mb-10 flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="tech">// TEMPLATES</p>
+            <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
               {m.tpl.title}
             </h2>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted">
               {m.tpl.sub}
             </p>
-            <a
-              href="https://github.com/mochi-cli/mochi"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-ghost pixel mt-6 inline-flex h-11 items-center px-5 text-[10px]"
-            >
-              VIEW ALL ►
-            </a>
-          </Reveal>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            {templateMeta.map((t, i) => (
-              <Reveal key={t.name} delay={i * 80}>
-                <Frame size={12} className="card-hud h-full border border-line bg-surface p-6">
-                  <div className="flex items-center justify-between">
-                    <span className="pixel text-[9px] text-muted-2">{t.code}</span>
-                    <span className="flex h-5 w-5 items-center justify-center border border-line text-[10px] text-muted">
-                      {i + 1}
-                    </span>
-                  </div>
-                  <p className="pixel mt-5 text-[13px] text-foreground">{t.name}</p>
-                  <p className="mt-2 text-[13px] leading-relaxed text-muted">{m.tpl.items[i]}</p>
-                </Frame>
-              </Reveal>
-            ))}
           </div>
+          <a
+            href="https://github.com/mochi-cli/mochi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-ghost text-sm"
+          >
+            View all →
+          </a>
+        </Reveal>
+
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {templateMeta.map((t, i) => (
+            <Reveal key={t.name} delay={i * 70}>
+              <div className="card h-full p-6">
+                <div className="flex items-center justify-between">
+                  <span className="pixel text-[11px] text-foreground">{t.name}</span>
+                  <span className="tech text-[9px]">0{i + 1}</span>
+                </div>
+                <p className="mt-4 text-sm font-medium text-foreground">{t.code}</p>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{m.tpl.items[i]}</p>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

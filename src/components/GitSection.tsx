@@ -1,7 +1,6 @@
 "use client";
 
 import Reveal from "./Reveal";
-import { Frame } from "./hud";
 import { useLang } from "./LanguageProvider";
 import { useEffect, useState } from "react";
 import MochiConsole from "./MochiConsole";
@@ -189,7 +188,7 @@ function RealtimeDB({ m }: { m: any }) {
       </div>
 
       {/* Panel — data table + live events + git log */}
-      <div className="panel scanlines overflow-y-auto px-4 py-3 font-mono flex flex-col" style={{ height: "auto", minHeight: "260px" }}>
+      <div className="overflow-y-auto rounded-xl border border-line-soft bg-surface px-4 py-3 font-mono flex flex-col" style={{ height: "auto", minHeight: "260px" }}>
 
         {/* ── Data table ── */}
         <div>
@@ -260,34 +259,27 @@ export default function GitSection() {
   const { m } = useLang();
 
   return (
-    <section id="git" className="relative border-b border-line">
+    <section id="git" className="relative border-b border-line-soft">
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-
-        {/* Section header */}
-        <Reveal className="mb-12 flex items-end justify-between gap-6 border-b border-line pb-6">
-          <div>
-            <p className="tech">{"// GIT & HISTORY"}</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-              {m.git.title}
-            </h2>
-          </div>
-          <span className="pixel hidden whitespace-nowrap text-[9px] text-muted-2 sm:block">GIT · HISTORY</span>
+        <Reveal className="mb-12">
+          <p className="tech">// GIT &amp; HISTORY</p>
+          <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            {m.git.title}
+          </h2>
         </Reveal>
 
-        {/* Single full-width card */}
         <Reveal>
-          <Frame size={12} className="card-hud border border-line bg-surface p-7">
-            <p className="pixel text-[9px] text-muted">GIT &amp; HISTORY</p>
-            <h3 className="mt-3 text-lg font-semibold tracking-tight">
+          <div className="card p-7">
+            <span className="tech">Git &amp; History</span>
+            <h3 className="mt-4 text-xl font-semibold tracking-tight text-foreground">
               {m.git.items[0].title} &amp; {m.git.items[1].title}
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-muted">
               {m.git.items[0].desc} {m.git.items[1].desc}
             </p>
             <MultiBranchVisual m={m} />
-          </Frame>
+          </div>
         </Reveal>
-
       </div>
     </section>
   );

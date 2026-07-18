@@ -24,7 +24,6 @@ interface Plan {
   tagline: string;
   features: string[];
 }
-
 export interface Messages {
   scripts: any;
   db: any;
