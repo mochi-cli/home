@@ -21,6 +21,21 @@ export default function Hero() {
 
   return (
     <section id="top" className="relative overflow-hidden border-b border-line-soft">
+      {/* ambient background glow — slow drifting color blobs, kept faint so text stays crisp */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="animate-drift-a absolute -left-24 -top-32 h-[420px] w-[420px] rounded-full opacity-60 blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(163,240,209,0.55), transparent 70%)" }}
+        />
+        <div
+          className="animate-drift-b absolute -right-28 top-0 h-[380px] w-[380px] rounded-full opacity-50 blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(147,197,253,0.5), transparent 70%)" }}
+        />
+        <div
+          className="animate-drift-c absolute bottom-[-160px] left-1/3 h-[360px] w-[360px] rounded-full opacity-45 blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(216,180,254,0.45), transparent 70%)" }}
+        />
+      </div>
       <div className="dotgrid pointer-events-none absolute inset-0 opacity-70" />
 
       <div className="relative mx-auto max-w-5xl px-6 pb-20 pt-16 text-center md:pt-24">

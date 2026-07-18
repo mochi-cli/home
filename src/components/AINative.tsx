@@ -35,7 +35,7 @@ function ConsolePanel({ script }: { script: Line[] }) {
 }
 
 // ─── Item 3 — two teammates on two branches + a live-synced table ─────────────
-function LiveTable({ db }: { db: DB }) {
+function LiveTable({ db, syncedCaption }: { db: DB; syncedCaption: string }) {
   const [rows, setRows] = useState<DBRow[]>([]);
   const [logs, setLogs] = useState<LiveLog[]>([]);
 
@@ -89,7 +89,7 @@ function LiveTable({ db }: { db: DB }) {
   return (
     <div className="min-w-0">
       <div className="mb-2 flex items-center gap-2">
-        <span className="text-[13px] font-medium text-foreground">Realtime DB</span>
+        <span className="text-[13px] font-medium text-foreground">{db.title}</span>
         <span className="mono rounded-full bg-[#d1fbe8] px-2 py-0.5 text-[9px] font-medium text-[#047857]">⎇ main</span>
       </div>
 
@@ -136,14 +136,14 @@ function LiveTable({ db }: { db: DB }) {
         </div>
 
         <div className="flex h-[47px] items-center gap-2 border-t border-line-soft bg-surface-2/40 px-4 py-2.5">
-          <span className="mono text-xs text-muted-2">⇄ synced automatically, zero config</span>
+          <span className="mono text-xs text-muted-2">⇄ {syncedCaption}</span>
         </div>
       </div>
     </div>
   );
 }
 
-function CollabPanel({ m }: { m: { db: DB; scripts: { branchA: Line[]; branchB: Line[] } } }) {
+function CollabPanel({ m, syncedCaption }: { m: { db: DB; scripts: { branchA: Line[]; branchB: Line[] } }; syncedCaption: string }) {
   return (
     <div>
       <div className="grid gap-6 xl:grid-cols-3">
@@ -161,24 +161,24 @@ function CollabPanel({ m }: { m: { db: DB; scripts: { branchA: Line[]; branchB: 
           </div>
           <MochiConsole customScript={m.scripts.branchB} heightClass="h-[300px]" consoleId="branch-b" initialDelay={3500} fullWidth />
         </div>
-        <LiveTable db={m.db} />
+        <LiveTable db={m.db} syncedCaption={syncedCaption} />
       </div>
     </div>
   );
 }
 
 // ─── Item 3 — one agent, one branch, syncing straight to a real DB ─────────────
-function SoloGitPanel({ m }: { m: { db: DB; scripts: { branchA: Line[] } } }) {
+function SoloGitPanel({ m, agentLabel, syncedCaption }: { m: { db: DB; scripts: { branchA: Line[] } }; agentLabel: string; syncedCaption: string }) {
   return (
     <div className="grid gap-6 lg:grid-cols-2">
       <div className="min-w-0">
         <div className="mb-2 flex items-center gap-2">
-          <span className="text-[13px] font-medium text-foreground">Mochi agent</span>
+          <span className="text-[13px] font-medium text-foreground">{agentLabel}</span>
           <span className="mono rounded-full bg-[#dbeafe] px-2 py-0.5 text-[9px] font-medium text-[#1d4ed8]">⎇ main</span>
         </div>
         <MochiConsole customScript={m.scripts.branchA} heightClass="h-[300px]" consoleId="branch-a" fullWidth />
       </div>
-      <LiveTable db={m.db} />
+      <LiveTable db={m.db} syncedCaption={syncedCaption} />
     </div>
   );
 }
@@ -201,15 +201,15 @@ export default function AINative() {
     { n: "02", title: m.feat.items[1].title, desc: m.feat.items[1].desc, render: () => <ConsolePanel script={m.scripts.template} /> },
     {
       n: "03",
-      title: "Sync your database online, via Git",
-      desc: "Every commit updates your local files and your hosted database together — no separate sync step, no drift.",
-      render: () => <SoloGitPanel m={m} />,
+      title: m.git.items[0].title,
+      desc: m.git.items[0].desc,
+      render: () => <SoloGitPanel m={m} agentLabel={m.git.agentLabel} syncedCaption={m.git.syncedCaption} />,
     },
     {
       n: "04",
-      title: "Team collab with agent",
-      desc: "Two teammates, two branches, one shared workspace — Mochi keeps every edit in sync, no merge conflicts.",
-      render: () => <CollabPanel m={m} />,
+      title: m.git.items[1].title,
+      desc: m.git.items[1].desc,
+      render: () => <CollabPanel m={m} syncedCaption={m.git.syncedCaption} />,
     },
   ];
   const current = items[active];
@@ -249,20 +249,35 @@ export default function AINative() {
 
         <Reveal>
           <div className="grid gap-8 lg:grid-cols-[260px_1fr] lg:gap-12">
-            {/* left: numbered capability list — scrolling steps through these in order */}
-            <div>
+            {/* left: numbered capability list — a timeline rail fills as you scroll through them */}
+            <div className="relative pl-6">
+              <div className="absolute left-2 top-1 bottom-1 w-px bg-line-soft" aria-hidden />
+              <div
+                className="absolute left-2 top-1 w-px transition-all duration-700 ease-out"
+                style={{ height: `${((active + 1) / items.length) * 100}%`, backgroundColor: toneAt(active).dot }}
+                aria-hidden
+              />
               {items.map((it, i) => {
                 const isActive = i === active;
+                const passed = i <= active;
                 const t = toneAt(i);
                 return (
                   <button
                     key={it.n}
                     ref={(el) => { itemRefs.current[i] = el; }}
                     onClick={() => handleSelect(i)}
-                    className={`flex min-h-[300px] w-full flex-col justify-center border-b py-4 text-left transition-colors lg:min-h-[380px] ${
+                    className={`relative flex min-h-[300px] w-full flex-col justify-center border-b py-4 text-left transition-colors lg:min-h-[380px] ${
                       isActive ? "border-foreground" : "border-line-soft hover:border-line"
                     }`}
                   >
+                    <span
+                      className="absolute -left-5 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full border-2 transition-colors duration-300"
+                      style={{
+                        backgroundColor: passed ? t.dot : "var(--surface)",
+                        borderColor: passed ? t.dot : "var(--line-soft)",
+                      }}
+                      aria-hidden
+                    />
                     <span className="tech" style={{ color: isActive ? t.fg : undefined }}>{it.n}</span>
                     <div className={`mt-1 text-base font-semibold transition-colors ${isActive ? "text-foreground" : "text-muted"}`}>
                       {it.title}

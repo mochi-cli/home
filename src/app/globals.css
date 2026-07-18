@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafaf7;
+  --background: #fdfdfb;
   --foreground: #131313;
   --surface: #ffffff;
   --surface-2: #f2f2ee;
@@ -34,6 +34,13 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-pixel: var(--font-pixel);
+}
+
+@layer base {
+  html {
+    /* bumps every rem-based text size site-wide by ~6% */
+    font-size: 17px;
+  }
 }
 
 body {
@@ -152,6 +159,26 @@ body {
 }
 .animate-float { animation: float 5.5s ease-in-out infinite; }
 
+/* slow ambient drift for background glow blobs */
+@keyframes driftSlow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(28px, -22px) scale(1.06); }
+}
+@keyframes driftSlowRev {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-24px, 20px) scale(1.05); }
+}
+.animate-drift-a { animation: driftSlow 19s ease-in-out infinite; }
+.animate-drift-b { animation: driftSlowRev 23s ease-in-out infinite; }
+.animate-drift-c { animation: driftSlow 27s ease-in-out infinite reverse; }
+
+/* story-bar style fill, used by auto-cycling tabs */
+@keyframes tabgrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.animate-tabgrow { animation: tabgrow 4.5s linear forwards; }
+
 @keyframes blinkeye {
   0%, 92%, 100% { transform: scaleY(1); }
   96% { transform: scaleY(0.12); }
@@ -184,6 +211,10 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .animate-float,
   .animate-cursor,
-  .animate-blink { animation: none; }
+  .animate-blink,
+  .animate-drift-a,
+  .animate-drift-b,
+  .animate-drift-c,
+  .animate-tabgrow { animation: none; }
   .reveal { opacity: 1; transform: none; }
 }

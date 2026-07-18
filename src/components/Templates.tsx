@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import Reveal from "./Reveal";
 import { useLang } from "./LanguageProvider";
 import { toneAt } from "@/lib/tones";
@@ -142,12 +142,28 @@ function renderCell(cell: Cell) {
   return <Pill tone={cell.tone}>{cell.label}</Pill>;
 }
 
+const AUTO_MS = 4500;
+
 export default function Templates() {
   const { m } = useLang();
   const [active, setActive] = useState(TEMPLATES[0].key);
+  const pausedRef = useRef(false);
   const activeIndex = TEMPLATES.findIndex((t) => t.key === active);
   const activeTpl = TEMPLATES[activeIndex] ?? TEMPLATES[0];
   const activeTone = toneAt(activeIndex < 0 ? 0 : activeIndex);
+
+  // auto-cycle through templates; restarts its countdown on every active
+  // change, whether that change came from the timer or a manual click
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (pausedRef.current) return;
+      setActive((prev) => {
+        const idx = TEMPLATES.findIndex((t) => t.key === prev);
+        return TEMPLATES[(idx + 1) % TEMPLATES.length].key;
+      });
+    }, AUTO_MS);
+    return () => clearInterval(id);
+  }, [active]);
 
   return (
     <section id="templates" className="relative border-b border-line-soft bg-surface">
@@ -174,10 +190,12 @@ export default function Templates() {
 
         <Reveal>
           <div className="rounded-3xl border border-line-soft bg-surface p-6 shadow-[var(--shadow-card)] sm:p-8">
-            {/* Tab row */}
+            {/* Tab row — auto-cycles; hover pauses it */}
             <div
               role="tablist"
               aria-label="Templates"
+              onMouseEnter={() => { pausedRef.current = true; }}
+              onMouseLeave={() => { pausedRef.current = false; }}
               className="grid gap-4 border-b border-line-soft pb-2 sm:grid-cols-2 lg:grid-cols-4"
             >
               {TEMPLATES.map((t, i) => {
@@ -209,14 +227,16 @@ export default function Templates() {
                       </span>
                     </div>
                     <p className="text-[13px] leading-relaxed text-muted">{t.desc}</p>
-                    <span
-                      className="absolute inset-x-4 -bottom-[10px] h-[3px] rounded-full transition-all"
-                      style={{
-                        backgroundColor: tone.dot,
-                        opacity: isActive ? 1 : 0,
-                      }}
-                      aria-hidden
-                    />
+                    {/* progress track — fills over AUTO_MS while active, like a story bar */}
+                    <span className="absolute inset-x-4 -bottom-[10px] h-[3px] overflow-hidden rounded-full bg-line-soft" aria-hidden>
+                      {isActive && (
+                        <span
+                          key={active}
+                          className="animate-tabgrow block h-full origin-left rounded-full"
+                          style={{ backgroundColor: tone.dot }}
+                        />
+                      )}
+                    </span>
                   </button>
                 );
               })}
