@@ -3,6 +3,7 @@
 import Mascot from "./Mascot";
 import Reveal from "./Reveal";
 import { useLang } from "./LanguageProvider";
+import { toneAt } from "@/lib/tones";
 
 const stats = [
   { label: "Simple",    val: 5 },
@@ -18,11 +19,8 @@ export default function MascotIntro() {
       <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
         <div className="grid items-center gap-14 lg:grid-cols-2">
           <Reveal className="flex justify-center">
-            <div className="relative flex h-72 w-72 items-center justify-center rounded-full bg-surface-2 sm:h-80 sm:w-80">
+            <div className="relative flex h-72 w-72 items-center justify-center rounded-full bg-mesh-bright sm:h-80 sm:w-80">
               <Mascot pose="happy" uid="intro" className="animate-float h-48 w-48 sm:h-56 sm:w-56" />
-              <span className="pixel absolute -top-3 left-1/2 -translate-x-1/2 rounded-full border border-line-soft bg-surface px-3 py-1 text-[9px] text-muted">
-                PLAYER 01
-              </span>
             </div>
           </Reveal>
 
@@ -36,23 +34,25 @@ export default function MascotIntro() {
             </p>
 
             <div className="mt-8 space-y-3">
-              {stats.map((s) => (
-                <div key={s.label} className="flex items-center gap-4">
-                  <span className="pixel w-24 flex-none text-[10px] text-muted">
-                    {s.label.toUpperCase()}
-                  </span>
-                  <div className="flex gap-1">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <span
-                        key={i}
-                        className={`h-2.5 w-6 rounded-sm ${
-                          i < s.val ? "bg-foreground" : "bg-surface-2"
-                        }`}
-                      />
-                    ))}
+              {stats.map((s, i) => {
+                const tone = toneAt(i);
+                return (
+                  <div key={s.label} className="flex items-center gap-4">
+                    <span className="w-24 flex-none text-xs font-medium text-muted">
+                      {s.label}
+                    </span>
+                    <div className="flex gap-1">
+                      {Array.from({ length: 5 }).map((_, j) => (
+                        <span
+                          key={j}
+                          className="h-2.5 w-6 rounded-sm"
+                          style={{ backgroundColor: j < s.val ? tone.dot : "var(--surface-2)" }}
+                        />
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </Reveal>
         </div>

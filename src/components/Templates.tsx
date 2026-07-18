@@ -3,6 +3,7 @@
 import { useState, type ReactNode } from "react";
 import Reveal from "./Reveal";
 import { useLang } from "./LanguageProvider";
+import { toneAt } from "@/lib/tones";
 
 // ---------- inline icons (monochrome, currentColor) ----------
 function IconUsers() {
@@ -144,7 +145,9 @@ function renderCell(cell: Cell) {
 export default function Templates() {
   const { m } = useLang();
   const [active, setActive] = useState(TEMPLATES[0].key);
-  const activeTpl = TEMPLATES.find((t) => t.key === active) ?? TEMPLATES[0];
+  const activeIndex = TEMPLATES.findIndex((t) => t.key === active);
+  const activeTpl = TEMPLATES[activeIndex] ?? TEMPLATES[0];
+  const activeTone = toneAt(activeIndex < 0 ? 0 : activeIndex);
 
   return (
     <section id="templates" className="relative border-b border-line-soft bg-surface">
@@ -177,8 +180,9 @@ export default function Templates() {
               aria-label="Templates"
               className="grid gap-4 border-b border-line-soft pb-2 sm:grid-cols-2 lg:grid-cols-4"
             >
-              {TEMPLATES.map((t) => {
+              {TEMPLATES.map((t, i) => {
                 const isActive = t.key === active;
+                const tone = toneAt(i);
                 return (
                   <button
                     key={t.key}
@@ -191,11 +195,12 @@ export default function Templates() {
                   >
                     <div className="flex items-center gap-2.5">
                       <span
-                        className={`flex h-9 w-9 items-center justify-center rounded-lg border transition-colors ${
+                        className="flex h-9 w-9 items-center justify-center rounded-lg transition-colors"
+                        style={
                           isActive
-                            ? "border-foreground bg-foreground text-background"
-                            : "border-line-soft bg-surface text-foreground"
-                        }`}
+                            ? { backgroundColor: tone.bg, color: tone.fg }
+                            : { backgroundColor: "var(--surface-2)", color: "var(--muted)" }
+                        }
                       >
                         {t.icon}
                       </span>
@@ -205,9 +210,11 @@ export default function Templates() {
                     </div>
                     <p className="text-[13px] leading-relaxed text-muted">{t.desc}</p>
                     <span
-                      className={`absolute inset-x-4 -bottom-[10px] h-[3px] rounded-full transition-all ${
-                        isActive ? "bg-highlight-strong opacity-100" : "opacity-0"
-                      }`}
+                      className="absolute inset-x-4 -bottom-[10px] h-[3px] rounded-full transition-all"
+                      style={{
+                        backgroundColor: tone.dot,
+                        opacity: isActive ? 1 : 0,
+                      }}
                       aria-hidden
                     />
                   </button>
@@ -219,15 +226,18 @@ export default function Templates() {
             <div className="mt-8 overflow-hidden rounded-2xl border border-line-soft bg-surface-2/40">
               {/* Toolbar */}
               <div className="flex items-center gap-3 border-b border-line-soft bg-surface px-4 py-2.5 text-xs text-muted">
-                <span className="flex h-6 items-center gap-1.5 rounded-md bg-surface-2 px-2 font-medium text-foreground">
-                  <span className="h-1.5 w-1.5 rounded-full bg-highlight-strong" />
+                <span
+                  className="flex h-6 items-center gap-1.5 rounded-md px-2 font-medium"
+                  style={{ backgroundColor: activeTone.bg, color: activeTone.fg }}
+                >
+                  <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: activeTone.dot }} />
                   {activeTpl.workspace}
                 </span>
                 <span className="text-muted-2">/</span>
                 <span>{activeTpl.view}</span>
                 <span className="ml-auto flex items-center gap-2 text-[11px] text-muted-2">
                   <span className="hidden sm:inline">Fields · Filter · Group · Sort</span>
-                  <span className="pixel rounded-full border border-line-soft bg-surface px-2 py-0.5 text-[9px]">
+                  <span className="rounded-full border border-line-soft bg-surface px-2 py-0.5 text-[9px] font-medium text-muted">
                     MOCHI
                   </span>
                 </span>

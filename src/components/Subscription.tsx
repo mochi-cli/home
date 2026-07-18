@@ -17,7 +17,7 @@ const proProductId = process.env.NEXT_PUBLIC_POLAR_PRO_PRODUCT_ID;
 
 const plans: Plan[] = [
   {
-    name: "Free play",
+    name: "Free",
     price: "$0",
     priceSuffix: "/mo",
     credits: "0 CR",
@@ -31,14 +31,14 @@ const plans: Plan[] = [
     priceSuffix: "/forever",
     credits: "12 CR",
     popular: true,
-    ctaLabel: "Insert coin →",
+    ctaLabel: "Get Pro →",
     ctaHref: proProductId ? `/api/checkout?products=${proProductId}` : null,
   },
 ];
 
-function Check() {
+function Check({ color }: { color: string }) {
   return (
-    <svg viewBox="0 0 16 16" className="h-4 w-4 flex-none" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+    <svg viewBox="0 0 16 16" className="h-4 w-4 flex-none" fill="none" stroke={color} strokeWidth="2" aria-hidden="true">
       <path d="M3 8.5l3.5 3.5L13 5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
@@ -65,50 +65,35 @@ export default function Subscription() {
             return (
               <Reveal key={plan.name} delay={i * 90}>
                 <div
-                  className={`relative flex h-full flex-col rounded-2xl p-8 transition-shadow ${
+                  className={`relative flex h-full flex-col rounded-2xl p-8 text-foreground transition-shadow ${
                     hot
-                      ? "border border-foreground bg-foreground text-background shadow-[var(--shadow-lift)]"
-                      : "border border-line-soft bg-surface text-foreground"
+                      ? "bg-mesh-bright ring-2 ring-[#34d399]/50 shadow-[var(--shadow-lift)]"
+                      : "border border-line-soft bg-surface"
                   }`}
                 >
                   {hot && (
-                    <span className="pixel absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-line bg-highlight px-3 py-1 text-[9px] text-foreground">
+                    <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#34d399] px-3 py-1 text-[11px] font-semibold text-white">
                       ★ {m.price.popular}
                     </span>
                   )}
 
                   <div className="flex items-center justify-between">
-                    <span className={`text-sm font-medium ${hot ? "text-background" : "text-foreground"}`}>
-                      {plan.name}
-                    </span>
-                    <span className={`pixel text-[9px] ${hot ? "text-background/60" : "text-muted-2"}`}>
-                      {plan.credits}
-                    </span>
+                    <span className="text-sm font-medium text-foreground">{plan.name}</span>
+                    <span className="text-xs font-medium text-muted-2">{plan.credits}</span>
                   </div>
 
                   <div className="mt-6 flex items-end gap-1.5">
                     <span className="text-5xl font-semibold leading-none">{plan.price}</span>
-                    <span className={`mb-1.5 text-sm ${hot ? "text-background/60" : "text-muted"}`}>
-                      {plan.priceSuffix}
-                    </span>
+                    <span className="mb-1.5 text-sm text-muted">{plan.priceSuffix}</span>
                   </div>
-                  <p className={`mt-2 text-sm ${hot ? "text-background/75" : "text-muted"}`}>
-                    {data.tagline}
-                  </p>
+                  <p className="mt-2 text-sm text-muted">{data.tagline}</p>
 
-                  <div className={`my-6 h-px w-full ${hot ? "bg-background/20" : "bg-line-soft"}`} />
+                  <div className="my-6 h-px w-full bg-line-soft" />
 
                   <ul className="flex flex-1 flex-col gap-3">
                     {data.features.map((f) => (
-                      <li
-                        key={f}
-                        className={`flex items-start gap-2.5 text-sm ${
-                          hot ? "text-background/90" : "text-foreground"
-                        }`}
-                      >
-                        <span className={hot ? "text-background" : "text-foreground"}>
-                          <Check />
-                        </span>
+                      <li key={f} className="flex items-start gap-2.5 text-sm text-foreground">
+                        <Check color={hot ? "#047857" : "var(--foreground)"} />
                         <span>{f}</span>
                       </li>
                     ))}
@@ -121,9 +106,7 @@ export default function Subscription() {
                         ? { target: "_blank", rel: "noopener noreferrer" }
                         : {})}
                       className={`mt-8 inline-flex h-11 w-full items-center justify-center rounded-full text-sm font-medium transition-transform hover:-translate-y-px ${
-                        hot
-                          ? "bg-background text-foreground"
-                          : "bg-foreground text-background"
+                        hot ? "bg-[#047857] text-white" : "bg-foreground text-background"
                       }`}
                     >
                       {plan.ctaLabel}
@@ -131,11 +114,7 @@ export default function Subscription() {
                   ) : (
                     <span
                       aria-disabled="true"
-                      className={`mt-8 inline-flex h-11 w-full cursor-not-allowed items-center justify-center rounded-full border text-sm ${
-                        hot
-                          ? "border-background/40 bg-background/10 text-background/60"
-                          : "border-line-soft bg-surface-2 text-muted-2"
-                      }`}
+                      className="mt-8 inline-flex h-11 w-full cursor-not-allowed items-center justify-center rounded-full border border-line-soft bg-surface-2 text-sm text-muted-2"
                     >
                       {plan.ctaLabel}
                     </span>

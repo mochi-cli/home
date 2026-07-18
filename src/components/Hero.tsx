@@ -4,6 +4,7 @@ import { useState } from "react";
 import Mascot from "./Mascot";
 import { useLang } from "./LanguageProvider";
 import { useEngine, ALL_ENGINES } from "./EngineProvider";
+import { toneAt } from "@/lib/tones";
 
 export default function Hero() {
   const { m } = useLang();
@@ -25,7 +26,7 @@ export default function Hero() {
       <div className="relative mx-auto max-w-5xl px-6 pb-20 pt-16 text-center md:pt-24">
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-line-soft bg-surface px-4 py-1.5 text-xs text-muted">
           <span className="h-1.5 w-1.5 animate-blink rounded-full bg-highlight-strong" />
-          <span className="pixel text-[10px] tracking-wider">INSERT COIN — READY</span>
+          <span className="tracking-wide">Live workspace — synced peer-to-peer</span>
         </div>
 
         <h1 className="mx-auto max-w-4xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-6xl md:text-7xl">
@@ -39,7 +40,7 @@ export default function Hero() {
         <div className="mt-10 flex justify-center">
           <div className="relative w-full max-w-3xl rounded-2xl border border-line-soft bg-surface p-2 text-left shadow-[var(--shadow-card)]">
             <div className="flex items-start gap-3 p-3">
-              <div className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-surface-2">
+              <div className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-highlight/50">
                 <Mascot uid="hero" className="h-8 w-8" />
               </div>
               <div className="min-w-0 flex-1">
@@ -47,8 +48,8 @@ export default function Hero() {
                   <span className="text-muted-2">$</span>
                   <span className="truncate">{installCommand}</span>
                 </div>
-                <p className="pixel mt-1.5 text-[10px] text-muted-2">
-                  SELECT AGENT · KIT AUTO-DETECTED
+                <p className="mt-1.5 text-xs text-muted-2">
+                  Select an agent · kit is auto-detected
                 </p>
               </div>
               <button
@@ -61,15 +62,21 @@ export default function Hero() {
             </div>
 
             <div className="flex flex-wrap items-center gap-1.5 border-t border-line-soft px-3 py-3">
-              {ALL_ENGINES.map((a) => {
+              {ALL_ENGINES.map((a, i) => {
                 const isSelected = selectedEngines.includes(a);
+                const tone = toneAt(i);
                 return (
                   <button
                     key={a}
                     onClick={() => toggleEngine(a)}
-                    className={`pixel rounded-full border px-2.5 py-1 text-[9px] transition-colors ${
+                    style={
                       isSelected
-                        ? "border-foreground bg-foreground text-background"
+                        ? { backgroundColor: tone.bg, color: tone.fg, borderColor: "transparent" }
+                        : undefined
+                    }
+                    className={`rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors ${
+                      isSelected
+                        ? ""
                         : "border-line-soft bg-surface text-muted hover:border-line hover:text-foreground"
                     }`}
                   >
@@ -83,7 +90,7 @@ export default function Hero() {
 
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a href="#pricing" className="btn-primary text-sm">
-            Press start →
+            Get started →
           </a>
           <a href="#workflow" className="btn-ghost text-sm">
             See how it works

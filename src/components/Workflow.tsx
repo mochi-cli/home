@@ -4,6 +4,7 @@ import { useState } from "react";
 import Reveal from "./Reveal";
 import { useLang } from "./LanguageProvider";
 import { useEngine } from "./EngineProvider";
+import { toneAt } from "@/lib/tones";
 
 const stepMeta = [
   { n: "01", cmd: "npx @mochi-cli/mochi init --kit all" }, // overridden per selection
@@ -23,10 +24,10 @@ function CopyableCommand({ text }: { text: string }) {
       <span className="truncate">{text}</span>
       <button
         onClick={handleCopy}
-        className="pixel shrink-0 rounded-full border border-line-soft bg-surface px-2.5 py-1 text-[8px] text-muted transition-colors hover:border-line hover:text-foreground"
+        className="shrink-0 rounded-full border border-line-soft bg-surface px-2.5 py-1 text-[11px] font-medium text-muted transition-colors hover:border-line hover:text-foreground"
         title="Copy to clipboard"
       >
-        {copied ? "OK" : "CPY"}
+        {copied ? "Copied" : "Copy"}
       </button>
     </div>
   );
@@ -46,23 +47,31 @@ export default function Workflow() {
         </Reveal>
 
         <div className="grid gap-5 md:grid-cols-3">
-          {stepMeta.map((s, i) => (
-            <Reveal key={s.n} delay={i * 100}>
-              <div className="card h-full p-7">
-                <div className="flex items-center justify-between">
-                  <span className="pixel text-2xl text-foreground">{s.n}</span>
-                  <span className="tech">Step</span>
+          {stepMeta.map((s, i) => {
+            const tone = toneAt(i);
+            return (
+              <Reveal key={s.n} delay={i * 100}>
+                <div className="card h-full p-7">
+                  <div className="flex items-center justify-between">
+                    <span
+                      className="flex h-9 w-9 items-center justify-center rounded-full text-sm font-semibold"
+                      style={{ backgroundColor: tone.bg, color: tone.fg }}
+                    >
+                      {i + 1}
+                    </span>
+                    <span className="tech">Step {s.n}</span>
+                  </div>
+                  <h3 className="mt-5 text-xl font-semibold tracking-tight text-foreground">
+                    {m.flow.steps[i].title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                    {m.flow.steps[i].desc}
+                  </p>
+                  <CopyableCommand text={i === 0 ? `npx @mochi-cli/mochi init --kit ${kitValue}` : s.cmd} />
                 </div>
-                <h3 className="mt-5 text-xl font-semibold tracking-tight text-foreground">
-                  {m.flow.steps[i].title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">
-                  {m.flow.steps[i].desc}
-                </p>
-                <CopyableCommand text={i === 0 ? `npx @mochi-cli/mochi init --kit ${kitValue}` : s.cmd} />
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>

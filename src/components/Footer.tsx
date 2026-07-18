@@ -25,7 +25,7 @@ const columns = [
     heading: "Company",
     links: [
       { label: "About Mochi", href: "#mochi" },
-      { label: "Insert coin", href: "#pricing" },
+      { label: "Changelog", href: "https://github.com/mochi-cli/mochi/releases", external: true },
     ],
   },
 ];
@@ -70,8 +70,9 @@ export default function Footer() {
           <span className="text-xs text-muted-2">
             © {new Date().getFullYear()} Mochi. Data workspace for teams and agents.
           </span>
-          <span className="pixel text-[9px] text-muted-2">
-            HI-SCORE <span className="text-foreground">19009304</span>
+          <span className="mono inline-flex items-center gap-1.5 rounded-full bg-[#d1fbe8] px-2.5 py-1 text-[11px] font-medium text-[#047857]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#10b981]" />
+            All systems operational
           </span>
         </div>
       </div>
