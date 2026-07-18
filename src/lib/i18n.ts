@@ -509,12 +509,12 @@ const es: Messages = {
     ],
   },
   tpl: {
-    title: "Plantillas listas, personalizables cuando haga falta",
-    sub: "Cada plantilla incluye un esquema, relaciones de datos y datos de ejemplo: suficiente para que tu agente empiece de inmediato y simple para adaptarla a tus necesidades.",
+    title: "Plantillas para las herramientas que realmente necesitas",
+    sub: "Ya sea que gestiones ventas, RRHH, operaciones o un equipo de proyecto — empieza desde una plantilla con esquema, relaciones y datos de ejemplo. Personaliza en lenguaje natural o deja que tu agente lo haga.",
     items: [
       "Clientes, oportunidades de venta, historial de interacciones",
       "Personas, departamentos, asistencia, evaluaciones",
-      "Productos, stock, entradas/salidas en tiempo real",
+      "Productos, stock, flujo de entrada/salida en tiempo real",
       "Tareas, progreso, miembros, plazos",
     ],
   },

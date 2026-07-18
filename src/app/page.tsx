@@ -20,10 +20,10 @@ export default function Home() {
         {/* 2. How it works — 3 bước sử dụng */}
         <Workflow />
 
-        {/* 3. Features — chat agent + template */}
+        {/* 3. Features — 4 capabilities: chat, templates, plain text, undo */}
         <Features />
 
-        {/* 4. Git & History — commit safely + rollback */}
+        {/* 4. Git & Collab — live multi-user demo with real-time DB + git log */}
         <GitSection />
 
         {/* 5. Templates — các template có sẵn */}
