@@ -148,9 +148,20 @@ export default function Templates() {
   const { m } = useLang();
   const [active, setActive] = useState(TEMPLATES[0].key);
   const pausedRef = useRef(false);
+  const previewRef = useRef<HTMLDivElement>(null);
   const activeIndex = TEMPLATES.findIndex((t) => t.key === active);
   const activeTpl = TEMPLATES[activeIndex] ?? TEMPLATES[0];
   const activeTone = toneAt(activeIndex < 0 ? 0 : activeIndex);
+
+  // manual taps bring the preview into view — on narrow screens the tabs
+  // stack tall enough that the updated table can otherwise sit off-screen.
+  // The auto-cycle timer never does this; only a deliberate click should move the page.
+  const handleTabClick = (key: string) => {
+    setActive(key);
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      previewRef.current?.scrollIntoView({ behavior: "instant", block: "nearest" });
+    }
+  };
 
   // auto-cycle through templates; restarts its countdown on every active
   // change, whether that change came from the timer or a manual click
@@ -206,7 +217,7 @@ export default function Templates() {
                     key={t.key}
                     role="tab"
                     aria-selected={isActive}
-                    onClick={() => setActive(t.key)}
+                    onClick={() => handleTabClick(t.key)}
                     className={`group relative flex flex-col items-start gap-2 rounded-xl p-4 text-left transition-colors ${
                       isActive ? "bg-surface-2/60" : "hover:bg-surface-2/60"
                     }`}
@@ -243,7 +254,7 @@ export default function Templates() {
             </div>
 
             {/* Preview */}
-            <div className="mt-8 overflow-hidden rounded-2xl border border-line-soft bg-surface-2/40">
+            <div ref={previewRef} className="mt-8 overflow-hidden rounded-2xl border border-line-soft bg-surface-2/40">
               {/* Toolbar */}
               <div className="flex items-center gap-3 border-b border-line-soft bg-surface px-4 py-2.5 text-xs text-muted">
                 <span
