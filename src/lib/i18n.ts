@@ -36,6 +36,7 @@ export interface Messages {
   price: { title: string; sub: string; billed: string; popular: string; plans: Plan[] };
   cta: { sub: string };
   footer: { tagline: string };
+  success: { title: string; sub: string; order: string; cta: string; back: string; note: string };
 }
 
 const en: Messages = {
@@ -301,12 +302,20 @@ const en: Messages = {
     billed: "One-time payment. Pay once, use forever.",
     popular: "MOST POPULAR",
     plans: [
-      { tagline: "For solo hobby projects", features: ["1 workspace", "Local database + templates", "Community support"] },
-      { tagline: "For individual builders", features: ["Unlimited workspaces", "Git bundle deploy", "Write history & rollback", "Priority support"] },
+      { tagline: "For solo hobby projects", features: ["3 workspaces", "Free templates only", "Git bundle deploy", "Community support"] },
+      { tagline: "For individual builders", features: ["Unlimited workspaces", "Mochi Table", "Premium templates", "Git bundle deploy", "Write history & rollback", "Priority support"] },
     ],
   },
   cta: { sub: "Install Mochi in seconds — no server, no prompts, no lock-in." },
   footer: { tagline: "Your team's data workspace — no server bills, no lock-in, agent-ready." },
+  success: {
+    title: "You're all set!",
+    sub: "Your Pro license is on its way to your inbox. Install Mochi and start building your workspace.",
+    order: "Order reference:",
+    cta: "View on GitHub",
+    back: "Back to home",
+    note: "Didn't get the email? Check spam, or reach out on GitHub.",
+  },
 };
 
 const es: Messages = {
@@ -532,12 +541,20 @@ const es: Messages = {
     billed: "Pago único. Paga una vez, úsalo para siempre.",
     popular: "MÁS POPULAR",
     plans: [
-      { tagline: "Para proyectos personales", features: ["1 espacio de trabajo", "database local + plantillas", "Soporte de la comunidad"] },
-      { tagline: "Para creadores individuales", features: ["Espacios ilimitados", "Despliegue de paquete Git", "Historial y reversión", "Soporte prioritario"] },
+      { tagline: "Para proyectos personales", features: ["3 espacios de trabajo", "Solo plantillas gratuitas", "Despliegue de paquete Git", "Soporte de la comunidad"] },
+      { tagline: "Para creadores individuales", features: ["Espacios ilimitados", "Mochi Table", "Plantillas premium", "Despliegue de paquete Git", "Historial y reversión", "Soporte prioritario"] },
     ],
   },
   cta: { sub: "Instala Mochi en segundos y empieza con tu primera plantilla." },
   footer: { tagline: "El compañero de datos nativo para agentes: Claude, Codex y OpenCode." },
+  success: {
+    title: "¡Todo listo!",
+    sub: "Tu licencia Pro va de camino a tu correo. Instala Mochi y empieza a construir tu espacio de trabajo.",
+    order: "Referencia del pedido:",
+    cta: "Ver en GitHub",
+    back: "Volver al inicio",
+    note: "¿No recibiste el correo? Revisa spam o contáctanos en GitHub.",
+  },
 };
 
 const fr: Messages = {
@@ -763,12 +780,20 @@ const fr: Messages = {
     billed: "Paiement unique. Payez une fois, utilisez à vie.",
     popular: "LE PLUS POPULAIRE",
     plans: [
-      { tagline: "Pour les projets perso", features: ["1 espace de travail", "database local + modèles", "Support communautaire"] },
-      { tagline: "Pour les créateurs individuels", features: ["Espaces illimités", "Déploiement de bundle Git", "Historique et retour arrière", "Support prioritaire"] },
+      { tagline: "Pour les projets perso", features: ["3 espaces de travail", "Modèles gratuits uniquement", "Déploiement de bundle Git", "Support communautaire"] },
+      { tagline: "Pour les créateurs individuels", features: ["Espaces illimités", "Mochi Table", "Modèles premium", "Déploiement de bundle Git", "Historique et retour arrière", "Support prioritaire"] },
     ],
   },
   cta: { sub: "Installez Mochi en quelques secondes et démarrez avec votre premier modèle." },
   footer: { tagline: "Le compagnon de données natif pour agents : Claude, Codex et OpenCode." },
+  success: {
+    title: "Tout est prêt !",
+    sub: "Votre licence Pro est en route vers votre boîte mail. Installez Mochi et commencez à construire votre espace de travail.",
+    order: "Référence de commande :",
+    cta: "Voir sur GitHub",
+    back: "Retour à l'accueil",
+    note: "Vous n'avez pas reçu l'e-mail ? Vérifiez vos spams ou contactez-nous sur GitHub.",
+  },
 };
 
 const de: Messages = {
@@ -994,12 +1019,20 @@ const de: Messages = {
     billed: "Einmalzahlung. Einmal zahlen, für immer nutzen.",
     popular: "AM BELIEBTESTEN",
     plans: [
-      { tagline: "Für private Hobbyprojekte", features: ["1 Workspace", "Lokales database + Vorlagen", "Community-Support"] },
-      { tagline: "Für einzelne Entwickler", features: ["Unbegrenzte Workspaces", "Git-Bundle-Deploy", "Schreibverlauf & Rollback", "Priorisierter Support"] },
+      { tagline: "Für private Hobbyprojekte", features: ["3 Workspaces", "Nur kostenlose Vorlagen", "Git-Bundle-Deploy", "Community-Support"] },
+      { tagline: "Für einzelne Entwickler", features: ["Unbegrenzte Workspaces", "Mochi Table", "Premium-Vorlagen", "Git-Bundle-Deploy", "Schreibverlauf & Rollback", "Priorisierter Support"] },
     ],
   },
   cta: { sub: "Installiere Mochi in Sekunden und starte mit deiner ersten Vorlage." },
   footer: { tagline: "Der agentennative Datenbegleiter für Claude, Codex und OpenCode." },
+  success: {
+    title: "Alles bereit!",
+    sub: "Deine Pro-Lizenz ist auf dem Weg in dein Postfach. Installiere Mochi und starte mit deinem Workspace.",
+    order: "Bestellreferenz:",
+    cta: "Auf GitHub ansehen",
+    back: "Zur Startseite",
+    note: "E-Mail nicht erhalten? Schau im Spam nach oder melde dich auf GitHub.",
+  },
 };
 
 const ja: Messages = {
@@ -1225,12 +1258,20 @@ const ja: Messages = {
     billed: "一度きりのお支払い。一度払えば、ずっと使えます。",
     popular: "一番人気",
     plans: [
-      { tagline: "個人の趣味プロジェクト向け", features: ["ワークスペース1つ", "ローカルdatabase＋テンプレート", "コミュニティサポート"] },
-      { tagline: "個人開発者向け", features: ["ワークスペース無制限", "Gitバンドルデプロイ", "書き込み履歴とロールバック", "優先サポート"] },
+      { tagline: "個人の趣味プロジェクト向け", features: ["ワークスペース3つ", "無料テンプレートのみ", "Gitバンドルデプロイ", "コミュニティサポート"] },
+      { tagline: "個人開発者向け", features: ["ワークスペース無制限", "Mochi Table", "プレミアムテンプレート", "Gitバンドルデプロイ", "書き込み履歴とロールバック", "優先サポート"] },
     ],
   },
   cta: { sub: "数秒でMochiをインストールして、最初のテンプレートから始めましょう。" },
   footer: { tagline: "Claude・Codex・OpenCodeのためのエージェントネイティブなデータ相棒。" },
+  success: {
+    title: "準備完了です！",
+    sub: "Proライセンスはまもなくメールに届きます。Mochiをインストールしてワークスペースの構築を始めましょう。",
+    order: "注文番号：",
+    cta: "GitHubで見る",
+    back: "ホームに戻る",
+    note: "メールが届きませんか？迷惑メールフォルダをご確認いただくか、GitHubでお問い合わせください。",
+  },
 };
 
 const zh: Messages = {
@@ -1456,12 +1497,20 @@ const zh: Messages = {
     billed: "一次性付款，一次购买，永久使用。",
     popular: "最受欢迎",
     plans: [
-      { tagline: "适合个人业余项目", features: ["1 个工作区", "本地 database + 模板", "社区支持"] },
-      { tagline: "适合独立开发者", features: ["无限工作区", "Git 包部署", "写入历史与回滚", "优先支持"] },
+      { tagline: "适合个人业余项目", features: ["3 个工作区", "仅限免费模板", "Git 包部署", "社区支持"] },
+      { tagline: "适合独立开发者", features: ["无限工作区", "Mochi Table", "高级模板", "Git 包部署", "写入历史与回滚", "优先支持"] },
     ],
   },
   cta: { sub: "几秒钟安装 Mochi，从你的第一个模板开始。" },
   footer: { tagline: "面向 Claude、Codex 和 OpenCode 的智能体原生数据伙伴。" },
+  success: {
+    title: "一切就绪！",
+    sub: "你的 Pro 许可证正发送到你的邮箱。安装 Mochi，开始搭建你的工作区。",
+    order: "订单编号：",
+    cta: "在 GitHub 上查看",
+    back: "返回首页",
+    note: "没收到邮件？请检查垃圾邮件文件夹，或通过 GitHub 联系我们。",
+  },
 };
 
 const vi: Messages = {
@@ -1695,12 +1744,20 @@ const vi: Messages = {
     billed: "Thanh toán một lần. Trả một lần, dùng mãi mãi.",
     popular: "PHỔ BIẾN NHẤT",
     plans: [
-      { tagline: "Cho dự án cá nhân", features: ["1 workspace", "database cục bộ + template", "Hỗ trợ cộng đồng"] },
-      { tagline: "Cho nhà phát triển cá nhân", features: ["Workspace không giới hạn", "Deploy bundle Git", "Lịch sử ghi & rollback", "Hỗ trợ ưu tiên"] },
+      { tagline: "Cho dự án cá nhân", features: ["3 workspace", "Chỉ dùng template miễn phí", "Deploy bundle Git", "Hỗ trợ cộng đồng"] },
+      { tagline: "Cho nhà phát triển cá nhân", features: ["Workspace không giới hạn", "Mochi Table", "Template cao cấp", "Deploy bundle Git", "Lịch sử ghi & rollback", "Hỗ trợ ưu tiên"] },
     ],
   },
   cta: { sub: "Cài đặt Mochi trong vài giây — không server, không prompt, không lock-in." },
   footer: { tagline: "Không gian dữ liệu cho cả team — không phí server, không lock-in, sẵn sàng cho AI." },
+  success: {
+    title: "Xong rồi!",
+    sub: "License Pro của bạn đang được gửi tới email. Cài Mochi và bắt đầu xây workspace của bạn.",
+    order: "Mã đơn hàng:",
+    cta: "Xem trên GitHub",
+    back: "Về trang chủ",
+    note: "Chưa nhận được email? Kiểm tra hộp thư spam, hoặc liên hệ qua GitHub.",
+  },
 };
 
 export const messages: Record<LocaleCode, Messages> = { en, es, fr, de, ja, zh, vi };
