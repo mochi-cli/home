@@ -216,7 +216,11 @@ export default function AINative() {
 
   // scroll-driven selection: whichever item crosses the vertical center of the
   // viewport becomes active, so scrolling steps through 01→04 in order.
+  // Desktop only — the sticky side-by-side layout needs it; on mobile each
+  // item renders its own demo inline instead, so auto-detection would just
+  // fight the layout shift that causes.
   useEffect(() => {
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -253,7 +257,7 @@ export default function AINative() {
             <div className="relative pl-6">
               <div className="absolute left-2 top-1 bottom-1 w-px bg-line-soft" aria-hidden />
               <div
-                className="absolute left-2 top-1 w-px transition-all duration-700 ease-out"
+                className="absolute left-2 top-1 hidden w-px transition-all duration-700 ease-out lg:block"
                 style={{ height: `${((active + 1) / items.length) * 100}%`, backgroundColor: toneAt(active).dot }}
                 aria-hidden
               />
@@ -266,12 +270,12 @@ export default function AINative() {
                     key={it.n}
                     ref={(el) => { itemRefs.current[i] = el; }}
                     onClick={() => handleSelect(i)}
-                    className={`relative flex min-h-[300px] w-full flex-col justify-center border-b py-4 text-left transition-colors lg:min-h-[380px] ${
+                    className={`relative flex w-full flex-col justify-center border-b py-4 text-left transition-colors lg:min-h-[380px] ${
                       isActive ? "border-foreground" : "border-line-soft hover:border-line"
                     }`}
                   >
                     <span
-                      className="absolute -left-5 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full border-2 transition-colors duration-300"
+                      className="absolute -left-5 top-6 h-2 w-2 -translate-y-1/2 rounded-full border-2 transition-colors duration-300 lg:top-1/2"
                       style={{
                         backgroundColor: passed ? t.dot : "var(--surface)",
                         borderColor: passed ? t.dot : "var(--line-soft)",
@@ -283,15 +287,19 @@ export default function AINative() {
                       {it.title}
                     </div>
                     {isActive && (
-                      <p className="mt-2 text-sm leading-relaxed text-muted">{it.desc}</p>
+                      <>
+                        <p className="mt-2 text-sm leading-relaxed text-muted">{it.desc}</p>
+                        {/* mobile: show this item's own demo right here instead of a sticky side panel */}
+                        <div className="mt-5 lg:hidden">{it.render()}</div>
+                      </>
                     )}
                   </button>
                 );
               })}
             </div>
 
-            {/* right: demo — pinned in place while the list scrolls past */}
-            <div className="lg:sticky lg:top-28 lg:self-start">
+            {/* right: demo — desktop only; mobile renders each demo inline under its item */}
+            <div className="hidden lg:sticky lg:top-28 lg:block lg:self-start">
               {current.render()}
             </div>
           </div>

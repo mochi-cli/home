@@ -24,10 +24,10 @@ export default function CTASection() {
               </p>
 
               <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <a href="#pricing" className="btn-primary text-sm">
+                <a href="#pricing" className="btn-primary h-12 w-full whitespace-nowrap text-sm sm:w-auto">
                   Get started →
                 </a>
-                <div className="mono inline-flex h-12 items-center gap-3 rounded-full border border-line-soft bg-surface px-5 text-sm text-foreground/90">
+                <div className="mono flex h-12 w-full max-w-full items-center gap-3 overflow-x-auto whitespace-nowrap rounded-full border border-line-soft bg-surface px-5 text-sm text-foreground/90 sm:w-auto">
                   <span className="text-muted-2">$</span> sudo npx @mochi-cli/mochi init --kit all
                 </div>
               </div>
