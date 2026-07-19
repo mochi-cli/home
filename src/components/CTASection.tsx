@@ -2,52 +2,33 @@
 
 import Mascot from "./Mascot";
 import Reveal from "./Reveal";
-import { PixelHeart } from "./hud";
 import { useLang } from "./LanguageProvider";
 
 export default function CTASection() {
   const { m } = useLang();
   return (
-    <section className="border-b border-line">
+    <section className="border-b border-line-soft">
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
         <Reveal>
-          <div className="scanlines relative overflow-hidden border border-line bg-[#141414] px-8 py-16 text-center sm:px-16">
-            <div
-              className="pointer-events-none absolute inset-0 opacity-[0.12]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
-                backgroundSize: "40px 40px",
-              }}
-            />
+          <div className="relative overflow-hidden rounded-3xl bg-mesh-bright px-8 py-20 text-center text-foreground ring-1 ring-line-soft sm:px-16">
             <div className="relative">
-              <div className="mx-auto mb-6 flex w-fit items-center justify-center border border-white/25 p-3">
-                <Mascot pose="happy" uid="cta" className="h-16 w-16" />
+              <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-surface shadow-[var(--shadow-card)]">
+                <Mascot pose="happy" uid="cta" className="h-14 w-14" />
               </div>
 
-              <div className="mb-4 flex items-center justify-center gap-1.5">
-                {[true, true, true].map((_, i) => (
-                  <PixelHeart key={i} className="h-4 w-5 text-white" />
-                ))}
-                <PixelHeart filled={false} className="h-4 w-5 text-white/40" />
-              </div>
-
-              <h2 className="pixel mx-auto max-w-xl text-lg leading-relaxed text-white sm:text-2xl">
-                INSERT COIN TO CONTINUE
+              <h2 className="mx-auto max-w-2xl text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">
+                Ready to organize your data?
               </h2>
-              <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-white/60">
+              <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-muted">
                 {m.cta.sub}
               </p>
 
-              <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <a
-                  href="#pricing"
-                  className="pixel inline-flex h-12 w-full items-center justify-center border border-white bg-white px-7 text-[11px] text-[#141414] shadow-[4px_4px_0_0_rgba(255,255,255,0.35)] transition-transform hover:-translate-x-px hover:-translate-y-px sm:w-auto"
-                >
-                  PRESS START ►
+              <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <a href="#pricing" className="btn-primary h-12 w-full whitespace-nowrap text-sm sm:w-auto">
+                  Get started →
                 </a>
-                <div className="mono inline-flex h-12 items-center gap-3 border border-white/25 bg-white/5 px-5 text-sm text-white/90">
-                  <span className="text-white/40">$</span> sudo npx @mochi-cli/mochi init --kit all
+                <div className="mono flex h-12 w-full max-w-full items-center gap-3 overflow-x-auto whitespace-nowrap rounded-full border border-line-soft bg-surface px-5 text-sm text-foreground/90 sm:w-auto">
+                  <span className="text-muted-2">$</span> sudo npx @mochi-cli/mochi init --kit all
                 </div>
               </div>
             </div>

@@ -1,16 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f2f2f0;
+  --background: #fdfdfb;
   --foreground: #131313;
   --surface: #ffffff;
-  --surface-2: #e9e9e6;
+  --surface-2: #f2f2ee;
   --line: #131313;
-  --line-soft: rgba(19, 19, 19, 0.18);
-  --line-faint: rgba(19, 19, 19, 0.1);
+  --line-soft: rgba(19, 19, 19, 0.12);
+  --line-faint: rgba(19, 19, 19, 0.06);
   --muted: #5f5f5c;
   --muted-2: #97978f;
   --chrome: #d7d7d2;
+  --highlight: #a3f0d1;
+  --highlight-strong: #34d399;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.04);
+  --shadow-lift: 0 8px 28px rgba(0, 0, 0, 0.08);
 }
 
 @theme inline {
@@ -22,9 +30,17 @@
   --color-muted: var(--muted);
   --color-muted-2: var(--muted-2);
   --color-chrome: var(--chrome);
+  --color-highlight: var(--highlight);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-pixel: var(--font-pixel);
+}
+
+@layer base {
+  html {
+    /* bumps every rem-based text size site-wide by ~6% */
+    font-size: 17px;
+  }
 }
 
 body {
@@ -34,8 +50,8 @@ body {
 }
 
 ::selection {
-  background: var(--foreground);
-  color: var(--background);
+  background: var(--highlight);
+  color: var(--foreground);
 }
 
 /* ---- Type helpers ---- */
@@ -48,103 +64,93 @@ body {
 }
 .tech {
   font-family: var(--font-mono), monospace;
-  font-size: 0.66rem;
-  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--muted-2);
 }
 
-/* ---- HUD surfaces ---- */
+/* Marker-style highlight — like teable's yellow, but mint */
+.mark {
+  background-image: linear-gradient(
+    180deg,
+    transparent 55%,
+    var(--highlight) 55%,
+    var(--highlight) 92%,
+    transparent 92%
+  );
+  padding: 0 0.08em;
+  border-radius: 2px;
+}
+
+/* ---- Surfaces ---- */
 .panel {
   position: relative;
+  overflow: hidden;
   background: var(--surface);
-  border: 1px solid var(--line);
+  border: 1px solid rgba(19, 19, 19, 0.14);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
 }
-.panel-ghost {
+.card {
   position: relative;
-  background: transparent;
-  border: 1px dashed var(--line-soft);
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+.card:hover {
+  box-shadow: var(--shadow-lift);
+  border-color: rgba(19, 19, 19, 0.22);
 }
 
-/* dotted grid block (like poster corners) */
+/* dotted grid, very subtle */
 .dotgrid {
-  background-image: radial-gradient(var(--line-faint) 1.4px, transparent 1.4px);
-  background-size: 12px 12px;
-}
-.dotgrid-strong {
-  background-image: radial-gradient(rgba(19, 19, 19, 0.55) 2px, transparent 2px);
-  background-size: 13px 13px;
+  background-image: radial-gradient(var(--line-faint) 1px, transparent 1px);
+  background-size: 22px 22px;
 }
 
-/* faint blueprint grid */
-.blueprint {
-  background-image:
-    linear-gradient(to right, var(--line-faint) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--line-faint) 1px, transparent 1px);
-  background-size: 44px 44px;
+/* bright, colorful mesh — used behind big CTA/pricing surfaces instead of solid black */
+.bg-mesh-bright {
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(163, 240, 209, 0.55) 0%, transparent 55%),
+    radial-gradient(120% 140% at 100% 0%, rgba(147, 197, 253, 0.45) 0%, transparent 55%),
+    radial-gradient(120% 140% at 100% 100%, rgba(216, 180, 254, 0.4) 0%, transparent 55%),
+    radial-gradient(120% 140% at 0% 100%, rgba(253, 186, 116, 0.3) 0%, transparent 55%),
+    var(--surface);
 }
 
-/* scanlines overlay */
-.scanlines::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(19, 19, 19, 0.035) 0px,
-    rgba(19, 19, 19, 0.035) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-}
-
-/* pixel-hard shadow button */
-.btn-hard {
-  position: relative;
-  border: 1px solid var(--line);
+/* ---- Buttons ---- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 999px;
   background: var(--foreground);
   color: var(--background);
-  box-shadow: 4px 4px 0 0 var(--line);
-  transition:
-    transform 0.12s ease,
-    box-shadow 0.12s ease;
+  padding: 0.7rem 1.4rem;
+  font-weight: 500;
+  border: 1px solid var(--foreground);
+  transition: background 0.15s ease, transform 0.12s ease;
 }
-.btn-hard:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0 0 var(--line);
-}
-.btn-hard:active {
-  transform: translate(3px, 3px);
-  box-shadow: 1px 1px 0 0 var(--line);
-}
+.btn-primary:hover { background: #000; transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+
 .btn-ghost {
-  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 999px;
   background: var(--surface);
   color: var(--foreground);
-  box-shadow: 4px 4px 0 0 var(--line);
-  transition:
-    transform 0.12s ease,
-    box-shadow 0.12s ease;
+  padding: 0.7rem 1.4rem;
+  font-weight: 500;
+  border: 1px solid var(--line-soft);
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
-.btn-ghost:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0 0 var(--line);
-}
-.btn-ghost:active {
-  transform: translate(3px, 3px);
-  box-shadow: 1px 1px 0 0 var(--line);
-}
-
-.card-hud {
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
-}
-.card-hud:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 0 var(--line);
-}
+.btn-ghost:hover { border-color: var(--line); background: var(--surface-2); }
 
 /* ---- Animations ---- */
 @keyframes float {
@@ -153,11 +159,25 @@ body {
 }
 .animate-float { animation: float 5.5s ease-in-out infinite; }
 
-@keyframes spin-slow {
-  to { transform: rotate(360deg); }
+/* slow ambient drift for background glow blobs */
+@keyframes driftSlow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(28px, -22px) scale(1.06); }
 }
-.animate-spin-slow { animation: spin-slow 40s linear infinite; }
-.animate-spin-rev { animation: spin-slow 60s linear infinite reverse; }
+@keyframes driftSlowRev {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-24px, 20px) scale(1.05); }
+}
+.animate-drift-a { animation: driftSlow 19s ease-in-out infinite; }
+.animate-drift-b { animation: driftSlowRev 23s ease-in-out infinite; }
+.animate-drift-c { animation: driftSlow 27s ease-in-out infinite reverse; }
+
+/* story-bar style fill, used by auto-cycling tabs */
+@keyframes tabgrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.animate-tabgrow { animation: tabgrow 4.5s linear forwards; }
 
 @keyframes blinkeye {
   0%, 92%, 100% { transform: scaleY(1); }
@@ -176,40 +196,6 @@ body {
 }
 .animate-blink { animation: blinklabel 1.6s steps(1) infinite; }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.animate-marquee { animation: marquee 26s linear infinite; }
-
-@keyframes pulseNode {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.25); opacity: 0.7; }
-}
-.animate-pulse-node { animation: pulseNode 0.7s ease-in-out infinite; }
-
-@keyframes dashflow {
-  to { stroke-dashoffset: -20; }
-}
-.animate-dashflow { animation: dashflow 0.5s linear infinite; }
-
-@keyframes scanx {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(300%); }
-}
-.animate-scanx { animation: scanx 1.1s ease-in-out infinite; }
-
-@keyframes eqbar {
-  0%, 100% { transform: scaleY(0.5); }
-  50% { transform: scaleY(1); }
-}
-
-@keyframes flowx {
-  0% { left: 0%; }
-  100% { left: 100%; }
-}
-.animate-flowx { animation: flowx 2.6s linear infinite; }
-
 .reveal {
   opacity: 0;
   transform: translateY(18px);
@@ -224,10 +210,11 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .animate-float,
-  .animate-spin-slow,
-  .animate-spin-rev,
   .animate-cursor,
   .animate-blink,
-  .animate-marquee { animation: none; }
+  .animate-drift-a,
+  .animate-drift-b,
+  .animate-drift-c,
+  .animate-tabgrow { animation: none; }
   .reveal { opacity: 1; transform: none; }
 }

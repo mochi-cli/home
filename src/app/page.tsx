@@ -1,8 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Workflow from "@/components/Workflow";
-import Features from "@/components/Features";
-import GitSection from "@/components/GitSection";
+import AINative from "@/components/AINative";
 import Templates from "@/components/Templates";
 import MascotIntro from "@/components/MascotIntro";
 import Subscription from "@/components/Subscription";
@@ -20,13 +19,10 @@ export default function Home() {
         {/* 2. How it works — 3 bước sử dụng */}
         <Workflow />
 
-        {/* 3. Features — chat agent + template */}
-        <Features />
+        {/* 3. AI-native — chat, templates, live collab, and rollback in one numbered demo */}
+        <AINative />
 
-        {/* 4. Git & History — commit safely + rollback */}
-        <GitSection />
-
-        {/* 5. Templates — các template có sẵn */}
+        {/* 4. Templates — các template có sẵn */}
         <Templates />
 
         {/* 5. Trust — giới thiệu Mochi, chỉ số tin cậy */}

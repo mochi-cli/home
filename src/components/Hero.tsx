@@ -1,20 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Frame,
-  Crosshair,
-  RegMark,
-  DashedRings,
-  TechCaption,
-  EQSlider,
-  CircleToolbar,
-  WarnTriangle,
-  DotBlock,
-} from "./hud";
 import Mascot from "./Mascot";
 import { useLang } from "./LanguageProvider";
 import { useEngine, ALL_ENGINES } from "./EngineProvider";
+import { toneAt } from "@/lib/tones";
 
 export default function Hero() {
   const { m } = useLang();
@@ -30,109 +20,97 @@ export default function Hero() {
   };
 
   return (
-    <section id="top" className="scanlines relative overflow-hidden border-b border-line">
-      <div className="blueprint pointer-events-none absolute inset-0 opacity-60" />
-
-      {/* ---- corner motifs ---- */}
-      <DotBlock className="pointer-events-none absolute left-4 top-4 hidden h-16 w-16 opacity-40 lg:block" />
-      <DotBlock className="pointer-events-none absolute right-4 top-4 hidden h-16 w-16 opacity-40 lg:block" />
-      <DotBlock className="pointer-events-none absolute bottom-4 left-4 hidden h-16 w-16 opacity-40 lg:block" />
-      <DotBlock className="pointer-events-none absolute bottom-4 right-4 hidden h-16 w-16 opacity-40 lg:block" />
-      <WarnTriangle className="absolute left-24 top-6 hidden h-4 w-4 text-muted-2 lg:block" />
-      <WarnTriangle className="absolute right-24 top-6 hidden h-4 w-4 text-muted-2 lg:block" />
-      <TechCaption className="absolute left-24 top-14 hidden lg:block" />
-      <TechCaption
-        className="absolute right-24 top-14 hidden text-right lg:block"
-        lines={["MOCHI READY", "START · TALK TO YOUR DATA", "AI // CLAUDE·CODEX·OC"]}
-      />
-
-      {/* ---- side rails ---- */}
-      <div className="absolute left-3 top-1/2 hidden -translate-y-1/2 items-center gap-3 xl:flex">
-        <CircleToolbar />
-        <EQSlider dir="left" />
+    <section id="top" className="relative overflow-hidden border-b border-line-soft">
+      {/* ambient background glow — slow drifting color blobs, kept faint so text stays crisp */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="animate-drift-a absolute -left-24 -top-32 h-[420px] w-[420px] rounded-full opacity-60 blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(163,240,209,0.55), transparent 70%)" }}
+        />
+        <div
+          className="animate-drift-b absolute -right-28 top-0 h-[380px] w-[380px] rounded-full opacity-50 blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(147,197,253,0.5), transparent 70%)" }}
+        />
+        <div
+          className="animate-drift-c absolute bottom-[-160px] left-1/3 h-[360px] w-[360px] rounded-full opacity-45 blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(216,180,254,0.45), transparent 70%)" }}
+        />
       </div>
-      <div className="absolute right-3 top-1/2 hidden -translate-y-1/2 items-center gap-3 xl:flex">
-        <EQSlider dir="right" />
-        <CircleToolbar />
-      </div>
+      <div className="dotgrid pointer-events-none absolute inset-0 opacity-70" />
 
-      <div className="relative mx-auto max-w-5xl px-6 pb-16 pt-14 text-center md:pt-16">
-        {/* title */}
-        <div className="mb-3 flex items-center justify-center gap-4">
-          <span className="hidden h-px w-16 bg-line sm:block" />
-          <h1 className="pixel text-5xl font-bold tracking-tight text-foreground sm:text-7xl">MOCHI</h1>
-          <span className="hidden h-px w-16 bg-line sm:block" />
+      <div className="relative mx-auto max-w-5xl px-6 pb-20 pt-16 text-center md:pt-24">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-line-soft bg-surface px-4 py-1.5 text-xs text-muted">
+          <span className="h-1.5 w-1.5 animate-blink rounded-full bg-highlight-strong" />
+          <span className="tracking-wide">Live workspace — synced peer-to-peer</span>
         </div>
 
-        {/* insert coin pill */}
-        <div className="mb-8 flex justify-center">
-          <span className="pixel inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-2 text-[11px] text-foreground">
-            <span className="h-2 w-2 animate-blink rounded-full bg-foreground" />
-            INSERT COIN
-          </span>
-        </div>
-
-        {/* mascot reticle */}
-        <div className="relative mx-auto mb-10 w-fit">
-          <DashedRings className="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 [color:var(--line-soft)] sm:h-[360px] sm:w-[360px]" />
-          <Crosshair className="absolute -left-4 top-1/2 h-3 w-3 -translate-y-1/2 text-muted" />
-          <Crosshair className="absolute -right-4 top-1/2 h-3 w-3 -translate-y-1/2 text-muted" />
-          <RegMark className="absolute left-1/2 -top-6 h-3 w-3 -translate-x-1/2 text-muted" />
-          <RegMark className="absolute left-1/2 -bottom-6 h-3 w-3 -translate-x-1/2 text-muted" />
-          <Frame size={18} className="p-6">
-            <Mascot uid="hero" className="animate-float relative h-36 w-36 sm:h-44 sm:w-44" />
-          </Frame>
-        </div>
-
-        {/* headline */}
-        <h2 className="mx-auto max-w-2xl text-balance text-3xl font-semibold leading-[1.1] tracking-tight sm:text-5xl">
+        <h1 className="mx-auto max-w-4xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-6xl md:text-7xl">
           {m.hero.headline}
-        </h2>
-        <p className="mx-auto mt-5 max-w-xl text-pretty text-sm leading-relaxed text-muted sm:text-base">
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted sm:text-lg">
           {m.hero.sub}
         </p>
 
-        {/* agent select toggles */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
-          <span className="tech">SELECT AGENT ›</span>
-          {ALL_ENGINES.map((a) => {
-            const isSelected = selectedEngines.includes(a);
-            return (
+        {/* Prompt bar — teable-style, with mascot as avatar */}
+        <div className="mt-10 flex justify-center">
+          <div className="relative w-full max-w-3xl rounded-2xl border border-line-soft bg-surface p-2 text-left shadow-[var(--shadow-card)]">
+            <div className="flex items-start gap-3 p-3">
+              <div className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-highlight/50">
+                <Mascot uid="hero" className="h-8 w-8" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="mono flex items-center gap-2 text-sm text-foreground">
+                  <span className="text-muted-2">$</span>
+                  <span className="truncate">{installCommand}</span>
+                </div>
+                <p className="mt-1.5 text-xs text-muted-2">
+                  Select an agent · kit is auto-detected
+                </p>
+              </div>
               <button
-                key={a}
-                onClick={() => toggleEngine(a)}
-                className={`pixel border border-line px-2.5 py-1 text-[9px] transition-colors ${
-                  isSelected ? "bg-foreground text-background" : "bg-surface text-foreground"
-                }`}
+                onClick={handleCopy}
+                className="btn-ghost h-9 text-xs"
+                title="Copy install command"
               >
-                {a}
+                {copied ? "Copied ✓" : "Copy"}
               </button>
-            );
-          })}
-        </div>
-
-        {/* CTAs */}
-        <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a
-            href="#pricing"
-            className="btn-hard pixel inline-flex h-12 w-full items-center justify-center px-7 text-[11px] sm:w-auto"
-          >
-            PRESS START ►
-          </a>
-          <div className="mono flex h-12 items-center justify-between gap-3 border border-line bg-surface pl-5 pr-2 text-sm text-foreground sm:w-auto w-full max-w-full overflow-hidden">
-            <div className="flex items-center gap-3 overflow-x-auto whitespace-nowrap scrollbar-none">
-              <span className="text-muted-2">$</span> {installCommand}
             </div>
-            <button
-              onClick={handleCopy}
-              className="pixel ml-2 flex h-8 shrink-0 items-center justify-center border border-line bg-background px-3 text-[9px] text-muted-2 transition-colors hover:bg-surface hover:text-foreground active:scale-95"
-              title="Copy to clipboard"
-            >
-              {copied ? "COPIED" : "COPY"}
-            </button>
+
+            <div className="flex flex-wrap items-center gap-1.5 border-t border-line-soft px-3 py-3">
+              {ALL_ENGINES.map((a, i) => {
+                const isSelected = selectedEngines.includes(a);
+                const tone = toneAt(i);
+                return (
+                  <button
+                    key={a}
+                    onClick={() => toggleEngine(a)}
+                    style={
+                      isSelected
+                        ? { backgroundColor: tone.bg, color: tone.fg, borderColor: "transparent" }
+                        : undefined
+                    }
+                    className={`rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors ${
+                      isSelected
+                        ? ""
+                        : "border-line-soft bg-surface text-muted hover:border-line hover:text-foreground"
+                    }`}
+                  >
+                    {a}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a href="#pricing" className="btn-primary text-sm">
+            Get started →
+          </a>
+          <a href="#workflow" className="btn-ghost text-sm">
+            See how it works
+          </a>
+        </div>
       </div>
     </section>
   );

@@ -24,13 +24,12 @@ interface Plan {
   tagline: string;
   features: string[];
 }
-
 export interface Messages {
   scripts: any;
   db: any;
   hero: { headline: string; sub: string };
   feat: { title: string; items: Feature[] };
-  git: { title: string; items: Feature[] };
+  git: { title: string; items: Feature[]; agentLabel: string; syncedCaption: string };
   flow: { title: string; steps: Step[] };
   tpl: { title: string; sub: string; items: string[] };
   char: { title: string; sub: string };
@@ -263,21 +262,23 @@ const en: Messages = {
     title: "Git-backed storage control & data history",
     items: [
       {
-        title: "Plain text, not opaque files",
-        desc: "Your data lives as diff-able Markdown — not a locked-in .db. See every change like a code review.",
+        title: "Sync your database online, via Git",
+        desc: "Every commit updates your local files and your hosted database together — no separate sync step, no drift.",
       },
       {
-        title: "Undo anything, instantly",
-        desc: "Every AI edit is a Git commit. Broke something? Roll back to any point in one command.",
+        title: "Team collab with agent",
+        desc: "Two teammates, two branches, one shared workspace — Mochi keeps every edit in sync, no merge conflicts.",
       },
     ],
+    agentLabel: "Mochi agent",
+    syncedCaption: "synced automatically, zero config",
   },
   flow: {
     title: "Three steps to your team's workspace",
     steps: [
       { title: "Install Mochi", desc: "One command. Free to start. Works on Mac, Linux, and Windows." },
       { title: "Pick a template", desc: "Start from CRM, HR, Inventory, Projects, or a blank canvas." },
-      { title: "Invite your team", desc: "Peer-to-peer sync — no server needed. Everyone edits, Git tracks the history." },
+      { title: "Start working with your data", desc: "Talk to your agent — Mochi reads, writes, and organizes it for you." },
     ],
   },
   tpl: {
@@ -492,14 +493,16 @@ const es: Messages = {
     title: "Almacenamiento en Git y control del historial de datos",
     items: [
       {
-        title: "Guarda los datos con seguridad en Git",
-        desc: "Nunca subas un archivo database en vivo. Exporta un paquete de texto JSON/Markdown fácil de comparar y ramificar.",
+        title: "Sincroniza tu base de datos online, vía Git",
+        desc: "Cada commit actualiza tus archivos locales y tu base de datos alojada a la vez — sin paso de sincronización aparte, sin desviaciones.",
       },
       {
-        title: "Historial de escritura y reversión cuando quieras",
-        desc: "Cada cambio del agente queda registrado. Revisa y revierte a un estado anterior con un solo comando.",
+        title: "Colabora en equipo con el agente",
+        desc: "Dos compañeros, dos ramas, un espacio de trabajo compartido — Mochi mantiene cada cambio sincronizado, sin conflictos de fusión.",
       },
     ],
+    agentLabel: "Agente Mochi",
+    syncedCaption: "sincronizado automáticamente, sin configuración",
   },
   flow: {
     title: "Tres pasos hacia un espacio nativo para agentes",
@@ -510,12 +513,12 @@ const es: Messages = {
     ],
   },
   tpl: {
-    title: "Plantillas listas, personalizables cuando haga falta",
-    sub: "Cada plantilla incluye un esquema, relaciones de datos y datos de ejemplo: suficiente para que tu agente empiece de inmediato y simple para adaptarla a tus necesidades.",
+    title: "Plantillas para las herramientas que realmente necesitas",
+    sub: "Ya sea que gestiones ventas, RRHH, operaciones o un equipo de proyecto — empieza desde una plantilla con esquema, relaciones y datos de ejemplo. Personaliza en lenguaje natural o deja que tu agente lo haga.",
     items: [
       "Clientes, oportunidades de venta, historial de interacciones",
       "Personas, departamentos, asistencia, evaluaciones",
-      "Productos, stock, entradas/salidas en tiempo real",
+      "Productos, stock, flujo de entrada/salida en tiempo real",
       "Tareas, progreso, miembros, plazos",
     ],
   },
@@ -721,14 +724,16 @@ const fr: Messages = {
     title: "Stockage Git et contrôle de l'historique des données",
     items: [
       {
-        title: "Validez vos données en toute sécurité sur Git",
-        desc: "Ne validez jamais un fichier database en direct. Exportez un bundle texte JSON/Markdown facile à comparer et à versionner.",
+        title: "Synchronisez votre base de données en ligne, via Git",
+        desc: "Chaque commit met à jour vos fichiers locaux et votre base de données hébergée en même temps — pas d'étape de synchro séparée, pas de dérive.",
       },
       {
-        title: "Historique des écritures et retour arrière à tout moment",
-        desc: "Chaque modification de l'agent est suivie. Consultez et revenez à un état précédent en une commande.",
+        title: "Collaboration d'équipe avec l'agent",
+        desc: "Deux coéquipiers, deux branches, un espace de travail partagé — Mochi garde chaque modification synchronisée, sans conflit de fusion.",
       },
     ],
+    agentLabel: "Agent Mochi",
+    syncedCaption: "synchronisé automatiquement, sans configuration",
   },
   flow: {
     title: "Trois étapes vers un espace natif pour agents",
@@ -950,14 +955,16 @@ const de: Messages = {
     title: "Git-gesicherter Speicher & Datenverwaltung",
     items: [
       {
-        title: "Committe Daten sicher zu Git",
-        desc: "Committe nie eine aktive database-Datei. Exportiere ein textbasiertes JSON/Markdown-Bundle, das sich leicht vergleichen und verzweigen lässt.",
+        title: "Synchronisiere deine Datenbank online, via Git",
+        desc: "Jeder Commit aktualisiert deine lokalen Dateien und deine gehostete Datenbank gleichzeitig — kein separater Sync-Schritt, keine Abweichung.",
       },
       {
-        title: "Schreibverlauf & Rollback jederzeit",
-        desc: "Jede Änderung des Agenten wird verfolgt. Prüfe und setze mit einem Befehl auf einen früheren Stand zurück.",
+        title: "Teamzusammenarbeit mit Agent",
+        desc: "Zwei Kolleg:innen, zwei Branches, ein gemeinsamer Workspace — Mochi hält jede Änderung synchron, ganz ohne Merge-Konflikte.",
       },
     ],
+    agentLabel: "Mochi-Agent",
+    syncedCaption: "automatisch synchronisiert, ohne Konfiguration",
   },
   flow: {
     title: "Drei Schritte zu einem agentennativen Workspace",
@@ -1179,14 +1186,16 @@ const ja: Messages = {
     title: "Git連携ストレージ制御とデータ履歴管理",
     items: [
       {
-        title: "データを安全にGitへコミット",
-        desc: "稼働中のdatabaseファイルはコミットしません。差分やブランチ管理が容易なテキスト形式のJSON/Markdownバンドルを書き出します。",
+        title: "Git 経由でデータベースをオンライン同期",
+        desc: "コミットのたびに、ローカルファイルとホスト先のデータベースが同時に更新されます。別途の同期作業もズレも発生しません。",
       },
       {
-        title: "書き込み履歴とロールバックをいつでも",
-        desc: "エージェントの変更はすべて記録。1コマンドで以前の状態を確認・復元できます。",
+        title: "エージェントとチームで共同作業",
+        desc: "2人のメンバー、2つのブランチ、1つの共有ワークスペース — Mochi があらゆる変更を同期し、マージの衝突もありません。",
       },
     ],
+    agentLabel: "Mochi エージェント",
+    syncedCaption: "自動同期・設定不要",
   },
   flow: {
     title: "エージェントネイティブなワークスペースへの3ステップ",
@@ -1408,14 +1417,16 @@ const zh: Messages = {
     title: "Git 驱动的存储控制与数据历史管理",
     items: [
       {
-        title: "安全地把数据提交到 Git",
-        desc: "绝不提交实时 database 文件。导出易于对比和分支的文本 JSON/Markdown 包。",
+        title: "通过 Git 在线同步数据库",
+        desc: "每次提交都会同时更新本地文件和托管数据库 —— 无需额外同步步骤，不会产生数据偏差。",
       },
       {
-        title: "随时查看写入历史与回滚",
-        desc: "智能体的每次更改都被记录。一条命令即可查看并回滚到之前的状态。",
+        title: "与智能体团队协作",
+        desc: "两位同事，两条分支，一个共享工作区 —— Mochi 让每一次修改保持同步，没有合并冲突。",
       },
     ],
+    agentLabel: "Mochi 智能体",
+    syncedCaption: "自动同步，无需配置",
   },
   flow: {
     title: "三步搭建面向智能体的工作区",
@@ -1645,21 +1656,23 @@ const vi: Messages = {
     title: "Kiểm soát lưu trữ DB trên Git & quản lý lịch sử dữ liệu",
     items: [
       {
-        title: "Plain text, không phải file khóa",
-        desc: "Dữ liệu của bạn lưu dạng Markdown diff được — không phải file .db đóng kín. Xem mọi thay đổi như review code.",
+        title: "Đồng bộ database online qua Git",
+        desc: "Mỗi commit cập nhật cả file local lẫn database online cùng lúc — không cần bước đồng bộ riêng, không lệch dữ liệu.",
       },
       {
-        title: "Undo bất kỳ lúc nào, tức thì",
-        desc: "Mỗi lần AI chỉnh là một Git commit. Sai chỗ nào? Rollback về bất kỳ điểm nào chỉ với một lệnh.",
+        title: "Cộng tác nhóm với agent",
+        desc: "Hai người, hai nhánh, một workspace chung — Mochi giữ mọi thay đổi đồng bộ, không xung đột merge.",
       },
     ],
+    agentLabel: "Mochi agent",
+    syncedCaption: "tự động đồng bộ, không cần cấu hình",
   },
   flow: {
     title: "Ba bước có ngay workspace cho team",
     steps: [
       { title: "Cài đặt Mochi", desc: "Chỉ một lệnh. Miễn phí bắt đầu. Chạy trên Mac, Linux và Windows." },
       { title: "Chọn template", desc: "Bắt đầu từ CRM, HR, kho vận, dự án — hoặc canvas trắng tùy bạn." },
-      { title: "Mời team vào", desc: "Đồng bộ P2P — không cần server. Cả team cùng chỉnh, Git tự lưu lịch sử." },
+      { title: "Bắt đầu công việc với data của bạn", desc: "Trò chuyện với agent — Mochi đọc, ghi và tổ chức dữ liệu thay bạn." },
     ],
   },
   tpl: {

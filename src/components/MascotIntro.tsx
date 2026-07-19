@@ -2,58 +2,57 @@
 
 import Mascot from "./Mascot";
 import Reveal from "./Reveal";
-import { Frame, DashedRings, Crosshair, TechCaption } from "./hud";
 import { useLang } from "./LanguageProvider";
+import { toneAt } from "@/lib/tones";
 
 const stats = [
-  { label: "SIMPLE", val: 5 },
-  { label: "SAFE", val: 5 },
-  { label: "TRACEABLE", val: 4 },
-  { label: "ZERO-DEP", val: 5 },
+  { label: "Simple",    val: 5 },
+  { label: "Safe",      val: 5 },
+  { label: "Traceable", val: 4 },
+  { label: "Zero-dep",  val: 5 },
 ];
 
 export default function MascotIntro() {
   const { m } = useLang();
   return (
-    <section id="mochi" className="scanlines relative border-b border-line bg-surface-2">
-      <div className="dotgrid pointer-events-none absolute inset-0 opacity-50" />
+    <section id="mochi" className="relative border-b border-line-soft">
       <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* character card */}
-          <Reveal className="order-1 flex justify-center">
-            <div className="relative">
-              <DashedRings className="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 [color:var(--line-soft)]" />
-              <Crosshair className="absolute -left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-muted" />
-              <Crosshair className="absolute -right-3 top-1/2 h-3 w-3 -translate-y-1/2 text-muted" />
-              <Frame size={16} className="bg-background/60 p-8 backdrop-blur-sm">
-                <span className="pixel absolute -top-2 left-1/2 -translate-x-1/2 bg-surface-2 px-2 text-[9px] text-muted">
-                  PLAYER 01
-                </span>
-                <Mascot pose="happy" uid="intro" className="animate-float h-44 w-44 sm:h-52 sm:w-52" />
-              </Frame>
-              <TechCaption className="absolute -bottom-2 right-2" lines={["ID: MOCHI-001", "CLASS: ASSISTANT"]} />
+        <div className="grid items-center gap-14 lg:grid-cols-2">
+          <Reveal className="flex justify-center">
+            <div className="relative flex h-72 w-72 items-center justify-center rounded-full bg-mesh-bright sm:h-80 sm:w-80">
+              <Mascot pose="happy" uid="intro" className="animate-float h-48 w-48 sm:h-56 sm:w-56" />
             </div>
           </Reveal>
 
-          <Reveal className="order-2" delay={100}>
-            <p className="tech">{"// MEET MOCHI"}</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">{m.char.title}</h2>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">{m.char.sub}</p>
+          <Reveal delay={80}>
+            <p className="tech">// MEET MOCHI</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              {m.char.title}
+            </h2>
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-muted">
+              {m.char.sub}
+            </p>
 
-            <div className="mt-7 space-y-3">
-              {stats.map((s) => (
-                <div key={s.label} className="flex items-center gap-3">
-                  <span className="pixel w-24 flex-none text-[9px] text-muted">{s.label}</span>
-                  <div className="flex gap-1">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <span
-                        key={i}
-                        className={`h-3 w-5 border border-line ${i < s.val ? "bg-foreground" : "bg-transparent"}`}
-                      />
-                    ))}
+            <div className="mt-8 space-y-3">
+              {stats.map((s, i) => {
+                const tone = toneAt(i);
+                return (
+                  <div key={s.label} className="flex items-center gap-4">
+                    <span className="w-24 flex-none text-xs font-medium text-muted">
+                      {s.label}
+                    </span>
+                    <div className="flex gap-1">
+                      {Array.from({ length: 5 }).map((_, j) => (
+                        <span
+                          key={j}
+                          className="h-2.5 w-6 rounded-sm"
+                          style={{ backgroundColor: j < s.val ? tone.dot : "var(--surface-2)" }}
+                        />
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </Reveal>
         </div>
