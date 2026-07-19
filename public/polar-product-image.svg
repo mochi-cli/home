@@ -1,0 +1,116 @@
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" width="1200" height="675">
+  <title>Mochi Pro — Agent-native data workspace</title>
+  <desc>Product cover for Mochi Pro: mascot, one-time $19 price, and key features (unlimited workspaces, Mochi Table, premium templates, Git bundle deploy, priority support) on a soft mint/blue/purple gradient background.</desc>
+
+  <defs>
+    <radialGradient id="g1" cx="0%" cy="0%" r="75%">
+      <stop offset="0%" stop-color="#a3f0d1" stop-opacity="0.55"/>
+      <stop offset="55%" stop-color="#a3f0d1" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="100%" cy="0%" r="75%">
+      <stop offset="0%" stop-color="#93c5fd" stop-opacity="0.45"/>
+      <stop offset="55%" stop-color="#93c5fd" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g3" cx="100%" cy="100%" r="75%">
+      <stop offset="0%" stop-color="#d8b4fe" stop-opacity="0.4"/>
+      <stop offset="55%" stop-color="#d8b4fe" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g4" cx="0%" cy="100%" r="75%">
+      <stop offset="0%" stop-color="#fdba74" stop-opacity="0.3"/>
+      <stop offset="55%" stop-color="#fdba74" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mgrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4a4a4a"/>
+      <stop offset="42%" stop-color="#6d6d6d"/>
+      <stop offset="100%" stop-color="#ededea"/>
+    </linearGradient>
+    <radialGradient id="mhl" cx="42%" cy="30%" r="58%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background: white base + soft color mesh, matches site's bg-mesh-bright -->
+  <rect width="1200" height="675" fill="#ffffff"/>
+  <rect width="1200" height="675" fill="url(#g1)"/>
+  <rect width="1200" height="675" fill="url(#g2)"/>
+  <rect width="1200" height="675" fill="url(#g3)"/>
+  <rect width="1200" height="675" fill="url(#g4)"/>
+
+  <!-- ===================== LEFT: mascot + product name ===================== -->
+  <g transform="translate(90,25)">
+    <circle cx="130" cy="230" r="92" fill="#ffffff" opacity="0.9"/>
+    <g transform="translate(66,150)">
+      <!-- ears -->
+      <path d="M58 64 L66 38 L88 60 Z" fill="#4a4a4a"/>
+      <path d="M142 64 L134 38 L112 60 Z" fill="#4a4a4a"/>
+      <!-- body -->
+      <path d="M40 112 C40 74 58 52 100 52 C142 52 160 74 160 112 L160 168 q-15 20 -30 0 q-15 20 -30 0 q-15 20 -30 0 q-15 20 -30 0 Z"
+            fill="url(#mgrad)" stroke="#3a3a3a" stroke-width="1.5"/>
+      <ellipse cx="90" cy="86" rx="46" ry="34" fill="url(#mhl)"/>
+      <!-- eyes -->
+      <rect x="74" y="88" width="15" height="32" rx="7.5" fill="#f0f0ee"/>
+      <rect x="111" y="88" width="15" height="32" rx="7.5" fill="#f0f0ee"/>
+      <!-- nose -->
+      <path d="M94 122 L106 122 L100 130 Z" fill="#f0f0ee"/>
+    </g>
+
+    <text x="20" y="410" font-family="ui-sans-serif, -apple-system, 'Segoe UI', sans-serif" font-size="34" font-weight="700" fill="#131313">Mochi</text>
+    <text x="20" y="446" font-family="ui-sans-serif, -apple-system, 'Segoe UI', sans-serif" font-size="17" fill="#5f5f5c">Agent-native data workspace</text>
+    <text x="20" y="472" font-family="ui-sans-serif, -apple-system, 'Segoe UI', sans-serif" font-size="17" fill="#5f5f5c">for Claude, Codex &amp; OpenCode</text>
+
+    <!-- engine chips -->
+    <g font-family="ui-monospace, 'SF Mono', monospace" font-size="12" font-weight="600">
+      <rect x="20" y="500" width="86" height="28" rx="14" fill="#d1fbe8"/>
+      <text x="63" y="518" text-anchor="middle" fill="#047857">CLAUDE</text>
+      <rect x="114" y="500" width="76" height="28" rx="14" fill="#dbeafe"/>
+      <text x="152" y="518" text-anchor="middle" fill="#1d4ed8">CODEX</text>
+      <rect x="198" y="500" width="106" height="28" rx="14" fill="#ede9fe"/>
+      <text x="251" y="518" text-anchor="middle" fill="#6d28d9">OPENCODE</text>
+    </g>
+  </g>
+
+  <!-- ===================== RIGHT: pricing card ===================== -->
+  <g transform="translate(660,120)">
+    <rect x="0" y="0" width="450" height="440" rx="28" fill="#131313"/>
+
+    <!-- badge -->
+    <rect x="28" y="28" width="140" height="30" rx="15" fill="#34d399"/>
+    <text x="98" y="48" text-anchor="middle" font-family="ui-sans-serif, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#ffffff">★ MOST POPULAR</text>
+
+    <text x="28" y="108" font-family="ui-sans-serif, -apple-system, sans-serif" font-size="16" font-weight="500" fill="#ffffff" opacity="0.9">Pro</text>
+
+    <text x="28" y="168" font-family="ui-sans-serif, -apple-system, sans-serif" font-size="64" font-weight="700" fill="#ffffff">$19</text>
+    <text x="150" y="168" font-family="ui-sans-serif, -apple-system, sans-serif" font-size="18" fill="#ffffff" opacity="0.6">/forever</text>
+    <text x="28" y="196" font-family="ui-sans-serif, -apple-system, sans-serif" font-size="14" fill="#ffffff" opacity="0.7">One-time payment. Pay once, use forever.</text>
+
+    <line x1="28" y1="222" x2="422" y2="222" stroke="#ffffff" stroke-opacity="0.15"/>
+
+    <!-- features -->
+    <g font-family="ui-sans-serif, -apple-system, sans-serif" font-size="16" fill="#ffffff">
+      <g transform="translate(28,254)">
+        <path d="M0 5l3.5 3.5L10 0" stroke="#34d399" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="24" y="9">Unlimited workspaces</text>
+      </g>
+      <g transform="translate(28,294)">
+        <path d="M0 5l3.5 3.5L10 0" stroke="#34d399" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="24" y="9">Mochi Table</text>
+      </g>
+      <g transform="translate(28,334)">
+        <path d="M0 5l3.5 3.5L10 0" stroke="#34d399" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="24" y="9">Premium templates</text>
+      </g>
+      <g transform="translate(28,374)">
+        <path d="M0 5l3.5 3.5L10 0" stroke="#34d399" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="24" y="9">Git bundle deploy · Write history &amp; rollback</text>
+      </g>
+      <g transform="translate(28,414)">
+        <path d="M0 5l3.5 3.5L10 0" stroke="#34d399" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="24" y="9">Priority support</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- bottom tagline -->
+  <text x="90" y="645" font-family="ui-sans-serif, -apple-system, sans-serif" font-size="15" fill="#5f5f5c">Your team's data workspace — no server bills, no lock-in, agent-ready.</text>
+</svg>
